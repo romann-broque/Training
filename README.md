@@ -1,0 +1,2 @@
+# Training
+Some nice exercises
