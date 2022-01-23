@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 23:21:44 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/01/18 00:09:43 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/01/21 23:50:37 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,51 @@
 #include <stdbool.h>
 
 #define ALPHABET_SIZE 26
+#define DELTA 32
 #define A_RANK 97
 #define Z_RANK 122
 #define A_RANK_UPPER 65
 #define Z_RANK_UPPER 90
-#define DELTA 32
 
-void	ft_putchar(char c)
+static ssize_t	ft_putchar(const char c)
 {
-	write(0, &c, 1);
+	return (write(STDOUT_FILENO, &c, sizeof(c)));
 }
 
-int	len_str(char *str)
+static size_t	strlen(const char *const str)
 {
-	int	iterator;
+	size_t	len;
 
-	iterator = 0;
-	while (str[iterator] != '\0')
-		iterator++;
-	return (iterator);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }
 
-char	upper(char c)
+static const char	toupper(const char c)
 {
-	if ((c >= A_RANK) && (c <= Z_RANK))
-		c -= DELTA;
+	if ((c >= 'a') && (c <= 'z'))
+		return (c - DELTA);
 	return (c);
 }
 
 bool	is_a_pangram(char *str)
 {
-	int		iterator;
+	int		i;
 	char	alphabet[ALPHABET_SIZE];
 	char	character;
 
-	iterator = 0;
-	if (len_str(str) < ALPHABET_SIZE)
-		return (false);
-	while (iterator < len_str(str))
+	i = 0;
+	while (i < strlen(str))
 	{
-		character = upper(str[iterator]);
+		character = toupper(str[i]);
 		if ((character >= A_RANK_UPPER) && (character <= Z_RANK_UPPER))
 			alphabet[character - A_RANK_UPPER] = character;
-		iterator++;
-		if (len_str(alphabet) == ALPHABET_SIZE)
+		i++;
+		if (strlen(alphabet) == ALPHABET_SIZE)
 			return (true);
 	}
-	if (len_str(alphabet) < ALPHABET_SIZE)
+	if (strlen(alphabet) < ALPHABET_SIZE)
 		return (false);
 	return (true);
 }
