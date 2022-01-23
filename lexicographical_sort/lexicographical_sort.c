@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 23:36:19 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/01/23 23:36:42 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/01/23 23:43:18 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	size_t	size(char	**strs)
 	return (size);
 }
 
-static	void	switching(char **strs, size_t i, size_t j)
+static	void	switching(char **strs, const size_t i, const size_t j)
 {
 	char	*word;
 
