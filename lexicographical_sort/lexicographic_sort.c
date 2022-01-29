@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexicographical_sort.c                             :+:      :+:    :+:   */
+/*   lexicographic_sort.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/23 23:36:19 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/01/23 23:43:18 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/01/29 15:45:04 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/01/29 15:45:34 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 static size_t	mini_len(const char *a, const char *b)
@@ -63,7 +62,7 @@ static	bool	is_bigger(const char *word1, const char *word2)
 	return (false);
 }
 
-static	char	**lexicographical_sort(char **strs)
+static	char	**lexicographic_sort(char **strs)
 {
 	size_t	i;
 	size_t	words_number;
