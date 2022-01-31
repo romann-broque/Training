@@ -6,14 +6,11 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 13:03:09 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/01/29 15:43:38 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/01/30 18:38:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
 
 #define OPENED "{[("
 #define CLOSED "}])"
