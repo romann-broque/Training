@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:16:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/15 15:35:40 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/02/16 13:43:37 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,15 @@ static int	pow(const int nb, const int p)
 
 static size_t	get_n_size(const int nb)
 {
+	size_t	size;
+
+	size = 0;
 	if (nb == 0)
-		return (0);
-	return (1 + get_n_size(nb / 10));
+		return (1);
+	while (nb / (pow(10, size)) != 0)
+		++size;
+	return (size);
 }
-
-/*
-static void	fill_str(char *nb_str, size_t rank, size_t max_rank, int nb)
-{
-	if (rank == max_rank)
-		nb_str[rank] = '\0';
-	else
-	{
-		int	digit;
-
-		digit = nb / 10;
-		nb -= digit * 10;
-		fill_str(nb_str, rank + 1, max_rank, nb / 10);
-		nb_str[rank] = '0' + digit;
-	}
-}
-*/
 
 static void	fill_str(char *nb_str, size_t size, int nb)
 {

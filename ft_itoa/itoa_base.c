@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:13:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/15 15:56:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/02/17 18:34:23 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ static size_t	str_len(const char *str)
 	return (len);
 }
 
-static size_t	is_neg(const int nb)
+static int	get_abs(const int nb)
 {
-	return (nb < 0);
+	if (nb < 0)
+		return (-nb);
+	return (nb);
 }
 
 static	bool	is_forbidden_char(const char *base_charset)
@@ -85,6 +87,8 @@ static size_t	get_size(const int nb, size_t len_base)
 	size_t	size;
 
 	size = 0;
+	if (nb == 0)
+		return(1);
 	while (nb / pow(len_base, size) != 0)
 		++size;
 	return (size);
@@ -95,8 +99,8 @@ static char	*get_coord(int nb, const char *base_charset,
 {
 	const size_t	len_base = str_len(base_charset);
 	size_t			i;
-	int				unit;
-	int				div;
+	long			unit;
+	long			div;
 	char			*tr_expr;
 
 	i = size;
@@ -123,7 +127,7 @@ static char	*itoa_base(const int nb, const char *base_charset)
 	if (base_charset != NULL)
 	{
 		const size_t	len = str_len(base_charset);
-		const size_t	negativity = is_neg(nb);
+		const size_t	negativity = (nb < 0);
 		size_t			size;
 		char			*expr;
 
@@ -132,7 +136,7 @@ static char	*itoa_base(const int nb, const char *base_charset)
 			&& (len > 1))
 		{
 			size = get_size(nb, len);
-			expr = get_coord(nb, base_charset, size, negativity);
+			expr = get_coord(get_abs(nb), base_charset, size, negativity);
 			return (expr);
 		}
 	}
