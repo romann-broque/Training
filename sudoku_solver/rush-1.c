@@ -6,16 +6,35 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 23:19:04 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/16 23:20:07 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/02/22 18:56:36 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+void	display_sudoku_solution(int ac, char **av)
+{
+	size_t	*coord;
+	char	**grid;
+	char	**grid_solving;
+	
+	if (ac > SIZE_GRID)
+	{
+		grid = init_grid(av);
+		printf("To solve : \n\n");
+		display_grid(grid);
+
+		coord = init_coord();
+		grid_solving = init_grid(av);
+		sudoku_solver(grid, grid_solving, coord);
+
+		printf("\nTry : \n\n");	
+		display_grid(grid_solving);
+	}
+}
+
 int	main(int ac, char **av)
 {
-	size_t	i;
-	char	**grid;
 	const char	*completed_grid =
 
 "9 1 4 3 7 5 2 6 8\n\
@@ -28,17 +47,9 @@ int	main(int ac, char **av)
 6 9 8 2 5 3 7 4 1\n\
 4 7 2 1 6 8 9 3 5\n";
 
-	grid = NULL;
-	if (ac > 9)
+	if (ac > SIZE_GRID)
 	{
-		i = 0;
-		grid = init_grid(grid, av);
-		printf("To solve : \n\n");
-		while (grid[i] != NULL)
-		{
-			printf("%s\n", grid[i]);
-			++i;
-		}
+		display_sudoku_solution(ac, av);
 		printf("\nSolved : \n\n%s\n", completed_grid);
 	}
 	return (EXIT_SUCCESS);

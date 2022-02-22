@@ -6,46 +6,62 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:56:22 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/16 23:21:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/02/22 18:59:29 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-//unsigned int sum_number_from_str(char *grid)
-
-void	try_next_number(char **grid, size_t line_index, size_t column_index)
+bool	go_forward(size_t *coord)
 {
-	char	number;
-
-	number = grid[line_index][column_index];
-	if ((number == UNKNOWN) || (number > '0' + SIZE_GRID))
-		number = '0';
-	number += 1;
-	grid[line_index][column_index] = nb;
+	if (coord[1] < SIZE_GRID - 1)
+		++coord[1];
+	else
+	{
+		coord[1] = 0;
+		if (coord[0] == SIZE_GRID - 1)
+			return (false);
+		++coord[0];
+	}
+	return (true);
 }
 
-void	sudoku_solver(char **grid, size_t line_index, size_t column_index)
+void	go_back_to_last_changed_number(char **orig_grid, char **curr_grid, size_t *coord)
 {
-	while (is_still_unknown(grid))
+	while (can_be_changed(orig_grid, curr_grid, coord) == false)
 	{
-		if ((grid[line_index][column_index] == UNKNOWN)
-			|| (is_correct(grid, line_index, column_index) == false))
+		if (coord[1] > 0)
+			--coord[1];
+		else if (coord[0] > 0)
 		{
-			try_next_number(grid, line_index, column_index);
-			sudoku_solver(grid, line_index, column_size);
+			coord[1] = SIZE_GRID - 1;
+			--coord[0];
 		}
-		else if (is_correct(grid, line_index, column_index) == true)
+	}
+}
+
+void	sudoku_solver(char **orig_grid, char **curr_grid, size_t *coord)
+{
+	while ((is_still_unknown(curr_grid) == true) || (is_correct(curr_grid, coord) == false))
+	{
+		if (curr_grid[coord[0]][coord[1]] == UNKNOWN)
+			curr_grid[coord[0]][coord[1]] = '1';
+		else if (is_correct(curr_grid, coord) == false)
 		{
-			if (column_index < SIZE_GRID - 1)
-					++column_index;
+			if (can_be_changed(orig_grid, curr_grid, coord) == true)
+				++curr_grid[coord[0]][coord[1]];
 			else
 			{
-				column_index = 0;
-				if (line_index >= SIZE_GRID - 1)
-					break;
-				++line_index;
+				curr_grid[coord[0]][coord[1]] = UNKNOWN;
+				go_back_to_last_changed_number(orig_grid, curr_grid, coord);
+				++curr_grid[coord[0]][coord[1]];
+				sudoku_solver(orig_grid, curr_grid, coord);
 			}
+		}
+		else
+		{
+			if (go_forward(coord) == false)
+				break;
 		}
 	}
 }

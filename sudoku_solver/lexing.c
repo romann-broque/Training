@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:59:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/16 22:25:19 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/02/22 18:48:18 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,36 @@ bool	are_correct_char(const char **grid)
 	return (false);
 }
 
-//bool	is_still_unknown(char **grid)
+bool	is_still_unknown(char **grid)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (grid[i] != NULL)
+	{
+		j = 0;
+		while (grid[i][j] != '\0')
+		{
+			if (grid[i][j] == UNKNOWN)
+				return (true);
+			++j;
+		}
+		++i;
+	}
+	return (false);
+}
+
+bool	is_strchr(const char *str, const char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (true);
+		++i;
+	}
+	return (false);
+}
