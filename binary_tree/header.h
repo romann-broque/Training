@@ -6,13 +6,15 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:00:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/04 09:27:36 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/04 10:27:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
+#define NUMB_OF_ROUTE_ALGO 5
 
 typedef	struct node
 {
@@ -44,4 +46,4 @@ int		get_depth(bin_node *node);
 
 //display.c//
 
-void	display_route(bin_node *node);
+void	display_route(int route_type, bin_node *node);

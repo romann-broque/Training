@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   display_route.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 09:21:36 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/04 09:28:29 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/04 10:30:33 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	display_route(bin_node *node)
+void	display_route(int route_type, bin_node *node)
 {
-	printf("Prefix route :\n");
-	prefix_route(node);
-	printf("\nPostroute :\n");
-	postfix_route(node);
-	printf("\nInfix route :\n");
-	infix_route(node);
-	printf("\nWidthfix route :\n");
-	width_route(node);
-	printf("\nDepthfix route :\n");
-	depth_route(node);
+	const char	*route_name[] = {"Prefix", "Postfix", "Infix", "Width", "Depth"};
+	void	(*route_algo[NUMB_OF_ROUTE_ALGO])(bin_node *) = {prefix_route, postfix_route, infix_route, width_route, depth_route};
+
+	printf("%s route :\n", route_name[route_type]);
+	route_algo[route_type](node);
 }
