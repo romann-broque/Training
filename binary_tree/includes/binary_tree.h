@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 17:00:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/06 09:49:42 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 16:47:59 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,21 @@
 
 #define NUMB_OF_ROUTE_ALGO 5
 
-typedef	struct node
+enum e_travel
+{
+	E_PREFIX,
+	E_POSTFIX,
+	E_INFIX,
+	E_WIDTH,
+	E_DEPTH,
+};
+
+typedef	struct	node
 {
 	int			data;
 	struct node	*left;
 	struct node	*right;
-} bin_node;
+} 				bin_node;
 
 //create_struct.c//
 

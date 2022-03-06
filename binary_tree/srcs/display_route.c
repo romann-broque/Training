@@ -6,11 +6,16 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 09:21:36 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/06 09:44:34 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 19:07:55 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef BINARY_TREE_H
+
+#	define BINARY_TREE_H
+#	include "binary_tree.h"
+
+#endif
 
 void	display_route(int route_type, bin_node *tree)
 {

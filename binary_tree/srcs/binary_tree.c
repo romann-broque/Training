@@ -6,35 +6,28 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:17:17 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/06 09:56:58 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 19:31:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef BINARY_TREE_H
 
-void	binary_tree(int route_type, int node_number, char **data)
-{
-	bin_node *tree;
+#	define BINARY_TREE_H
+#	include "binary_tree.h"
 
-	if (node_number > 1)
-	{
-		if (route_type < NUMB_OF_ROUTE_ALGO)
-		{
-			tree = create_tree(node_number, data);
-			display_route(route_type, tree);
-			destroy_tree(&tree);
-		}
-		else
-			printf("INVALID ROUTE\n");
-	}
-}
+#endif
 
 int	main(int ac, char **av)
 {
-	binary_tree(0, ac - 1, av);
-	binary_tree(1, ac - 1, av);
-	binary_tree(2, ac - 1, av);
-	binary_tree(3, ac - 1, av);
-	binary_tree(4, ac - 1, av);
+	if (ac > 1)
+	{
+		bin_node *tree = create_tree(ac - 1, av + 1);
+		display_route(E_PREFIX, tree);
+		display_route(E_POSTFIX, tree);
+		display_route(E_INFIX, tree);
+		display_route(E_WIDTH, tree);
+		display_route(E_DEPTH, tree);
+		destroy_tree(&tree);
+	}
 	return (EXIT_SUCCESS);
 }
