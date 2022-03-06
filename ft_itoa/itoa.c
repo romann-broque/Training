@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:16:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/16 13:43:37 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 10:04:14 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,4 @@ char	*itoa(const int nb)
 		fill_str(expr + negativity, size, get_abs(nb));
 	}
 	return (expr);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac > 1)
-		printf("%s\n", itoa(atoi(av[1])));
-	return (EXIT_SUCCESS);
 }

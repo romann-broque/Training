@@ -6,7 +6,7 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 18:13:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/02/17 18:34:23 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 10:00:58 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,4 @@ static char	*itoa_base(const int nb, const char *base_charset)
 		}
 	}
 	return (NULL);
-}
-
-int	main(int ac, char **av)
-{
-	if (ac > 2)
-		printf("%s\n", itoa_base(atoi(av[1]), av[2]));
-	return (EXIT_SUCCESS);
 }
