@@ -5,10 +5,10 @@
 #                                                     +:+ +:+         +:+      #
 #    By: romannbroque <marvin@42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/02 17:02:40 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/05 15:12:49 by romannbroque     ###   ########.fr        #
+#    Created: 2022/03/04 10:54:19 by romannbroque      #+#    #+#              #
+#    Updated: 2022/03/05 18:30:03 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-binary_tree: binary_tree.c create_struct.c route.c display_route.c get_info.c
-	gcc -Wall -Wextra -Werror -o binary_tree *.c
+linked_list : linked_list.c struct.c display.c get_info.c pop.c push.c reverse.c
+	gcc -Wall -Werror -Wextra -o linked_list *.c

@@ -6,55 +6,55 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:59:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/04 09:21:16 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 09:50:31 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	add_element(int data, bin_node *node)
+void	add_element(int new_data, bin_node *parent)
 {
-	bin_node	*new_node;
+	bin_node	*new;
 
-	new_node = create_node(data);
-	if (data < (*node).data)
+	new = create_node(new_data);
+	if (new -> data < parent -> data)
 	{
-		if ((*node).l_link == NULL)
-			(*node).l_link = new_node;
+		if (parent -> left == NULL)
+			parent -> left = new;
 		else
-			add_element(data, (*node).l_link);
+			add_element(new_data, parent -> left);
 	}
-	else if (data > (*node).data)
+	else if (new -> data > parent -> data)
 	{
-		if ((*node).r_link == NULL)
-			(*node).r_link = new_node;
+		if (parent -> right == NULL)
+			parent -> right = new;
 		else
-			add_element(data, (*node).r_link);
+			add_element(new_data, parent -> right);
 	}
 }
 
-void	destroy_tree(bin_node **node)
+void	destroy_tree(bin_node **parent)
 {
-	if ((**node).l_link != NULL)
-		destroy_tree(&(**node).l_link);
-	if ((**node).r_link != NULL)
-		destroy_tree(&(**node).r_link);
-	free(*node);
-	*node = NULL;
+	if ((*parent) -> left != NULL)
+		destroy_tree(&(*parent) -> left);
+	if ((*parent) -> right != NULL)
+		destroy_tree(&(*parent) -> right);
+	free(*parent);
+	*parent = NULL;
 }
 
-bin_node *create_node(int numb)
+bin_node *create_node(int nb)
 {
-	bin_node *current;
+	bin_node *new;
 
-	current = (bin_node *)malloc(sizeof(bin_node));
-	if (current != NULL)
+	new = (bin_node *)malloc(sizeof(bin_node));
+	if (new != NULL)
 	{
-		current -> data = numb;
-		current -> l_link = NULL;
-		current -> r_link = NULL;
+		new -> data = nb;
+		new -> left = NULL;
+		new -> right = NULL;
 	}
-	return (current);
+	return (new);
 }
 
 bin_node	*create_tree(int node_number, char **node_data)

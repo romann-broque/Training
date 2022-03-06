@@ -6,22 +6,22 @@
 /*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/03 16:08:25 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/03 16:09:13 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/06 09:51:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	display_floor(bin_node *node, int floor)
+void	display_floor(bin_node *parent, int floor)
 {
-	if (node != NULL)
+	if (parent != NULL)
 	{
 		if (floor == 1)
-			printf("%d\n", (*node).data);
+			printf("%d\n", parent -> data);
 		else if (floor > 1)
 		{
-			display_floor((*node).l_link, floor - 1);
-			display_floor((*node).r_link, floor - 1);
+			display_floor(parent -> left, floor - 1);
+			display_floor(parent -> right, floor - 1);
 		}
 	}
 }
@@ -33,18 +33,18 @@ int	get_max(const int a, const int b)
 	return (b);
 }
 
-int	get_depth(bin_node *node)
+int	get_depth(bin_node *parent)
 {
-	int	l_depth;
-	int	r_depth;
+	int	left_depth;
+	int	right_depth;
 
-	l_depth = 0;
-	r_depth = 0;
-	if ((*node).l_link != NULL)
-		l_depth = 1 + get_depth((*node).l_link);
-	if ((*node).r_link != NULL)
-		r_depth = 1 + get_depth((*node).r_link);
-	if ((l_depth == 0) && (r_depth == 0))
+	left_depth = 0;
+	right_depth = 0;
+	if (parent -> left != NULL)
+		left_depth = 1 + get_depth(parent -> left);
+	if (parent -> right != NULL)
+		right_depth = 1 + get_depth(parent -> right);
+	if ((left_depth == 0) && (right_depth == 0))
 		return (1);
-	return get_max(l_depth, r_depth);
+	return get_max(left_depth, right_depth);
 }
