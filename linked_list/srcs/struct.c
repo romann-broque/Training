@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 11:40:08 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/05 19:38:36 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/06 19:42:23 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/07 10:24:26 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef	LINKED_LIST_H
+
+#	include "linked_list.h"
+
+#endif
 
 node	*create_node(int input_data)
 {
@@ -25,12 +29,21 @@ node	*create_node(int input_data)
 	return (new);
 }
 
-node	*destroy_node(node **prev)
+void	destroy_node(node **prev)
 {
 	node	*temp;
 
 	temp = *prev;
 	*prev = (*prev) -> link;
-//	free(temp);
-	return (temp);
+	free(temp);
+}
+
+void	destroy_list(node **prev)
+{
+	if (*prev != NULL)
+	{
+		if ((*prev)->link != NULL)
+			destroy_list(&(*prev)->link);
+		free(*prev);
+	}
 }

@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 11:49:11 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/05 18:18:54 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/06 19:42:00 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/06 19:42:03 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef	LINKED_LIST_H
+
+#	include "linked_list.h"
+
+#endif
 
 void	add(node *prev, int input_data)
 {

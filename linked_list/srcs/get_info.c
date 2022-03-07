@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 10:43:12 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/05 12:27:05 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/06 19:41:16 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/06 19:41:19 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef LINKED_LIST_H
+
+#	include "linked_list.h"
+
+#endif
 
 size_t	get_size(node **prev)
 {

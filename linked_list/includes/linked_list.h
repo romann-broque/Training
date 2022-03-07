@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   linked_list.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/04 10:53:09 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/06 09:30:58 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/06 19:40:52 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/07 10:24:42 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#define LINKED_LIST_H
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -25,7 +27,8 @@ typedef	struct node_struct
 //struct.c//
 
 node	*create_node(int data);
-node	*destroy_node(node **prev);
+void	destroy_node(node **prev);
+void	destroy_list(node **prev);
 
 //push.c//
 
@@ -35,8 +38,8 @@ void	push(node **prev, int input_data);
 
 //pop.c//
 
-node	*pop(node **prev);
-node	*cut(node **prev);
+void	pop(node **prev);
+void	cut(node **prev);
 void	delete_data(node **prev, int input_data);
 
 //get_info.c//
@@ -49,4 +52,4 @@ void	display_list(node *prev);
 
 //reverse.c//
 
-void	reverse(node **prev);
+void	reverse_list(node **prev);

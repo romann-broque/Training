@@ -3,30 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   reverse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/05 18:28:52 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/06 09:30:06 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/06 19:42:14 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/07 10:18:15 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef	LINKED_LIST_H
 
-void	reverse(node **prev)
+#	include "linked_list.h"
+
+#endif
+
+static void	reverse(node **root, node *address)
 {
-	size_t	i;
-	size_t	size;
-	node	*temp;
+	if ((*root)->link != NULL)
+		reverse(&(*root)->link, *root);
+	(*root)->link = address;
+}
 
-	if (get_size(prev) > 1)
+void	reverse_list(node **root)
+{
+	node	*last;
+
+	if (*root != NULL)
 	{
-		i = MIN_SIZE;
-		size = get_size(prev);
-		while (i <= size)
-		{
-			temp = cut(prev);
-			insert(prev, temp -> data, i);
-			++i;
-		}
-	}
+		last = *root;
+		while (last->link != NULL)
+			last = last->link;
+		reverse(root, NULL);
+		*root = last;
+	}	
 }

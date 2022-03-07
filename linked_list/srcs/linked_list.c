@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/04 16:16:44 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/06 09:32:38 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/06 19:41:33 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/07 09:58:05 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef LINKED_LIST_H
+
+#	include "linked_list.h"
+
+#endif
 
 node	*linked_list(int node_number, char **data)
 {
@@ -65,7 +69,7 @@ int	main(int ac, char **av)
 	display_list(root);
 
 	printf("REVERSE !\n");
-	reverse(&root);
+	reverse_list(&root);
 	display_list(root);
 	
 	return (EXIT_SUCCESS);
