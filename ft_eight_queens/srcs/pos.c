@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 22:55:03 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/08 17:03:01 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 11:32:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ int	last_queen(char **chessboard, int position)
 	position = prev_pos(position);
 	lign = position / 10;
 	column = position % 10;
-	while (is_in_chessboard(position) && (chessboard[lign][column] != QUEEN))
+	while (is_in_chessboard(position))
 	{
+		if (chessboard[lign][column] == QUEEN)
+			return (position);
+		if (position == 0)
+			break;
 		position = prev_pos(position);
 		lign = position / 10;
 		column = position % 10;
 	}
-	if (chessboard[lign][column] == QUEEN)
-		return (position);
 	return (LAST_QUEEN_DOESNT_EXIST);
 }
 

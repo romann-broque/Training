@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 10:46:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/08 16:52:29 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 11:36:23 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 ///////////ft_eight_queens.c//
 
-void		ft_eight_queens(void);
+void	ft_eight_queens(void);
 
 ///////////display.c//
 
@@ -51,7 +51,7 @@ bool	is_valid(char **chessboard, int position);
 
 ///////////back_tracking.c//
 
-bool	back_tracking(char **chessboard, int position);
+int	back_tracking(char **chessboard, int position);
 
 ///////////pos.c//
 

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:42:19 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/08 17:06:02 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 11:33:03 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,32 @@
 
 #endif
 
-bool	back_tracking(char **chessboard, int position)
+int	back_tracking(char **chessboard, int position)
 {
 	int	last_queen_pos;
+	int	count;
 
-	while (is_count_queens(chessboard) < QUEEN_NB)
+	count = 0;
+	while (true)
 	{
-		if (is_valid(chessboard, position) == false)
+		if (is_in_chessboard(position) == false)
 		{
-			if (is_in_chessboard(position) == false)
+			if (is_count_queens(chessboard) == QUEEN_NB)
 			{
-				last_queen_pos = last_queen(chessboard, position);
-				if (last_queen_pos == LAST_QUEEN_DOESNT_EXIST)
-					return(false);
-				position = last_queen_pos;
-				turn_into(chessboard, position, EMPTY);
-				return (back_tracking(chessboard, next_pos(position)));
+				display_chessboard(chessboard);
+				++count;
 			}
-			else
-				position = next_pos(position);
+			last_queen_pos = last_queen(chessboard, position);
+			if ((last_queen_pos == LAST_QUEEN_DOESNT_EXIST) && (position != 0))
+				break;
+			position = last_queen_pos;
+			turn_into(chessboard, position, EMPTY);
+			count += back_tracking(chessboard, next_pos(position));
+			break;
 		}
-		else
-		{
+		else if (is_valid(chessboard, position))
 			turn_into(chessboard, position, QUEEN);
-			position = next_pos(position);
-		}
+		position = next_pos(position);
 	}
-	return (true);
+	return (count);
 }
