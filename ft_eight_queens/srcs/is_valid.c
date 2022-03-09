@@ -6,25 +6,16 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:38:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/08 17:04:00 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 17:13:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FT_EQ_H
 
-#	include "ft_eight_queens.h"
+#	include "ft_n_queens.h"
 #	define	FT_EQ_H
 
 #endif
-
-bool	is_in_chessboard(int pos)
-{
-	const int	lign = pos / 10;
-	const int	column = pos % 10;
-
-	return ((lign >= 0) && (lign < SIZE)
-			&& (column >= 0) && (column < SIZE));
-}
 
 static bool is_column_valid(char **chessboard, int y_coord)
 {
@@ -48,18 +39,18 @@ static bool is_column_valid(char **chessboard, int y_coord)
 static bool	is_diag_valid(char **chessboard, int pos,
 											const int direction[2])
 {
-	int	curr_x;
-	int	curr_y;
+	int	lign;
+	int	column;
 
-	curr_x = pos / 10;
-	curr_y = pos % 10;
+	lign = pos / 10;
+	column = pos % 10;
 	while (is_in_chessboard(pos))
 	{
-		if (chessboard[curr_x][curr_y] == QUEEN)
+		if (chessboard[lign][column] == QUEEN)
 			return (false);
-		curr_x += direction[0];
-		curr_y += direction[1];
-		pos = 10 * curr_x + curr_y;
+		lign += direction[0];
+		column += direction[1];
+		pos = 10 * lign + column;
 	}
 	return (true);
 }
@@ -77,7 +68,7 @@ static bool are_diags_valid(char **chessboard, int position)
 			&& (is_diag_valid(chessboard, position, right_down)));
 }
 
-bool	is_valid(char **chessboard, int position)
+bool	is_case_valid(char **chessboard, int position)
 {
 	const int	x_coord = position / 10;
 	const int	y_coord = position % 10;

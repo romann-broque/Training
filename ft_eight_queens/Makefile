@@ -6,23 +6,23 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/07 10:48:35 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/08 11:55:13 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/09 17:11:07 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_eight_queens
+NAME = ft_n_queens
 
 ######### SRCS
 
 PATH_SRCS += srcs
 
-SRCS += ft_eight_queens.c
+SRCS += ft_n_queens.c
 SRCS += display.c
 SRCS += get_info.c
 SRCS += init.c
 SRCS += is_valid.c
 SRCS += back_tracking.c
-SRCS += pos.c
+SRCS += edit_case.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -35,7 +35,7 @@ OBJS = $(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
 
 INCLUDES += includes/
 
-HEADER = ft_eight_queens.h
+HEADER = ft_n_queens.h
 
 vpath %.h $(INCLUDES)
 

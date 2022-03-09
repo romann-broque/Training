@@ -6,42 +6,35 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:42:19 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/09 11:33:03 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 17:12:07 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_EQ_H
+#ifndef FT_EQ_H
 
-#	include "ft_eight_queens.h"
+#	include "ft_n_queens.h"
 #	define	FT_EQ_H
 
 #endif
 
-int	back_tracking(char **chessboard, int position)
+int	back_tracking(char **chessboard, int position, int queen)
 {
-	int	last_queen_pos;
 	int	count;
 
-	count = 0;
-	while (true)
+	if (queen == QUEEN_NB)
 	{
-		if (is_in_chessboard(position) == false)
+		display_chessboard(chessboard);
+		return (1);
+	}
+	count = 0;
+	while (is_in_chessboard(position))
+	{
+		if (is_case_valid(chessboard, position))
 		{
-			if (is_count_queens(chessboard) == QUEEN_NB)
-			{
-				display_chessboard(chessboard);
-				++count;
-			}
-			last_queen_pos = last_queen(chessboard, position);
-			if ((last_queen_pos == LAST_QUEEN_DOESNT_EXIST) && (position != 0))
-				break;
-			position = last_queen_pos;
-			turn_into(chessboard, position, EMPTY);
-			count += back_tracking(chessboard, next_pos(position));
-			break;
+			add_queen(chessboard, position);
+			count += back_tracking(chessboard, next_pos(position), queen + 1);
+			remove_queen(chessboard, position);
 		}
-		else if (is_valid(chessboard, position))
-			turn_into(chessboard, position, QUEEN);
 		position = next_pos(position);
 	}
 	return (count);

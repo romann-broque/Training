@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 12:19:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/08 17:03:54 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 17:13:08 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_EQ_H
 
-#	include "ft_eight_queens.h"
+#	include "ft_n_queens.h"
 #	define	FT_EQ_H
 
 #endif

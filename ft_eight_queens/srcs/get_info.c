@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 12:02:46 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/08 17:03:48 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/09 17:12:55 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FT_EQ_H
 
-#	include "ft_eight_queens.h"	
+#	include "ft_n_queens.h"	
 #	define	FT_EQ_H
 
 #endif
@@ -48,24 +48,12 @@ bool	is_queen(char *str)
 	return (false);
 }
 
-int	is_count_queens(char **chessboard)
+bool	is_in_chessboard(int pos)
 {
-	int		count;
-	size_t	i;
-	size_t	j;
-
-	count = 0;
-	i = 0;
-	while (i < SIZE)
-	{
-		j = 0;
-		while (j < SIZE)
-		{
-			if (chessboard[i][j] == QUEEN)
-				++count;
-			++j;
-		}
-		++i;
-	}
-	return (count);
+	const int	lign = pos / 10;
+	const int	column = pos % 10;
+	
+	return ((lign >= 0) && (lign < SIZE)
+			&& (column >= 0) && (column < SIZE));
 }
+
