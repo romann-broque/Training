@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:46:39 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/10 22:35:38 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/11 14:04:52 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_binary(const int nb)
 {
 	char	bin_expr[SIZE + 1];
 
-	translate_to_bin(bin_expr, nb);
 	bin_expr[0] = '0' + (nb < 0);
+	translate_to_bin(bin_expr, nb);
 	bin_expr[SIZE] = '\0';
 	display_bin(bin_expr);
 }

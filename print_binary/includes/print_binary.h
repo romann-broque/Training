@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:18:06 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/10 22:34:36 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/11 14:21:34 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 void	translate_to_bin(char bin_expr[SIZE + 1], const int nb);
 int		get_bit(int nb, int pow_two);
-int		get_max_bit(const int nb);
 
 //////// display.c
 
