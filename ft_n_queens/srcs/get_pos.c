@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   get_pos.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/07 11:21:47 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/13 23:11:49 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/09 17:32:45 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/13 23:12:35 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_n_queens.h"
 
-void	ft_putchar(const char c)
+int	get_lign(int position)
 {
-	write(STDOUT_FILENO, &c, sizeof(char));
+	return (position / SIZE);
 }
 
-void	ft_putstr(char *str)
+int	get_column(int position)
 {
-	const size_t	size = str_len(str);
-	write(STDOUT_FILENO, str, (size + 1) * sizeof(char));
+	return (position % SIZE);
 }
 
-void	display_chessboard(char **chessboard)
+int	get_pos_from_coord(int lign, int column)
 {
-	size_t	i;
-	size_t	j;
+	return (SIZE * lign + column);
+}
 
-	i = 0;
-	while (i < SIZE)
-	{
-		j = 0;
-		while (j < SIZE)
-		{
-			ft_putchar(chessboard[i][j]);
-			ft_putchar(' ');
-			++j;
-		}
-		ft_putchar('\n');
-		++i;
-	}
-	ft_putchar('\n');
+int	next_pos(int position)
+{
+	return (position + 1);
 }

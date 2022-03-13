@@ -6,16 +6,11 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 12:02:46 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/09 17:12:55 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/13 23:12:27 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_EQ_H
-
-#	include "ft_n_queens.h"	
-#	define	FT_EQ_H
-
-#endif
+#include "ft_n_queens.h"	
 
 size_t	str_len(char *str)
 {
@@ -30,17 +25,13 @@ size_t	str_len(char *str)
 bool	is_queen(char *str)
 {
 	size_t	i;
-	int		count_q;
 
 	i = 0;
-	count_q = 0;
 	if (str != NULL)
 	{
 		while (str[i] != '\0')
 		{
 			if (str[i] == QUEEN)
-				++count_q;
-			if (count_q == 1)
 				return (true);
 			++i;
 		}
@@ -50,10 +41,16 @@ bool	is_queen(char *str)
 
 bool	is_in_chessboard(int pos)
 {
-	const int	lign = pos / 10;
-	const int	column = pos % 10;
-	
-	return ((lign >= 0) && (lign < SIZE)
-			&& (column >= 0) && (column < SIZE));
+	return ((pos >= 0) && (pos < SIZE * SIZE));
 }
 
+char	read_case(char **chessboard, int position)
+{
+	int	lign;
+	int	column;
+
+	lign = get_lign(position);
+	column = get_column(position);
+
+	return(chessboard[lign][column]);
+}

@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/07 10:48:35 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/09 17:11:07 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/13 23:14:21 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRCS += init.c
 SRCS += is_valid.c
 SRCS += back_tracking.c
 SRCS += edit_case.c
+SRCS += get_pos.c
+SRCS += main.c
 
 vpath %.c $(PATH_SRCS)
 

@@ -6,56 +6,51 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:38:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/09 17:13:16 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/13 23:12:59 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FT_EQ_H
+#include "ft_n_queens.h"
 
-#	include "ft_n_queens.h"
-#	define	FT_EQ_H
-
-#endif
-
-static bool is_column_valid(char **chessboard, int y_coord)
+bool is_column_valid(char **chessboard, int position)
 {
-	char	*column;
-	size_t	i;
+	size_t		i;
+	const int	column = get_column(position);
 
-	column = (char *)malloc((SIZE + 1) * sizeof(char));
-	if (column != NULL)
+	i = 0;
+	while (i < SIZE)
 	{
-		i = 0;
-		while (i < SIZE)
-		{
-			column[i] = chessboard[i][y_coord];
-			++i;
-		}
-		column[i] ='\0';
-	}
-	return (is_queen(column) == false);
-}
-
-static bool	is_diag_valid(char **chessboard, int pos,
-											const int direction[2])
-{
-	int	lign;
-	int	column;
-
-	lign = pos / 10;
-	column = pos % 10;
-	while (is_in_chessboard(pos))
-	{
-		if (chessboard[lign][column] == QUEEN)
-			return (false);
-		lign += direction[0];
-		column += direction[1];
-		pos = 10 * lign + column;
+		if (chessboard[i][column] == QUEEN)
+			return(false);
+		++i;
 	}
 	return (true);
 }
 
-static bool are_diags_valid(char **chessboard, int position)
+static bool	is_the_same_diag(int direction, int first_column, int curr_column)
+{
+	if (direction == 1)
+		return (curr_column >= first_column);
+	return (curr_column <= first_column);
+}
+
+static bool	is_diag_valid(char **chessboard, int pos,
+		const int direction[2])
+{
+	const int	offset = SIZE * direction[0] + direction[1];
+	const int	first_column = get_column(pos);
+
+	while (is_in_chessboard(pos)
+		&& is_the_same_diag(direction[1], first_column, get_column(pos)))
+	{
+		if (read_case(chessboard, pos) == QUEEN)
+			return (false);
+		pos += offset;
+	}
+	return (true);
+}
+
+bool are_diags_valid(char **chessboard, int position)
 {
 	const int	left_up[2] = {-1, -1};
 	const int	right_up[2] = {-1, 1};
@@ -70,11 +65,10 @@ static bool are_diags_valid(char **chessboard, int position)
 
 bool	is_case_valid(char **chessboard, int position)
 {
-	const int	x_coord = position / 10;
-	const int	y_coord = position % 10;
+	const int	lign = get_lign(position);
 
 	return (is_in_chessboard(position)
-			&&(is_queen(chessboard[x_coord]) == false)
-			&& is_column_valid(chessboard, y_coord)
+			&&(is_queen(chessboard[lign]) == false)
+			&& is_column_valid(chessboard, position)
 			&& are_diags_valid(chessboard, position));
 }
