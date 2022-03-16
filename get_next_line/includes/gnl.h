@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:52:28 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 12:57:49 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 15:33:56 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define PATH_FILE "/Users/romannbroque/Desktop/Code/C_project/Training/get_next_line/includes/file.txt"
 # define BUFFER_SIZE 4
+# define EMPTY_LINE "\0"
 
 /////////////// gnl.c
 

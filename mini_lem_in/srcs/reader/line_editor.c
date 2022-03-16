@@ -6,11 +6,11 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:43:29 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 17:43:32 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 18:11:25 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "mini_lem_in.h"
 
 bool	ft_strchr(char *str, const char c)
 {
@@ -24,19 +24,6 @@ bool	ft_strchr(char *str, const char c)
 		++i;
 	}
 	return (false);
-}
-
-size_t	str_len(char *str)
-{
-	size_t	len;
-
-	len = 0;
-	if (str != NULL)
-	{
-		while (str[len] != '\0')
-			++len;
-	}
-	return (len);
 }
 
 char	*init_buf(void)

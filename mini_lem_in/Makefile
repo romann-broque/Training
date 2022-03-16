@@ -1,4 +1,4 @@
-#**************************************************************************** #
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/16 17:57:46 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/16 18:12:16 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,21 @@ NAME = mini_lem_in
 
 PATH_SRCS += srcs
 PATH_SRCS += srcs/parser
-PATH_SRCS += srcs/reader
 PATH_SRCS += srcs/struct
+PATH_SRCS += srcs/reader
 
 SRCS += main.c
+SRCS += instructions.c
+
 SRCS += parser.c
 SRCS += get_nb.c
-SRCS += instructions.c
 SRCS += utilities.c
+
 SRCS += create_struct.c
+
+SRCS += gnl.c
+SRCS += reader.c
+SRCS += line_editor.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -37,7 +43,7 @@ OBJS = $(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
 
 INCLUDES += includes/
 
-HEADER = mini_lem_in.h
+HEADER += mini_lem_in.h
 
 vpath %.h $(INCLUDES)
 

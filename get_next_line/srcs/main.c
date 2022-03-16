@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:49:58 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 13:05:14 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 15:32:44 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		printf("Next_line : %s\n", line);
+		printf(" %s\n", line);
 		line = get_next_line(fd);
 	}
 	close(fd);

@@ -6,11 +6,11 @@
 /*   By: romanbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:32:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 15:31:02 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 18:09:58 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "mini_lem_in.h"
 
 char	*concatenate(char *str1, char *str2)
 {

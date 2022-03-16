@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 17:36:48 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 18:10:47 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@
 # define END_PATTERN "#end "
 # define DELIM '-'
 # define NBOF_INST 3
+# define BUFFER_SIZE 4
+# define EMPTY_LINE "\0"
+
+/////////////// gnl.c
+
+char	*get_next_line(int fd);
+
+/////////////// line_editor.c
+
+bool	ft_strchr(char *str, const char c);
+char	*init_buf(void);
+char	*keep_beginning(char *str, size_t rank);
+char	*keep_end(char *str, size_t rank);
+
+////////////////////////////////////////////////////////////////////////////////
 
 ///////////// parser.c
 
