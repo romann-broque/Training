@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 18:10:47 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 18:19:09 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int				get_nb_from_str(char *str, char end_char);
 
 ///////////// instructions.c
 
+void	inst(char *line);
 void	start(int nb);
 void	end(int nb);
 void	link_nodes(int nb1, int nb2);

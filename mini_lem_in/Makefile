@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/16 18:12:16 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/16 18:46:23 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ CFLAGS += -Wextra
 
 ifeq ($(debug), true)
 	CFLAGS += -g3
-	CFLAGS += -fsanitize=adress, undefined
+	CFLAGS += -fsanitize=address,undefined
 endif
 
 ########## RULES

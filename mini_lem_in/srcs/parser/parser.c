@@ -6,18 +6,12 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:13:29 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 17:04:48 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 18:16:54 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-/*
-bool	is_instruction(char *line)
-{
-	
-}
-*/
 bool	is_nb(char *str, char end_char)
 {
 	size_t	i;
