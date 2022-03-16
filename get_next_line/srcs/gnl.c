@@ -6,7 +6,7 @@
 /*   By: romanbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:32:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 13:07:16 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/16 15:24:13 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,11 @@ char	*get_line(int fd, char **rest)
 	
 	buffer = init_buf();
 	line = *rest;
+	if (*rest != NULL && *rest[0] == '\n')
+	{
+		*rest = keep_end(*rest, 0);
+		return ("\0");
+	}
 	while (ft_strchr(buffer, '\n') == false)
 	{
 		get_nxt_buf(fd, buffer);
