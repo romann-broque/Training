@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 18:19:09 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/17 22:17:10 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@
 # define BUFFER_SIZE 4
 # define EMPTY_LINE "\0"
 
+typedef struct	nd
+{
+	char		*id;
+	struct nd	**link;
+	size_t		link_cnt;
+}				node;
+
 /////////////// gnl.c
 
 char	*get_next_line(int fd);
 
 /////////////// line_editor.c
 
-bool	ft_strchr(char *str, const char c);
 char	*init_buf(void);
 char	*keep_beginning(char *str, size_t rank);
 char	*keep_end(char *str, size_t rank);
@@ -52,19 +58,33 @@ bool	is_link_inst(char *line);
 
 ///////////// get_nb.c
 
-unsigned int	get_nb_size_from_str(char *str, char end_char);
-unsigned int	get_nb_size(long nb);
-int				get_nb_from_str(char *str, char end_char);
+unsigned int	get_arg_size_from_str(char *str, char end_char);
+char			*get_arg_from_str(char *str, char end_char);
+
+////////////////////////////////////////////////////////////////////////////////
+
+///////////// create_struct.c
+
+node	*create_node(char *id);
+node	*add_node(node *n1, node *n2);
+void	display_node(node *n);
+
+////////////////////////////////////////////////////////////////////////////////
+
+void	display_error(int state);
+
+////////////////////////////////////////////////////////////////////////////////
 
 ///////////// instructions.c
 
-void	inst(char *line);
-void	start(int nb);
-void	end(int nb);
-void	link_nodes(int nb1, int nb2);
+int		inst(char *line);
+void	start(char *arg);
+void	end(char *arg);
+void	link_nodes(char *arg1, char *arg2);
 
 ///////////// utilities.c
 
 size_t	str_len(const char *str);
+bool	ft_strchr(const char *str, const char c);
 
 #endif

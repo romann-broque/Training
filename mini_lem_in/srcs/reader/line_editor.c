@@ -6,25 +6,11 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:43:29 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 18:11:25 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/17 21:58:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
-
-bool	ft_strchr(char *str, const char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (true);
-		++i;
-	}
-	return (false);
-}
 
 char	*init_buf(void)
 {

@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/16 18:46:23 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/17 22:15:57 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,13 @@ PATH_SRCS += srcs
 PATH_SRCS += srcs/parser
 PATH_SRCS += srcs/struct
 PATH_SRCS += srcs/reader
+PATH_SRCS += srcs/error
 
 SRCS += main.c
 SRCS += instructions.c
 
 SRCS += parser.c
-SRCS += get_nb.c
+SRCS += get_arg.c
 SRCS += utilities.c
 
 SRCS += create_struct.c
@@ -31,6 +32,8 @@ SRCS += create_struct.c
 SRCS += gnl.c
 SRCS += reader.c
 SRCS += line_editor.c
+
+SRCS += display_error.c
 
 vpath %.c $(PATH_SRCS)
 

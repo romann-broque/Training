@@ -6,46 +6,59 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:54:42 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 18:18:54 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/17 22:12:58 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-void	inst(char *line)
+int	inst(char *line)
 {
-	int	nb1;
-	int nb2;
+	char	*arg1;
+	char	*arg2;
 
 	if (is_start_inst(line))
 	{
-		nb1 = get_nb_from_str(line + str_len(START_PATTERN), '\0');
-		start(nb1);
+		arg1 = get_arg_from_str(line + str_len(START_PATTERN), '\0');
+		start(arg1);
+		return (2);
 	}
 	else if (is_end_inst(line))
 	{
-		nb1 = get_nb_from_str(line + str_len(END_PATTERN), '\0');
-		end(nb1);
+		arg1 = get_arg_from_str(line + str_len(END_PATTERN), '\0');
+		end(arg1);
+		return (2);
 	}
 	else if (is_link_inst(line))
 	{
-		nb1 = get_nb_from_str(line, DELIM);
-		nb2 = get_nb_from_str(line + get_nb_size(nb1) + 1, '\0');
-		link_nodes(nb1, nb2);
+		arg1 = get_arg_from_str(line, DELIM);
+		arg2 = get_arg_from_str(line + str_len(arg1) + 1, '\0');
+		link_nodes(arg1, arg2);
+		return (2);
 	}
+	else
+		return (EXIT_FAILURE);
 }
 
-void	start(int nb)
+void	start(char *arg)
 {
-	printf("Start : %d\n", nb);
+	printf("Start : %s\n", arg);
 }
 
-void	end(int nb)
+void	end(char *arg)
 {
-	printf("END : %d\n", nb);
+	printf("END : %s\n", arg);
 }
 
-void	link_nodes(int nb1, int nb2)
+void	link_nodes(char *arg1, char *arg2)
 {
-	printf("LINK : %d-%d\n", nb1, nb2);
+	node	*n1;
+	node	*n2;
+
+	n1 = create_node(arg1);
+	n2 = create_node(arg2);
+	n1 = add_node(n1, n2);
+	n2 = add_node(n2, n1);
+	display_node(n1);
+	display_node(n2);
 }
