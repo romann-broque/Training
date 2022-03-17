@@ -6,17 +6,17 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:14:09 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 22:18:28 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/17 23:45:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-node	*create_node(char *name)
+t_room	*create_room(char *name)
 {
-	node	*new;
+	t_room	*new;
 
-	new = (node *)malloc(sizeof(node));
+	new = (t_room *)malloc(sizeof(t_room));
 	if (new != NULL)
 	{
 		new->link = NULL;
@@ -26,21 +26,21 @@ node	*create_node(char *name)
 	return (new);
 }
 
-node	*add_node(node *n1, node *n2)
+t_room	*add_room(t_room *n1, t_room *n2)
 {
-	node	*new;
+	t_room	*new;
 	size_t	i;
 
-	new = create_node(n1->id);
+	new = create_room(n1->id);
 	new->id = n1->id;
 	new->link_cnt = n1->link_cnt + 1;
-	new->link = (node **)malloc((n1->link_cnt + 1) * sizeof(node *));
+	new->link = (t_room **)malloc((n1->link_cnt + 1) * sizeof(t_room *));
 	if (new->link != NULL)
 	{
 		i = 0;
 		while (i < new->link_cnt - 1)
 		{
-			new->link[i] = (node *)malloc(sizeof(node));
+			new->link[i] = (t_room *)malloc(sizeof(t_room));
 			if (n1->link != NULL)
 				new->link[i] = n1->link[i];
 			++i;
@@ -50,7 +50,7 @@ node	*add_node(node *n1, node *n2)
 	return (new);
 }
 
-void	display_node(node *n)
+void	display_room(t_room *n)
 {
 	size_t	i;
 

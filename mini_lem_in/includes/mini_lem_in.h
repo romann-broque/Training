@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 22:17:10 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/17 23:46:00 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,25 @@
 # define PATH_FILE "/Users/romannbroque/Desktop/Code/C_project/Training/mini_lem_in/includes/file.txt"
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
+# define SEPARATOR "-"
 # define DELIM '-'
+# define MIN_SIZE 1
 # define NBOF_INST 3
 # define BUFFER_SIZE 4
 # define EMPTY_LINE "\0"
 
-typedef struct	nd
+typedef	struct	s_node
 {
-	char		*id;
-	struct nd	**link;
-	size_t		link_cnt;
-}				node;
+	char			*name;
+	struct s_node	*link;
+}					t_node;
+
+typedef struct	s_room
+{
+	char			*id;
+	struct s_room	**link;
+	size_t			link_cnt;
+}					t_room;
 
 /////////////// gnl.c
 
@@ -65,13 +73,49 @@ char			*get_arg_from_str(char *str, char end_char);
 
 ///////////// create_struct.c
 
-node	*create_node(char *id);
-node	*add_node(node *n1, node *n2);
-void	display_node(node *n);
+t_room	*create_room(char *id);
+t_room	*add_room(t_room *n1, t_room *n2);
+void	display_room(t_room *n);
 
 ////////////////////////////////////////////////////////////////////////////////
 
 void	display_error(int state);
+
+////////////////////////////////////////////////////////////////////////////////
+
+///////////// display.c
+
+void	display_list(t_node *prev);
+
+///////////// get_info.c
+
+size_t	get_size(t_node **prev);
+
+///////////// linked_list.c
+
+t_node	*linked_list(int node_number, char **data);
+
+///////////// pop.c
+
+void	pop(t_node **prev);
+void	cut(t_node **prev);
+void	delete_data(t_node **prev, char *input_data);
+
+///////////// push.c
+
+void	add(t_node *prev, char *input_data);
+void	insert(t_node **prev, char *input_data, size_t rank);
+void	push(t_node **prev, char *input_data);
+
+///////////// reverse.c
+
+void	reverse_list(t_node **root);
+
+//////////// struct.c
+
+t_node	*create_node(char *input_data);
+void	destroy_node(t_node **prev);
+void	destroy_list(t_node **prev);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -80,7 +124,7 @@ void	display_error(int state);
 int		inst(char *line);
 void	start(char *arg);
 void	end(char *arg);
-void	link_nodes(char *arg1, char *arg2);
+void	link_room(char *arg1, char *arg2);
 
 ///////////// utilities.c
 
