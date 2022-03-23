@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:14:09 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 23:45:21 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/23 10:11:27 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,40 @@ t_room	*create_room(char *name)
 	new = (t_room *)malloc(sizeof(t_room));
 	if (new != NULL)
 	{
-		new->link = NULL;
-		new->link_cnt = 0;
 		new->id = name;
+		new->discovered = false;
+		new->link = NULL;
 	}
 	return (new);
 }
 
-t_room	*add_room(t_room *n1, t_room *n2)
+t_room	*add_room(t_room *n1, t_room *new)
 {
-	t_room	*new;
-	size_t	i;
-
-	new = create_room(n1->id);
-	new->id = n1->id;
-	new->link_cnt = n1->link_cnt + 1;
-	new->link = (t_room **)malloc((n1->link_cnt + 1) * sizeof(t_room *));
-	if (new->link != NULL)
-	{
-		i = 0;
-		while (i < new->link_cnt - 1)
-		{
-			new->link[i] = (t_room *)malloc(sizeof(t_room));
-			if (n1->link != NULL)
-				new->link[i] = n1->link[i];
-			++i;
-		}
-		new->link[new->link_cnt - 1] = n2;
-	}
-	return (new);
+	if (n1->link != NULL)
+		add(n1->link, new);
+	else
+		n1->link = create_node(new);
+	return (n1);
 }
 
-void	display_room(t_room *n)
+t_room	*find_room(t_gallery *head, void *id)
 {
-	size_t	i;
-
-	i = 0;
-	printf("%s : ADDRESS = %p ; ", n->id, n);
-	printf("LINK_CNT = %zu\n", n->link_cnt);
-	while (i < n->link_cnt)
+	if (head != NULL)
 	{
-		printf("LINK = %p\n", n->link[i]);
-		++i;
+		if (are_same_str((char *)head->room->id, (char *)id) == true)
+			return (head->room);
+		return (find_room(head->link, id));
 	}
+	return (NULL);
+}
+
+bool	is_room_exist(t_gallery *head, void *name)
+{
+	if (head != NULL)
+	{
+		if (are_same_str((char *)head->room->id, (char *)name) == true)
+			return (true);
+		return (is_room_exist(head->link, name));
+	}
+	return (false);
 }

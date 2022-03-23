@@ -6,7 +6,7 @@
 /*   By: romanbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:32:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/16 18:09:58 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/20 11:25:12 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*concatenate(char *str1, char *str2)
 			}
 			++i;
 		}
-		new_str[new_size] = '\0';
+		new_str[i] = '\0';
 	}
 	return (new_str);
 }
@@ -71,10 +71,10 @@ char	*get_line(int fd, char **rest)
 {
 	char	*line;
 	char	*buffer;
-	
+
 	buffer = init_buf();
 	line = *rest;
-	if (*rest != NULL && *rest[0] == '\n')
+	if (*rest != NULL && **rest == '\n')
 	{
 		*rest = keep_end(*rest, 0);
 		return (EMPTY_LINE);

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:41:46 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 23:21:40 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/18 11:19:15 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	cut(t_node **prev)
 		delete(prev, size);
 }
 
-void	delete_data(t_node **prev, char *input_data)
+void	delete_data(t_node **prev, void *input_data)
 {
 	if (*prev != NULL)
 	{

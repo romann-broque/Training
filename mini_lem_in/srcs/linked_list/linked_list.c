@@ -6,26 +6,26 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:41:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 23:34:08 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/18 11:57:49 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-t_node	*linked_list(int node_number, char **data)
+t_node	*linked_list(int node_number, void *data)
 {
 	t_node	*root;
 	int		i;
 
 	root = NULL;
-	if (node_number > 1)
+	if (node_number >= 1)
 	{
-		i = 1;
-		root = create_node(data[i]);
+		i = 0;
+		root = create_node(data + i);
 		++i;
 		while (i < node_number)
 		{
-			add(root, data[i]);
+			add(root, data + i);
 			++i;
 		}
 	}

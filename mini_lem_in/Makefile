@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/17 23:00:51 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/22 11:29:04 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,12 @@ NAME = mini_lem_in
 
 PATH_SRCS += srcs
 PATH_SRCS += srcs/parser
-PATH_SRCS += srcs/struct
+PATH_SRCS += srcs/room
 PATH_SRCS += srcs/reader
 PATH_SRCS += srcs/error
 PATH_SRCS += srcs/linked_list
+PATH_SRCS += srcs/gallery
+PATH_SRCS += srcs/path
 
 SRCS += main.c
 SRCS += instructions.c
@@ -29,6 +31,7 @@ SRCS += get_arg.c
 SRCS += utilities.c
 
 SRCS += create_struct.c
+SRCS += display_room.c
 
 SRCS += gnl.c
 SRCS += reader.c
@@ -43,6 +46,11 @@ SRCS += pop.c
 SRCS += push.c
 SRCS += reverse.c
 SRCS += struct.c
+
+SRCS += struct_gallery.c
+SRCS += display_gallery.c
+
+SRCS += path_finder.c
 
 vpath %.c $(PATH_SRCS)
 

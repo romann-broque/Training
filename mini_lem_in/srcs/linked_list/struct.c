@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:42:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 23:47:20 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/18 11:20:38 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-t_node	*create_node(char *input_data)
+t_node	*create_node(void *input_data)
 {
 	t_node *new;
 

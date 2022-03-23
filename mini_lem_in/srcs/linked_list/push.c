@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:42:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 23:46:40 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/18 11:19:40 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-void	add(t_node *prev, char *input_data)
+void	add(t_node *prev, void *input_data)
 {
 	t_node	*new_node;
 
@@ -28,7 +28,7 @@ void	add(t_node *prev, char *input_data)
 	}
 }
 
-void	insert(t_node **prev, char *input_data, size_t rank)
+void	insert(t_node **prev, void *input_data, size_t rank)
 {
 	t_node	*new;
 	t_node	*temp;
@@ -52,7 +52,7 @@ void	insert(t_node **prev, char *input_data, size_t rank)
 	}
 }
 
-void	push(t_node **prev, char *input_data)
+void	push(t_node **prev, void *input_data)
 {
 	if (*prev != NULL)
 		insert(prev, input_data, 1);

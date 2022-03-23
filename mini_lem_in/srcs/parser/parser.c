@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:13:29 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 22:14:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/20 14:37:10 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-bool	are_same_begin(const char *str, const char *pattern)
+bool	are_same_begin(char *str, char *pattern)
 {
 	const size_t	len_str = str_len(str);
 	const size_t	len_pat = str_len(pattern);
@@ -47,7 +47,7 @@ bool	is_link_inst(char *line)
 	size_t	i;
 
 	i = 0;
-	while (line[i] != DELIM)
+	while (line[i] != '\0' && line[i] != *DELIM)
 		++i;
-	return (ft_strchr(line + i, DELIM));
+	return (ft_strchr(line + i, *DELIM));
 }

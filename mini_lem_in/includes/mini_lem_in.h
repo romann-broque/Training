@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 23:46:00 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/23 13:46:23 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,37 @@
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
 # define SEPARATOR "-"
-# define DELIM '-'
+# define DELIM "-"
 # define MIN_SIZE 1
 # define NBOF_INST 3
 # define BUFFER_SIZE 4
 # define EMPTY_LINE "\0"
 
+enum e_inst
+{
+	E_START,
+	E_END,
+	E_LINK,
+};
+
 typedef	struct	s_node
 {
-	char			*name;
+	void			*name;
 	struct s_node	*link;
 }					t_node;
 
 typedef struct	s_room
 {
-	char			*id;
-	struct s_room	**link;
-	size_t			link_cnt;
-}					t_room;
+	char	*id;
+	bool	discovered;
+	t_node	*link;
+}			t_room;
+
+typedef	struct	s_gallery
+{
+	t_room				*room;
+	struct s_gallery	*link;
+}						t_gallery;
 
 /////////////// gnl.c
 
@@ -74,8 +87,14 @@ char			*get_arg_from_str(char *str, char end_char);
 ///////////// create_struct.c
 
 t_room	*create_room(char *id);
-t_room	*add_room(t_room *n1, t_room *n2);
+t_room	*add_room(t_room *parent, t_room *child);
+t_room	*find_room(t_gallery *head, void *id);
+bool	is_room_exist(t_gallery *head, void *name);
+
+///////////// display_room.c
+
 void	display_room(t_room *n);
+void	display_list_room(t_node *prev);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -93,19 +112,19 @@ size_t	get_size(t_node **prev);
 
 ///////////// linked_list.c
 
-t_node	*linked_list(int node_number, char **data);
+t_node	*linked_list(int node_number, void *data);
 
 ///////////// pop.c
 
 void	pop(t_node **prev);
 void	cut(t_node **prev);
-void	delete_data(t_node **prev, char *input_data);
+void	delete_data(t_node **prev, void *input_data);
 
 ///////////// push.c
 
-void	add(t_node *prev, char *input_data);
-void	insert(t_node **prev, char *input_data, size_t rank);
-void	push(t_node **prev, char *input_data);
+void	add(t_node *prev, void *input_data);
+void	insert(t_node **prev, void *input_data, size_t rank);
+void	push(t_node **prev, void *input_data);
 
 ///////////// reverse.c
 
@@ -113,22 +132,41 @@ void	reverse_list(t_node **root);
 
 //////////// struct.c
 
-t_node	*create_node(char *input_data);
+t_node	*create_node(void *input_data);
 void	destroy_node(t_node **prev);
 void	destroy_list(t_node **prev);
 
 ////////////////////////////////////////////////////////////////////////////////
 
+///////////// struct_gallery.c
+
+t_gallery	*create_gallery(void *id);
+void		add_gallery(t_gallery *head, void *id);
+
+///////////// display_gallery.c
+
+void	display_gallery(t_gallery *head);
+
+////////////////////////////////////////////////////////////////////////////////
+
+///////////// path_finder.c
+
+void	dfs(t_room *start, t_room *end);
+void	bfs(t_room *start, t_room *end);
+
+////////////////////////////////////////////////////////////////////////////////
+
 ///////////// instructions.c
 
-int		inst(char *line);
-void	start(char *arg);
-void	end(char *arg);
-void	link_room(char *arg1, char *arg2);
+int		inst(char *line, t_gallery **rooms, char *path[2]);
+int		start(char *arg, char *path[2]);
+int		end(char *arg, char *path[2]);
+int		link_room(char *line, t_gallery **rooms);
 
 ///////////// utilities.c
 
 size_t	str_len(const char *str);
 bool	ft_strchr(const char *str, const char c);
+bool	are_same_str(char *str1, char *str2);
 
 #endif
