@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:49:58 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/23 12:01:44 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/23 15:08:07 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	main(void)
 	close(fd);
 	display_gallery(rooms);
 	printf("\n");
-//	bfs(find_room(rooms, path[0]), find_room(rooms, path[1]));	
+	bfs(find_room(rooms, path[0]), find_room(rooms, path[1]));	
 	return (EXIT_SUCCESS);
 }

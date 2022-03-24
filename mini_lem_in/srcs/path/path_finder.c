@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 11:29:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/23 11:44:13 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/23 19:59:20 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,33 @@ void	dfs(t_room *start, t_room *end)
 
 void	bfs(t_room *start, t_room *end)
 {
-	t_node	*adj;
-	t_room	*next;
+	t_queue	*queue;
+	t_room	*curr_r;
+	t_node	*curr_n;
 
+	queue = init_queue();
+	enqueue(queue, start->link);
+	printf("%s\n", (char *)start->id);
 	start->discovered = true;
-	printf("%s\n", start->id);
-	if (start == end)
-		return;
-	adj = start->link;
-	while (adj != NULL)
+	while (is_empty(queue) == false)
 	{
-		next = adj->name;
-		printf("%s\n", next->id);
-		if (next == end)
+		curr_r = dequeue(queue);
+		printf("%s\n", (char *)curr_r->id);
+		curr_n = curr_r->link;
+		if (curr_r == end)
 			return;
-		adj = adj->link;
-	}
-	adj = start->link;
-	while (adj != NULL)
-	{
-		next = adj->name;
-		if (next->discovered == false)
+		while (curr_n != NULL)
 		{
-			printf("...%s\n", next->id);
-			bfs(next, end);
+			curr_r = curr_n->name;
+			curr_n = curr_n->link;
+			if (curr_r->discovered == false)
+			{
+				printf("%s\n", (char *)curr_r->id);
+				curr_r->discovered = true;
+				enqueue(queue, curr_n);
+				printf("MT ? %d\n", is_empty(queue));
+				display_queue(queue);
+			}
 		}
-		adj = adj->link;
 	}
 }

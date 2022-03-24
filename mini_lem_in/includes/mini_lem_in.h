@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/23 13:46:23 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/23 17:48:10 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@
 # define BUFFER_SIZE 4
 # define EMPTY_LINE "\0"
 
-enum e_inst
-{
-	E_START,
-	E_END,
-	E_LINK,
-};
-
 typedef	struct	s_node
 {
 	void			*name;
@@ -58,6 +51,13 @@ typedef	struct	s_gallery
 	t_room				*room;
 	struct s_gallery	*link;
 }						t_gallery;
+
+typedef	struct	s_queue
+{
+	int		count;
+	t_node	*front;
+	t_node	*rear;
+}			t_queue;
 
 /////////////// gnl.c
 
@@ -156,6 +156,19 @@ void	bfs(t_room *start, t_room *end);
 
 ////////////////////////////////////////////////////////////////////////////////
 
+///////////// struct_queue.c
+
+t_queue	*init_queue(void);
+bool	is_empty(t_queue *queue);
+void	enqueue(t_queue *queue, t_node *node);
+void	*dequeue(t_queue *queue);
+
+///////////// display_queue.c
+
+void	display_queue(t_queue *queue);
+
+////////////////////////////////////////////////////////////////////////////////
+
 ///////////// instructions.c
 
 int		inst(char *line, t_gallery **rooms, char *path[2]);
@@ -168,5 +181,6 @@ int		link_room(char *line, t_gallery **rooms);
 size_t	str_len(const char *str);
 bool	ft_strchr(const char *str, const char c);
 bool	are_same_str(char *str1, char *str2);
+char 	*ft_strcpy(char *dest, const char *src);
 
 #endif

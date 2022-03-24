@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/22 11:29:04 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/23 17:23:48 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ PATH_SRCS += srcs/error
 PATH_SRCS += srcs/linked_list
 PATH_SRCS += srcs/gallery
 PATH_SRCS += srcs/path
+PATH_SRCS += srcs/queue
 
 SRCS += main.c
 SRCS += instructions.c
@@ -51,6 +52,9 @@ SRCS += struct_gallery.c
 SRCS += display_gallery.c
 
 SRCS += path_finder.c
+
+SRCS += struct_queue.c
+SRCS += display_queue.c
 
 vpath %.c $(PATH_SRCS)
 

@@ -6,37 +6,30 @@
 /*   By: romanbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:32:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/20 11:25:12 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/23 14:18:30 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-char	*concatenate(char *str1, char *str2)
+char	*concatenate(const char *str1, const char *str2)
 {
 	char			*new_str;
-	const size_t	old_size = str_len(str1);
-	const size_t	new_size = old_size + str_len(str2);
-	size_t			i;
-	size_t			j;
+	size_t			size_s1;
+	size_t			size_s2;
 
-	new_str = (char *)malloc((new_size + 1) * sizeof(char));
+	if (str1 == NULL)
+		str1 = "";
+	if (str2 == NULL)
+		str2 = "";
+	size_s1 = str_len(str1);
+	size_s2 = str_len(str2);
+	new_str = (char *)malloc((size_s1 + size_s2 + 1) * sizeof(char));
 	if (new_str != NULL)
 	{
-		i = 0;
-		j = 0;
-		while (i < new_size)
-		{
-			if (i < old_size)
-				new_str[i] = str1[i];
-			else
-			{
-				new_str[i] = str2[j];
-				++j;
-			}
-			++i;
-		}
-		new_str[i] = '\0';
+
+		ft_strcpy(new_str, str1);
+		ft_strcpy(new_str + size_s1, str2);
 	}
 	return (new_str);
 }
@@ -67,12 +60,24 @@ char	*get_rest(char *buffer, char *rest)
 	return (rest);
 }
 
+void ft_bzero(void *ptr, size_t size)
+{
+	size_t i;
+	
+	i = 0;
+	while (i < size)
+	{
+		((uint8_t *)ptr)[i] = 0;
+		++i;
+	}
+}
+
 char	*get_line(int fd, char **rest)
 {
 	char	*line;
-	char	*buffer;
+	char	buffer[BUFFER_SIZE + 1];
 
-	buffer = init_buf();
+	ft_bzero(buffer, BUFFER_SIZE + 1);
 	line = *rest;
 	if (*rest != NULL && **rest == '\n')
 	{
@@ -88,7 +93,6 @@ char	*get_line(int fd, char **rest)
 	}
 	*rest = get_rest(buffer, *rest);
 	line = keep_beginning(line, str_len(*rest));
-	free(buffer);
 	return (line);
 }
 
