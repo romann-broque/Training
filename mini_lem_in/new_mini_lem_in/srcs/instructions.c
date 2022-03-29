@@ -6,56 +6,59 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:54:42 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 18:02:24 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/28 16:26:12 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	inst(t_graph *graph, char *line, char *path[2])
+int	inst(t_graph *graph, char *line)
 {
 	char	*arg;
 
 	if (is_start_inst(line))
 	{
 		arg = get_arg_from_str(line + str_len(START_PATTERN), '\0');
-		return (start(arg, path));
+		return (start(graph, arg));
 	}
 	else if (is_end_inst(line))
 	{
 		arg = get_arg_from_str(line + str_len(END_PATTERN), '\0');
-		return (end(arg, path));
+		return (end(graph, arg));
 	}
 	else if (is_link_inst(line))
-		return (link_room(graph->rooms, line));
+		return (link_room(graph, line));
 	else
 		return (EXIT_FAILURE);
 }
 
-int	start(char *arg, char *path[2])
+int	start(t_graph *graph, char *arg)
 {
-	if (path[0] == NULL)
+	if (graph->start == NULL)
 	{
-		path[0] = arg;
-		printf("START : %s\n", arg);
+		graph->start = find_room(graph->rooms, arg);
+		graph->shortest_paths = init_path_list(graph->start);
+		if (graph->start == NULL)
+			return (EXIT_FAILURE);
 		return (EXIT_SUCCESS);
 	}
 	else
 		return (EXIT_FAILURE);
 }
 
-int	end(char *arg, char *path[2])
+int	end(t_graph *graph, char *arg)
 {
-	if (path[1] == NULL)
+	if (graph->end == NULL)
 	{
-		path[1] = arg;
-		printf("END : %s\n", arg);
+		graph->end = find_room(graph->rooms, arg);
+		if (graph->end == NULL)
+			return (EXIT_FAILURE);
 		return (EXIT_SUCCESS);
 	}
 	return (EXIT_FAILURE);
 }
 
-int	link_room(t_list *rooms, char *line)
+int	link_room(t_graph *graph, char *line)
 {
 	t_room	*head;
 	t_room	*new;
@@ -65,22 +68,17 @@ int	link_room(t_list *rooms, char *line)
 	head = create_room(NULL);
 	arg1 = get_arg_from_str(line, *DELIM);
 	arg2 = get_arg_from_str(line + str_len(arg1) + str_len(DELIM), '\0');
-	if (is_in_list(rooms, arg1) == false)
+	if (does_room_exist(graph, arg1) == false)
 	{
-		if (rooms->data == NULL)
-		{
-			rooms = create_list(arg1);
-			display_room(rooms->data);
-		}
+		if (graph->rooms->data == NULL)
+			graph->rooms = create_list_room(arg1);
 		else
-			add(rooms, arg1);
+			add_room(graph->rooms, arg1);
 	}
-	if (is_in_list(rooms, arg2) == false)
-		add(rooms, arg2);
-	printf("%p\n", head);
-	head = find_room(rooms, arg1);
-	printf("%p\n", head);
-	new = find_room(rooms, arg2);
-	head = add_room(head, new);
+	if (does_room_exist(graph, arg2) == false)
+		add_room(graph->rooms, arg2);
+	head = find_room(graph->rooms, arg1);
+	new = find_room(graph->rooms, arg2);
+	head = add_neighboor(head, new);
 	return (EXIT_SUCCESS);
 }

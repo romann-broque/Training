@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/03/24 16:32:32 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/03/28 10:34:40 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,10 @@ SRCS += struct.c
 SRCS += utilities.c
 
 SRCS += path_finder.c
+SRCS += struct_path.c
 
 SRCS += struct_graph.c
+SRCS += display_graph.c
 
 vpath %.c $(PATH_SRCS)
 

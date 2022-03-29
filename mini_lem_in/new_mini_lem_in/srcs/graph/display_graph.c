@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_graph.c                                     :+:      :+:    :+:   */
+/*   display_graph.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 12:00:59 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/28 16:24:30 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/03/27 12:20:45 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/03/27 12:30:30 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-t_graph *init_graph(void)
+void	display_graph(t_graph *graph)
 {
-	t_graph	*new;
+	t_room	*curr_room;
+	t_list	*list;
 
-	new = (t_graph *)malloc(sizeof(t_graph));
-	if (new != NULL)
+	list = graph->rooms;
+	printf("START : %s\n", graph->start->name);
+	printf("END : %s\n", graph->end->name);
+	while (list != NULL)
 	{
-		new->rooms = create_list(NULL);
-		new->start = NULL;
-		new->end = NULL;
-		new->shortest_paths = init_path_list(NULL);
+		curr_room = list->data;
+		if (curr_room != NULL)
+			display_room(curr_room);
+		list = list->next;
 	}
-	return (new);
 }

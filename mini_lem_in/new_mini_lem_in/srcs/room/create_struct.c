@@ -6,11 +6,21 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:14:09 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 17:48:18 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/27 12:09:26 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
+
+t_list	*create_list_room(char *name)
+{
+	t_list *new_l;
+	t_room *new_r;
+
+	new_r = create_room(name);
+	new_l = create_list(new_r);
+	return (new_l);
+}
 
 t_room	*create_room(char *name)
 {
@@ -26,7 +36,7 @@ t_room	*create_room(char *name)
 	return (new);
 }
 
-t_room	*add_room(t_room *n1, t_room *new)
+t_room	*add_neighboor(t_room *n1, t_room *new)
 {
 	if (n1->neighboor != NULL)
 		add(n1->neighboor, new);
@@ -35,13 +45,39 @@ t_room	*add_room(t_room *n1, t_room *new)
 	return (n1);
 }
 
-t_room	*find_room(t_list *curr, void *id)
+void	add_room(t_list *list, char *name)
 {
-	if (curr != NULL)
+	t_room	*new_r;
+
+	new_r = create_room(name);
+	add(list, new_r);
+}
+
+t_room	*find_room(t_list *list, char *name)
+{
+	if (list != NULL)
 	{
-		if (are_same_str((char *)(((t_room *)(curr->data))->name), (char *)id) == true)
-			return (curr->data);
-		return (find_room(curr->next, id));
+		if (are_same_str(((t_room *)(list->data))->name, name) == true)
+			return (list->data);
+		return (find_room(list->next, name));
 	}
 	return (NULL);
+}
+
+bool	does_room_exist(t_graph *graph, char *name)
+{
+	t_list	*list;
+	t_room	*curr_room;
+
+	list = graph->rooms;
+	while (list != NULL)
+	{
+		curr_room = list->data;
+		if (curr_room == NULL)
+			break;
+		if (are_same_str(curr_room->name, name) == true)
+			return (true);
+		list = list->next;
+	}
+	return (false);
 }

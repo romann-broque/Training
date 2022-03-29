@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:41:16 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 17:14:13 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/25 12:21:08 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	get_size(t_list **prev)
 
 bool	is_in_list(t_list *curr, void *name)
 {
-	if (curr != NULL && curr->data != NULL)
+	if (curr != NULL)
 	{
 		if (curr->data == name)
 			return (true);

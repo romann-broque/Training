@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 14:44:32 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 17:10:14 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/27 12:16:50 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "utilities.h"
 
 # define	MIN_SIZE 1
-# define	SEPARATOR " - "
+# define	SEPARATOR "-"
 
 typedef	struct	s_list
 {
