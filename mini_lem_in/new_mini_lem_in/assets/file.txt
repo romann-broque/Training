@@ -1,13 +1,5 @@
 A-B
-A-C
-B-D
-B-E
-C-F
-E-F
-E-G
-D-E
-G-F
-F-H
-H-G
+B-C
+C-D
 #start A
-#end F
+#end D

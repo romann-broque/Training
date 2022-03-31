@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:32:05 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 11:20:36 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/31 11:42:43 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ t_path	*create_path(t_room *first_room)
 		new->step = create_list(first_room);
 	}
 	return (new);
-}
-
-void	add_step(t_path *path, t_room *new)
-{
-	if (path == NULL)
-		path = create_path(new);
-	else
-		add(path->step, new);
-	path->size++;
 }
 
 void	cut_path(t_list **path)
@@ -64,6 +55,23 @@ t_list	*get_deep_cp_path(t_list *path)
 	return (cp);
 }
 
+void	keep_shortest_paths(t_list *path_list, t_path *new_path)
+{
+	t_path	*curr_path;
+
+	curr_path = (t_path *)path_list->data;
+	if (new_path->size <= curr_path->size)
+	{
+		if (new_path->size < curr_path->size)
+		{
+			destroy_list(&path_list);
+			path_list = create_list(new_path);
+		}
+		else
+			add(path_list, new_path);
+	}
+}
+
 void	extract_path(t_graph *graph, t_list **path)
 {
 	t_list	*cp_step = get_deep_cp_path(*path);
@@ -74,23 +82,5 @@ void	extract_path(t_graph *graph, t_list **path)
 	cp_path->size = get_size(&cp_step);
 	if (graph->shortest_paths->data == NULL)
 		graph->shortest_paths = create_list(cp_path);
-	else
-		add(graph->shortest_paths, cp_path);
+	keep_shortest_paths(graph->shortest_paths, cp_path);
 }
-
-/*
-   void	keep_shortest_paths(t_list *path_list)
-   {
-   t_path	*curr_path;
-   size_t	min_size;
-
-   curr_path = (t_path *)path_list->data;
-   min_size = curr_path->size;
-   while (curr_path != NULL)
-   {
-   if (min_size < curr_path->size)
-
-   curr_path = curr
-   }
-   }
- */

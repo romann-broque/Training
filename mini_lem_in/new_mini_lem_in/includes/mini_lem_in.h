@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/30 23:20:17 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/31 11:42:47 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	display_graph(t_graph *graph);
 ///////////// struct_path.c
 
 t_path	*create_path(t_room *first_room);
-void	add_step(t_path *path, t_room *new_room);
 void	cut_path(t_list **path);
 t_list	*get_deep_cp_path(t_list *path);
 void	extract_path(t_graph *graph, t_list **path);
