@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:00:59 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/28 16:24:30 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/30 15:17:25 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_graph *init_graph(void)
 		new->rooms = create_list(NULL);
 		new->start = NULL;
 		new->end = NULL;
-		new->shortest_paths = init_path_list(NULL);
+		new->shortest_paths = create_list(NULL);
 	}
 	return (new);
 }

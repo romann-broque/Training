@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/28 18:34:51 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/30 23:20:17 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_room
 typedef struct	s_path
 {
 	size_t	size;
+	bool	completed;
 	t_list	*step;
 }			t_path;
 
@@ -98,15 +99,19 @@ void	display_graph(t_graph *graph);
 ///////////// struct_path.c
 
 t_path	*create_path(t_room *first_room);
-t_list	*init_path_list(t_room *start);
 void	add_step(t_path *path, t_room *new_room);
-t_room	*get_last_room(t_path *path);
-void	display_path_list(t_list *path_list);
+void	cut_path(t_list **path);
+t_list	*get_deep_cp_path(t_list *path);
+void	extract_path(t_graph *graph, t_list **path);
 
 ///////////// path_finder.c
 
+void	path_finder(t_graph *graph, t_room *curr_room, t_list **path);
+
+///////////// display_path.c
+
 void	display_shortest_paths(t_graph *graph);
-void	path_finder(t_graph *graph, t_list *path_list, t_room *curr_room);
+void	display_path_list(t_list *path_list);
 
 ////////////////////////////////////////////////////////////////////////////////
 

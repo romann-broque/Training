@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:54:42 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/28 16:26:12 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/30 15:18:30 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	start(t_graph *graph, char *arg)
 	if (graph->start == NULL)
 	{
 		graph->start = find_room(graph->rooms, arg);
-		graph->shortest_paths = init_path_list(graph->start);
 		if (graph->start == NULL)
 			return (EXIT_FAILURE);
 		return (EXIT_SUCCESS);
