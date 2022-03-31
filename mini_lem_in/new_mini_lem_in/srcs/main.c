@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:49:58 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/28 18:35:15 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/31 14:39:18 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int	main(void)
 	close(fd);
 	if (graph->start == NULL || graph->end == NULL)
 		return (EXIT_FAILURE);
+	get_shortest_paths(graph);
 	display_graph(graph);
-	printf("\n");
-	display_shortest_paths(graph);
 	return (EXIT_SUCCESS);
 }

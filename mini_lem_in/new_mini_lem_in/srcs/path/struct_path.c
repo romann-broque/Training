@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:32:05 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 11:42:43 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/03/31 14:45:47 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	extract_path(t_graph *graph, t_list **path)
 	cp_path->size = get_size(&cp_step);
 	if (graph->shortest_paths->data == NULL)
 		graph->shortest_paths = create_list(cp_path);
-	keep_shortest_paths(graph->shortest_paths, cp_path);
+	else
+		keep_shortest_paths(graph->shortest_paths, cp_path);
 }
