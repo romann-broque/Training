@@ -1,7 +1,0 @@
-A-B
-B-C
-C-D
-B-D
-D-E
-#start A
-#end E
