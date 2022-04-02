@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:43:57 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 22:47:24 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/02 00:13:07 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	are_same_str(char *str1, char *str2)
 	return (str1[i] == '\0' && str2[i] == '\0');
 }
 
-char *ft_strcpy(char *dest, const char *src)
+char	*ft_strcpy(char *dest, const char *src)
 {
 	size_t i;
 
@@ -65,5 +65,5 @@ char *ft_strcpy(char *dest, const char *src)
 		++i;
 	}
 	dest[i] = '\0';
-	return dest;
+	return (dest);
 }

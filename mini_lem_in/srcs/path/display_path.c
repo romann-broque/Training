@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 23:19:16 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 14:34:42 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 11:49:58 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	display_path_list(t_list *path_list)
 		curr_p = curr_l->data;
 		display_list_room(curr_p->step);
 		curr_l = curr_l->next;
+		free(curr_p);
 	}
+	free(curr_l);
 }

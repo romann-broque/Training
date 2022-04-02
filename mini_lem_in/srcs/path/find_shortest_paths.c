@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:03:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 22:08:52 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 11:50:31 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ int	find_shortest_paths(void)
 	close(fd);
 	get_shortest_paths(graph);
 	display_graph(graph);
+	destroy_graph(graph);
 	return (EXIT_SUCCESS);
 }

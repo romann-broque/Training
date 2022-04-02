@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 22:49:00 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 23:54:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct	s_room
 typedef struct	s_path
 {
 	size_t	size;
-	bool	completed;
 	t_list	*step;
 }			t_path;
 
@@ -89,6 +88,8 @@ t_room	*create_room(char *id);
 t_list	*create_list_room(char *name);
 void	add_neighboor(t_room *parent, t_room *child);
 void	add_room(t_list *list, char *name);
+void	destroy_room(t_room *room);
+void	destroy_list_room(t_list *room);
 
 t_room	*find_room(t_list *head, char *name);
 bool	does_room_exist(t_graph *graph, char *name);
@@ -107,6 +108,7 @@ void	display_error(int state);
 ///////////// struct_graph.c
 
 t_graph	*init_graph(void);
+void	destroy_graph(t_graph *graph);
 int		is_graph_correct(t_graph *graph);
 
 ///////////// display_graph.c
@@ -118,6 +120,7 @@ void	display_graph(t_graph *graph);
 ///////////// struct_path.c
 
 t_path	*create_path(t_room *first_room);
+void	destroy_path_list(t_list *path_list);
 void	cut_path(t_list **path);
 void	extract_path(t_graph *graph, t_list **path);
 

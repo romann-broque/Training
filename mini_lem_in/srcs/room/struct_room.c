@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:16:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 16:19:55 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/02 00:10:45 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,25 @@ void	add_room(t_list *list, char *name)
 
 	new_r = create_room(name);
 	add(list, new_r);
+}
+
+void	destroy_room(t_room *room)
+{
+	free(room->name);
+	destroy_list(&room->neighboor);
+	free(room);
+}
+
+void	destroy_list_room(t_list *room)
+{
+	if (room != NULL)
+	{
+		if (room->next != NULL)
+		{
+			destroy_list_room(room->next);
+			free(room);
+		}
+	}
 }
 
 t_room	*find_room(t_list *list, char *name)

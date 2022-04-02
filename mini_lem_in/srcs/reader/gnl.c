@@ -6,7 +6,7 @@
 /*   By: romanbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 11:32:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 22:43:36 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 11:38:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*get_rest(char *buffer, char *rest)
 	{
 		if (buffer[i] == '\n')
 		{
+			free(rest);
 			rest = keep_end(buffer, i);
 			break;
 		}

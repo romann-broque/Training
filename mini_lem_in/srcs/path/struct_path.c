@@ -6,11 +6,22 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:32:05 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 18:00:45 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/02 00:07:33 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
+
+void	destroy_path_list(t_list *path_list)
+{
+	if (path_list != NULL)
+	{
+		if (path_list->next != NULL)	
+			destroy_path_list(path_list->next);
+		free(path_list);
+		path_list = NULL;
+	}
+}
 
 static t_list	*get_deep_cp_path(t_list *path)
 {
@@ -47,7 +58,6 @@ t_path	*create_path(t_room *first_room)
 	if (new != NULL)
 	{
 		new->size = 1;
-		new->completed = false;
 		new->step = create_list(first_room);
 	}
 	return (new);
@@ -64,8 +74,8 @@ void	cut_path(t_list **path)
 			curr = *path;
 			while (curr->next->next != NULL)
 				curr = curr->next;
-			curr->next = NULL;
 			free(curr->next);
+			curr->next = NULL;
 		}
 	}
 }

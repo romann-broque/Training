@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:42:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 16:19:17 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 23:38:18 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	insert(t_list **prev, void *input_data, size_t rank)
 			(*prev)->next = temp;
 		}
 		else
+		{
 			insert(&(*prev)->next, input_data, rank - 1);
+		}
 	}
 }
 

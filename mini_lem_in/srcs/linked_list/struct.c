@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:42:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 16:06:01 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 23:47:42 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	destroy_list(t_list **prev)
 	{
 		if ((*prev)->next != NULL)
 			destroy_list(&(*prev)->next);
+		*prev = NULL;
 		free(*prev);
 	}
 }

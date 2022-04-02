@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:00:59 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 22:07:26 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/01 23:29:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ t_graph *init_graph(void)
 		new->shortest_paths = create_list(NULL);
 	}
 	return (new);
+}
+
+void	destroy_graph(t_graph *graph)
+{
+	destroy_list(&graph->rooms);
+	destroy_room(graph->start);
+	destroy_room(graph->end);
+	destroy_path_list(graph->shortest_paths);
+	free(graph);
 }
 
 int	is_graph_correct(t_graph *graph)
