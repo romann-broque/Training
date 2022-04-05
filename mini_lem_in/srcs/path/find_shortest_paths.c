@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:03:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/01 11:50:31 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/04 10:31:29 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,13 @@ int	find_shortest_paths(void)
 	while (line != NULL)
 	{
 		instruction = inst(graph, line);
-		if (instruction != E_NO_ERROR)
-		{
-			display_error(instruction);
+		if (display_error(instruction) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
-		}
+		free(line);
 		line = get_next_line(fd);
 	}
-	if (is_graph_correct(graph) != E_NO_ERROR)
-	{
-		display_error(is_graph_correct(graph));
+	if (display_error(is_graph_correct(graph)) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	}
 	close(fd);
 	get_shortest_paths(graph);
 	display_graph(graph);

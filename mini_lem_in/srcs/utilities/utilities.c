@@ -6,12 +6,12 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:43:57 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/02 00:13:07 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/05 11:00:08 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 size_t	ft_strlen(const char *str)
@@ -38,7 +38,7 @@ bool	ft_strchr(const char *str, const char c)
 	return (false);
 }
 
-bool	are_same_str(char *str1, char *str2)
+bool	are_same_str(const char *str1, const char *str2)
 {
 	size_t	i;
 

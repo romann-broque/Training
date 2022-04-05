@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 11:29:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 14:40:35 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/04 23:45:51 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	get_shortest_paths(t_graph *graph)
 		*first_path = create_list(graph->start);
 		path_finder(graph, graph->start, first_path);
 	}
+	destroy_list(first_path);
+	free(first_path);
 }

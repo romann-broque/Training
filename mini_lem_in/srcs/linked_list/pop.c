@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 19:41:46 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/24 16:05:17 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/04 10:17:10 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ static void	delete(t_list **prev, const size_t rank)
 {
 	if (rank == MIN_SIZE)
 		destroy_node(prev);
-	else if ((rank > 0) && (rank <= get_size(prev)))
+	else if (rank > 0 && rank <= get_size(prev))
 		delete(&(*prev)->next, rank - 1);
 }
 
 void	pop(t_list **prev)
 {
-	if ((*prev != NULL) && ((*prev)->next != NULL))
+	if (*prev != NULL && (*prev)->next != NULL)
 		delete(prev, MIN_SIZE);
 }
 

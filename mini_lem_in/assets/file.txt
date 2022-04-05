@@ -1,25 +1,9 @@
-A-D
-A-L
-A-I
-B-F
-B-A
-B-G
-C-I
-C-J
-C-K
-D-E
-E-K
-E-C
-G-M
-G-F
-G-E
-H-A
-I-C
-I-H
-J-D
-J-F
-K-J
-L-M
-M-H
-#start E
-#end D
+A-B
+A-C
+B-D
+B-E
+C-B
+E-F
+D-F
+#start A
+#end F

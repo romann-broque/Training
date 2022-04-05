@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:43:29 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/01 11:40:11 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/05 12:04:20 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ char	*init_buf(void)
 	return (buffer);
 }
 
+char	*keep_beginning(char *str, size_t rank)
+{
+	const size_t	len = ft_strlen(str);
+	size_t			i;
+
+	i = len - (rank + 1);
+	while (i < len)
+	{
+		str[i] = '\0';
+		++i;
+	}
+	return (str);
+}
+
 char	*keep_end(char *str, size_t rank)
 {
 	const size_t	len = ft_strlen(str) - rank;
@@ -48,18 +62,4 @@ char	*keep_end(char *str, size_t rank)
 		}
 	}
 	return (end_str);
-}
-
-char	*keep_beginning(char *str, size_t rank)
-{
-	const size_t	len = ft_strlen(str);
-	size_t			i;
-
-	i = len - (rank + 1);
-	while (i < len)
-	{
-		str[i] = '\0';
-		++i;
-	}
-	return (str);
 }

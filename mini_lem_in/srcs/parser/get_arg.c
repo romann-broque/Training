@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 22:15:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/17 22:16:37 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/04 10:23:46 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-unsigned int	get_arg_size_from_str(char *str, char end_char)
+static unsigned int	get_arg_size_from_str(const char *str, const char end_char)
 {
 	unsigned int	size;
 
@@ -22,11 +22,11 @@ unsigned int	get_arg_size_from_str(char *str, char end_char)
 	return (size);
 }
 
-char	*get_arg_from_str(char *str, char end_char)
+char	*get_arg_from_str(const char *str, const char end_char)
 {
-	char				*arg;
-	const unsigned int	size = get_arg_size_from_str(str, end_char);
 	size_t				i;
+	const unsigned int	size = get_arg_size_from_str(str, end_char);
+	char				*arg;
 
 	arg = (char *)malloc((size + 1) * sizeof(char));
 	if (arg != NULL)

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:20:45 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/02 00:19:38 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/03 19:45:45 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	display_graph(t_graph *graph)
 			display_room(curr_room);
 		list = list->next;
 	}
-	destroy_room(curr_room);
 	if (graph->shortest_paths->data != NULL)
 	{
 		printf("Shortest path(s) :\n");

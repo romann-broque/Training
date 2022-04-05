@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/01 23:54:16 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/04 15:07:25 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 enum e_error
 {
+	E_NO_ERROR,
 	E_UNKNOWN_COMMAND,
 	E_START_DOESNT_EXIST,
 	E_END_DOESNT_EXIST,
@@ -43,7 +44,6 @@ enum e_error
 	E_START_NOT_UNIQUE,
 	E_END_NOT_UNIQUE,
 	E_NO_NODE,
-	E_NO_ERROR,
 };
 
 typedef struct	s_room
@@ -77,8 +77,7 @@ bool	is_link_inst(char *line);
 
 ///////////// get_nb.c
 
-unsigned int	get_arg_size_from_str(char *str, char end_char);
-char			*get_arg_from_str(char *str, char end_char);
+char	*get_arg_from_str(const char *str, const char end_char);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -101,7 +100,7 @@ void	display_list_room(t_list *prev);
 
 ////////////////////////////////////////////////////////////////////////////////
 
-void	display_error(int state);
+int		display_error(int state);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -145,12 +144,5 @@ int		inst(t_graph *graph, char *line);
 int		start(t_graph *graph, char *arg);
 int		end(t_graph *graph, char *arg);
 int		link_room(t_graph *graph, char *line);
-
-///////////// utilities.c
-
-size_t	ft_strlen(const char *str);
-bool	ft_strchr(const char *str, const char c);
-bool	are_same_str(char *str1, char *str2);
-char 	*ft_strcpy(char *dest, const char *src);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:54:42 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/03/31 22:41:08 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/05 11:18:35 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,24 @@
 int	inst(t_graph *graph, char *line)
 {
 	char	*arg;
+	int		id;
 
+	arg = NULL;
+	id = E_UNKNOWN_COMMAND;
 	if (is_start_inst(line))
 	{
 		arg = get_arg_from_str(line + ft_strlen(START_PATTERN), '\0');
-		return (start(graph, arg));
+		id = start(graph,arg);
 	}
 	else if (is_end_inst(line))
 	{
 		arg = get_arg_from_str(line + ft_strlen(END_PATTERN), '\0');
-		return (end(graph, arg));
+		id = end(graph, arg);
 	}
 	else if (is_link_inst(line))
-		return (link_room(graph, line));
-	return (E_UNKNOWN_COMMAND);
+		id = link_room(graph, line);
+	free(arg);
+	return (id);
 }
 
 int	start(t_graph *graph, char *arg)
@@ -71,13 +75,15 @@ int	link_room(t_graph *graph, char *line)
 	char	*arg1;
 	char	*arg2;
 
-	head = create_room(NULL);
 	arg1 = get_arg_from_str(line, *DELIM);
 	arg2 = get_arg_from_str(line + ft_strlen(arg1) + ft_strlen(DELIM), '\0');
 	if (does_room_exist(graph, arg1) == false)
 	{
 		if (graph->rooms->data == NULL)
+		{
+			free(graph->rooms);
 			graph->rooms = create_list_room(arg1);
+		}
 		else
 			add_room(graph->rooms, arg1);
 	}

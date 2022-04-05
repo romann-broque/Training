@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:00:59 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/01 23:29:21 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/05 10:36:44 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_graph *init_graph(void)
 	new = (t_graph *)malloc(sizeof(t_graph));
 	if (new != NULL)
 	{
-		new->rooms = create_list(NULL);
 		new->start = NULL;
 		new->end = NULL;
+		new->rooms = create_list(NULL);
 		new->shortest_paths = create_list(NULL);
 	}
 	return (new);
@@ -29,10 +29,9 @@ t_graph *init_graph(void)
 
 void	destroy_graph(t_graph *graph)
 {
-	destroy_list(&graph->rooms);
-	destroy_room(graph->start);
-	destroy_room(graph->end);
+	destroy_list_room(graph->rooms);
 	destroy_path_list(graph->shortest_paths);
+	free(graph->rooms);
 	free(graph);
 }
 
