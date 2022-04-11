@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:16:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/05 10:24:54 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/11 15:06:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_room	*create_room(char *name)
 	new = (t_room *)malloc(sizeof(t_room));
 	if (new != NULL)
 	{
-		new->name = name;
+		new->name = ft_strdup(name);
 		new->lock = false;
 		new->neighboor = NULL;
 	}
@@ -49,7 +49,10 @@ void	add_room(t_list *list, char *name)
 	t_room	*new_r;
 
 	new_r = create_room(name);
-	add(list, new_r);
+	if (list == NULL)
+		list = create_list(new_r);
+	else
+		add(list, new_r);
 }
 
 void	destroy_room(t_room *room)

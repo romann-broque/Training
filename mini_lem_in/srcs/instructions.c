@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:54:42 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/05 11:18:35 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/11 15:08:49 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	link_room(t_graph *graph, char *line)
 	arg2 = get_arg_from_str(line + ft_strlen(arg1) + ft_strlen(DELIM), '\0');
 	if (does_room_exist(graph, arg1) == false)
 	{
-		if (graph->rooms->data == NULL)
+		if (graph->rooms == NULL)
 		{
 			free(graph->rooms);
 			graph->rooms = create_list_room(arg1);
@@ -92,5 +92,7 @@ int	link_room(t_graph *graph, char *line)
 	head = find_room(graph->rooms, arg1);
 	new = find_room(graph->rooms, arg2);
 	add_neighboor(head, new);
+	free(arg1);
+	free(arg2);
 	return (E_NO_ERROR);
 }

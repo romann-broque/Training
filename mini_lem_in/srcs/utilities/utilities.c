@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 17:43:57 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/05 11:00:08 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/11 15:03:25 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,24 @@ char	*ft_strcpy(char *dest, const char *src)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strdup(const char *str)
+{
+	const size_t	len = ft_strlen(str);
+	size_t	i;
+	char	*cp_str;
+
+	cp_str = (char *)malloc((len + 1) *sizeof(char));
+	if (cp_str != NULL)
+	{
+		i = 0;
+		while (i < len)
+		{
+			cp_str[i] = str[i];
+			++i;
+		}
+		cp_str[len] = '\0';
+	}
+	return (cp_str);
 }
