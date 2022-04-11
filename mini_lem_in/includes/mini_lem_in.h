@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 09:52:50 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/04 15:07:25 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/11 15:21:46 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*get_arg_from_str(const char *str, const char end_char);
 t_room	*create_room(char *id);
 t_list	*create_list_room(char *name);
 void	add_neighboor(t_room *parent, t_room *child);
-void	add_room(t_list *list, char *name);
+void	add_room(t_list **list, char *name);
 void	destroy_room(t_room *room);
 void	destroy_list_room(t_list *room);
 

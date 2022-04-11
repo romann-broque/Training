@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 16:16:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/11 15:06:02 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/11 15:24:38 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,22 @@ void	add_neighboor(t_room *n1, t_room *new)
 		add(n1->neighboor, new);
 }
 
-void	add_room(t_list *list, char *name)
+void	add_room(t_list **list, char *name)
 {
 	t_room	*new_r;
 
 	new_r = create_room(name);
-	if (list == NULL)
-		list = create_list(new_r);
+	if (*list == NULL)
+		*list = create_list(new_r);
 	else
-		add(list, new_r);
+		add(*list, new_r);
 }
 
 void	destroy_room(t_room *room)
 {
 	free(room->name);
 	destroy_list(&room->neighboor);
+	free(room->neighboor);
 	free(room);
 }
 
