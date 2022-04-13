@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_lem_in.h                                      :+:      :+:    :+:   */
+/*   find_inst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 17:52:05 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/12 17:42:33 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/13 18:09:42 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_LEM_IN_H
+#include "mini_lem_in.h"
+/*
+bool	is_start_inst(const char *str)
+{
 
-#define MINI_LEM_IN_H
+}
 
-# include "gnl.h"
-# include "linked_list.h"
-# include "utilities.h"
+bool	is_end_inst(const char *str)
+{
 
-///find_inst.c
+}
 
-bool	is_start_inst(const char *str);
-bool	is_end_inst(const char *str);
-bool	is_link_inst(const char *str);
+bool	is_link_inst(const char *str)
+{
 
-#endif
+}
+*/
