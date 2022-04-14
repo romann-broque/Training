@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:57:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 15:59:14 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/14 09:51:30 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	ft_strchr(const char *str, const char c)
 			++i;
 		}
 	}
-	return (false);
+	return (c == '\0');
 }
 
 bool	is_empty(const char *str, const size_t size)

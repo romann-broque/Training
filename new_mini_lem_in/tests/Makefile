@@ -5,44 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/13 18:45:28 by romannbroque     ###   ########.fr        #
+#    Created: 2022/04/13 18:21:37 by romannbroque      #+#    #+#              #
+#    Updated: 2022/04/13 18:25:13 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = mini_lem_in
+NAME = exe
 
 ########## SRCS
 
-PATH_SRCS += srcs
-PATH_SRCS += srcs/parser
-PATH_SRCS += srcs/parser/gnl
-PATH_SRCS += srcs/parser/instructions
-PATH_SRCS += srcs/path
-PATH_SRCS += srcs/struct
-PATH_SRCS += srcs/struct/graph
-PATH_SRCS += srcs/struct/linked_list
-PATH_SRCS += srcs/struct/room
-PATH_SRCS += srcs/utilities
-
-SRCS += main.c
-
-### gnl
-
-SRCS += display_file.c
-SRCS += gnl.c
-
-### instructions
-
-SRCS += exe_inst.c
-SRCS += find_inst.c
-
-### utilities
+PATH_SRCS += ../srcs/
+PATH_SRCS += ../srcs/utilities
 
 SRCS += display.c
 SRCS += remove.c
 SRCS += get_info.c
 SRCS += string.c
+
+SRCS += check.c
 
 vpath %.c $(PATH_SRCS)
 
@@ -53,14 +33,13 @@ OBJS = $(patsubst %.c, $(PATH_OBJS)/%.o, $(SRCS))
 
 ########## INCLUDES
 
-INCLUDES += includes/
-
-CHECK_FOLDER += tests/
+INCLUDES += ../includes/
+INCLUDES += -I /opt/homebrew/opt/check/include/
 
 HEADER += mini_lem_in.h
-HEADER += linked_list.h
-HEADER += gnl.h
-HEADER += utilities.h
+HEADER += check.h
+
+LIB += /opt/homebrew/opt/check/lib
 
 vpath %.h $(INCLUDES)
 
@@ -72,6 +51,10 @@ CFLAGS += -Wall
 CFLAGS += -Werror
 CFLAGS += -Wextra
 
+LINKS += -lcheck
+LINKS += -lm
+LINKS += -lpthread
+
 ifeq ($(debug), true)
 	CFLAGS += -g3
 	CFLAGS += -fsanitize=address,undefined
@@ -80,14 +63,10 @@ endif
 ########## RULES
 
 all: $(NAME)
-	@echo \\\\\\\\\\\\\\\\\\\\ TESTS //////////
-	@echo 
-	$(CHECK_FOLDER)/exe
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ -I $(INCLUDES)
+	$(CC) $(CFLAGS) $^ -L $(LIB) $(LINKS) -o $@ -I $(INCLUDES)
 	@echo $(NAME) COMPILED !
-	$(MAKE) -C $(CHECK_FOLDER)
 
 $(PATH_OBJS):
 	mkdir $@
@@ -97,13 +76,11 @@ $(OBJS): $(PATH_OBJS)/%.o: %.c $(HEADER) $(PATH_OBJS)
 
 clean:
 	$(RM) -R $(PATH_OBJS)
-	$(MAKE) -C $(CHECK_FOLDER) $@
 
 fclean: clean
 	$(RM) $(NAME)
-	$(MAKE) -C $(CHECK_FOLDER) $@
 
 re: fclean
 	$(MAKE)
 
-.PHONY: all clean fclean re
+.PHONY:all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 17:52:05 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/14 10:29:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "gnl.h"
 # include "linked_list.h"
 # include "utilities.h"
+
+# define NBOF_SUITE 1
 
 ///find_inst.c
 
