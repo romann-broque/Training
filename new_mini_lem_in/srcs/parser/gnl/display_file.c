@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 18:42:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 15:40:53 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 15:25:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	display_file(const char *path_file)
 	while (line != NULL)
 	{
 		ft_putstr(line);
+		ft_putstr("\n");
+		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);

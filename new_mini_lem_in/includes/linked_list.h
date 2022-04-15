@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:05:48 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/11 17:07:36 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 15:17:39 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,3 @@
 # include "utilities.h"
 
 #endif
-

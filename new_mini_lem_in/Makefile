@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/13 18:45:28 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/15 16:11:42 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,20 +80,22 @@ endif
 ########## RULES
 
 all: $(NAME)
-	@echo \\\\\\\\\\\\\\\\\\\\ TESTS //////////
-	@echo 
-	$(CHECK_FOLDER)/exe
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -I $(INCLUDES)
 	@echo $(NAME) COMPILED !
-	$(MAKE) -C $(CHECK_FOLDER)
 
 $(PATH_OBJS):
 	mkdir $@
 
 $(OBJS): $(PATH_OBJS)/%.o: %.c $(HEADER) $(PATH_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCLUDES)
+
+test: $(NAME)
+	$(MAKE) -C $(CHECK_FOLDER)
+	@echo \\\\\\\\\\\\\\\\\\\\ TESTS //////////
+	@echo 
+	$(CHECK_FOLDER)/exe
 
 clean:
 	$(RM) -R $(PATH_OBJS)
@@ -106,4 +108,4 @@ fclean: clean
 re: fclean
 	$(MAKE)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test

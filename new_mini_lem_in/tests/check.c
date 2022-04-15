@@ -6,12 +6,16 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/14 10:49:58 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 16:44:33 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+
 #include "mini_lem_in.h"
 #include <check.h>
+
+////////////////////////////////////////////////////////////////////////////////
 
 ////////// get_info.c
 
@@ -33,31 +37,28 @@ END_TEST
 
 START_TEST(ft_strchr__1)
 {
-	ck_assert_int_eq(ft_strchr("hello\n", '\n'), 1);
+	ck_assert_str_eq(ft_strchr("hello\n", '\n'), "\n");
+	ck_assert_str_eq(strchr("hello\n", '\n'), "\n");
 }
 END_TEST
 
 START_TEST(ft_strchr__2)
 {
-	ck_assert_int_eq(ft_strchr("", '\n'), 0);
+	ck_assert_ptr_eq(ft_strchr("", '\n'), NULL);
+	ck_assert_ptr_eq(strchr("", '\n'), NULL);
 }
 END_TEST
 
 START_TEST(ft_strchr__3)
 {
-	ck_assert_int_eq(ft_strchr("\n\n\n\n", '\n'), 1);
+	ck_assert_str_eq(ft_strchr("\n\n\n\n", '\n'), "\n\n\n\n");
+	ck_assert_str_eq(strchr("\n\n\n\n", '\n'), "\n\n\n\n");
 }
 END_TEST
 
 START_TEST(ft_strchr__4)
 {
-	ck_assert_int_eq(ft_strchr("\n", '\0'), 1);
-}
-END_TEST
-
-START_TEST(ft_strchr__5)
-{
-	ck_assert_int_eq(ft_strchr(NULL, 'b'), 0);
+	ck_assert_ptr_eq(ft_strchr(NULL, 'b'), NULL);
 }
 END_TEST
 
@@ -106,7 +107,6 @@ Suite	*utilities(void)
 	tcase_add_test(ft_strchr, ft_strchr__2);
 	tcase_add_test(ft_strchr, ft_strchr__3);
 	tcase_add_test(ft_strchr, ft_strchr__4);
-	tcase_add_test(ft_strchr, ft_strchr__5);
 	
 	tcase_add_test(is_empty, is_empty__1);
 	tcase_add_test(is_empty, is_empty__2);
@@ -116,6 +116,37 @@ Suite	*utilities(void)
 	suite_add_tcase(s, ft_strchr);
 	suite_add_tcase(s, is_empty);
 
+	return (s);
+}
+///////////////////////////////////////////////////////////////////////////////
+
+START_TEST(gnl__1)
+{
+	int	fd;
+
+	fd = open("./tests/assets_test/file.txt", O_RDONLY);
+
+	ck_assert_str_eq(get_next_line(fd), "I'm Morpheus,");
+	ck_assert_str_eq(get_next_line(fd), "");
+	ck_assert_str_eq(get_next_line(fd), "Follow the white rabbit Neo...");
+	ck_assert_str_eq(get_next_line(fd), "");
+	ck_assert_str_eq(get_next_line(fd), "");
+	ck_assert_str_eq(get_next_line(fd), "...or take the blue pill.");
+	close(fd);
+}
+END_TEST
+
+Suite	*parser(void)
+{
+	Suite	*s;
+	TCase	*gnl;
+
+	s = suite_create("PARSER");
+	gnl = tcase_create("GNL");
+
+	tcase_add_test(gnl, gnl__1);
+
+	suite_add_tcase(s, gnl);
 	return (s);
 }
 
@@ -137,7 +168,7 @@ int	get_failed_from_suite(Suite *suite)
 
 int	main(void)
 {
-	Suite	*(*suite[NBOF_SUITE])(void) = {utilities};
+	Suite	*(*suite[NBOF_SUITE])(void) = {utilities, parser};
 	int		nbof_failed;
 	size_t	i;
 

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:01:32 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 16:06:11 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 15:27:03 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	cut_str(char *str, const char c)
 	size_t	i;
 
 	i = 0;
+	if (str == NULL)
+		return ;
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)

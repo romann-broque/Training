@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 18:21:37 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/13 18:25:13 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/15 15:51:48 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,16 @@ NAME = exe
 ########## SRCS
 
 PATH_SRCS += ../srcs/
+PATH_SRCS += ../srcs/parser
+PATH_SRCS += ../srcs/parser/gnl
 PATH_SRCS += ../srcs/utilities
 
 SRCS += display.c
 SRCS += remove.c
 SRCS += get_info.c
 SRCS += string.c
+
+SRCS += gnl.c
 
 SRCS += check.c
 

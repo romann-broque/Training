@@ -6,51 +6,71 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:59:53 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 16:02:08 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 17:10:51 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl.h"
+#include <string.h>
 #include <stdio.h>
+#define LINE_OK 1
+#define CONTINUE 0
 
-static void	get_next_buffer(int fd, char *buffer)
+int	get_rest_until_newline(char **line, char **rest)
 {
-	read(fd, buffer, BUFFER_SIZE);
+	char	*newline_ptr;
+	int		ret_value;
+
+	newline_ptr = strchr(*rest, '\n');
+	if (newline_ptr == NULL)
+		ret_value = CONTINUE;
+	else
+	{
+		ret_value = LINE_OK;
+		newline_ptr[0] = '\0';
+		if (newline_ptr[1] == '\0')
+			newline_ptr = NULL;
+		else
+			newline_ptr = ft_strdup(newline_ptr + 1);
+	}
+	*line = ft_strdup(*rest);
+	free(*rest);
+	*rest = newline_ptr;
+	return (ret_value);
 }
 
-static char	*get_rest(const char *buffer)
+void	read_from_fd_until_newline(char **line, char **rest, const int fd)
 {
-	size_t	i;
-	char	*rest;
+	char	buffer[BUFFER_SIZE + 1];
+	char	*newline_ptr;
+	ssize_t	read_ret;
 
-	i = 0;
-	while (buffer[i] != '\n')
-		++i;
-	rest = ft_strdup(buffer + i);
-	return (rest);
+	read_ret = read(fd, buffer, BUFFER_SIZE);
+	while (read_ret > 0)
+	{
+		buffer[read_ret] = '\0';
+		newline_ptr = strchr(buffer, '\n');
+		if (newline_ptr == NULL)
+			*line = ft_stradd(line, buffer);
+		else
+		{
+			newline_ptr[0] = '\0';
+			*line = ft_stradd(line, buffer);
+			if (newline_ptr[1] != '\0')
+				*rest = ft_strdup(newline_ptr + 1);
+			break ;
+		}
+		read_ret = read(fd, buffer, BUFFER_SIZE);
+	}
 }
 
 char	*get_next_line(const int fd)
 {
 	static char	*rest = NULL;
 	char		*line;
-	char		buffer[BUFFER_SIZE + 1];
 
-	ft_bzero(buffer, BUFFER_SIZE + 1);
-	line = rest;
-	if (rest != NULL && *rest == '\n')
-	{
-		++rest;
-		return ("\n");
-	}
-	while (ft_strchr(buffer, '\n') == false)
-	{
-		get_next_buffer(fd, buffer);
-		if (is_empty(buffer, BUFFER_SIZE) == true)
-			return (NULL);
-		line = ft_strcat(line, buffer);
-	}
-	rest = get_rest(buffer);
-	cut_str(line, '\n');
+	line = NULL;
+	if (rest == NULL || get_rest_until_newline(&line, &rest) == CONTINUE)
+		read_from_fd_until_newline(&line, &rest, fd);
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:07:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/12 15:58:14 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 14:22:35 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@
 ///string.c
 
 char	*ft_strdup(const char *str);
-void	ft_strcpy(char *dest, const char *src);
+char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strcat(const char *str1, const char *str2);
+char	*ft_stradd(char **str1, const char *str2);
+char	*ft_strchr(const char *str, const char c);
 
 ///get_info.c
 
 size_t	ft_strlen(const char *str);
-bool	ft_strchr(const char *str, const char c);
 bool	is_empty(const char *str, const size_t size);
 
 ///remove.c

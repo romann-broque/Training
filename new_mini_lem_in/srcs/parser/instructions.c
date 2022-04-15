@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   instructions.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/15 15:20:18 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/15 15:20:21 by romannbroque     ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "mini_lem_in.h"
-
+/*
 void	get_inst(const char *line)
 {
 	int		i;
@@ -35,3 +46,4 @@ static int	link(const char *command)
 {
 
 }
+*/
