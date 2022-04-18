@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/15 15:47:12 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/18 00:31:22 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,20 @@
 # include "utilities.h"
 
 # define NBOF_SUITE 2
+# define NBOF_COM 3
+# define START_PATTERN "#start "
+# define END_PATTERN "#end "
+# define DELIM "-"
+
 
 ///find_inst.c
 
 bool	is_start_inst(const char *str);
 bool	is_end_inst(const char *str);
 bool	is_link_inst(const char *str);
+
+///instructions.c
+
+void	get_inst(const char *line);
 
 #endif

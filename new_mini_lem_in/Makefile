@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/15 16:11:42 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/18 17:21:31 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,15 @@ PATH_SRCS += srcs
 PATH_SRCS += srcs/parser
 PATH_SRCS += srcs/parser/gnl
 PATH_SRCS += srcs/parser/instructions
-PATH_SRCS += srcs/path
-PATH_SRCS += srcs/struct
-PATH_SRCS += srcs/struct/graph
-PATH_SRCS += srcs/struct/linked_list
-PATH_SRCS += srcs/struct/room
+PATH_SRCS += srcs/linked_list
 PATH_SRCS += srcs/utilities
 
 SRCS += main.c
+SRCS += instructions.c
+
+### linked_list
+
+SRCS += struct_list.c
 
 ### gnl
 
@@ -95,7 +96,7 @@ test: $(NAME)
 	$(MAKE) -C $(CHECK_FOLDER)
 	@echo \\\\\\\\\\\\\\\\\\\\ TESTS //////////
 	@echo 
-	$(CHECK_FOLDER)/exe
+	./$(CHECK_FOLDER)/run_tests.sh ./$(CHECK_FOLDER)/exe
 
 clean:
 	$(RM) -R $(PATH_OBJS)

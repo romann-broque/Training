@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:59:53 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/15 17:10:51 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/15 17:43:09 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_rest_until_newline(char **line, char **rest)
 	char	*newline_ptr;
 	int		ret_value;
 
-	newline_ptr = strchr(*rest, '\n');
+	newline_ptr = ft_strchr(*rest, '\n');
 	if (newline_ptr == NULL)
 		ret_value = CONTINUE;
 	else
@@ -49,7 +49,7 @@ void	read_from_fd_until_newline(char **line, char **rest, const int fd)
 	while (read_ret > 0)
 	{
 		buffer[read_ret] = '\0';
-		newline_ptr = strchr(buffer, '\n');
+		newline_ptr = ft_strchr(buffer, '\n');
 		if (newline_ptr == NULL)
 			*line = ft_stradd(line, buffer);
 		else

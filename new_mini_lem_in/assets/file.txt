@@ -1,6 +1,2 @@
-I'm Morpheus,
-
-Follow the white rabbit Neo...
-
-
-...or take the blue pill.
+#start A
+#end E

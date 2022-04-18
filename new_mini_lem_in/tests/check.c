@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/15 16:44:33 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/18 00:11:38 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,29 @@ END_TEST
 
 START_TEST(ft_strchr__4)
 {
-	ck_assert_ptr_eq(ft_strchr(NULL, 'b'), NULL);
+	ck_assert_ptr_eq(ft_strchr("", '\n'), NULL);
+	ck_assert_ptr_eq(strchr("", '\n'), NULL);
+}
+END_TEST
+
+START_TEST(ft_strchr__5)
+{
+	ck_assert_str_eq(ft_strchr("\n", '\n'), "\n");
+	ck_assert_str_eq(strchr("\n", '\n'), "\n");
+}
+END_TEST
+
+START_TEST(ft_strchr__6)
+{
+	ck_assert_str_eq(ft_strchr("ooh\nhello\n", '\n'), "\nhello\n");
+	ck_assert_str_eq(strchr("ooh\nhello\n", '\n'), "\nhello\n");
+}
+END_TEST
+
+START_TEST(ft_strchr__7)
+{
+	ck_assert_str_eq(ft_strchr("ooh\n\nhello\n", '\n'), "\n\nhello\n");
+	ck_assert_str_eq(strchr("ooh\n\nhello\n", '\n'), "\n\nhello\n");
 }
 END_TEST
 
@@ -102,12 +124,15 @@ Suite	*utilities(void)
 
 	tcase_add_test(ft_strlen, ft_strlen__1);
 	tcase_add_test(ft_strlen, ft_strlen__2);
-	
+
 	tcase_add_test(ft_strchr, ft_strchr__1);
 	tcase_add_test(ft_strchr, ft_strchr__2);
 	tcase_add_test(ft_strchr, ft_strchr__3);
 	tcase_add_test(ft_strchr, ft_strchr__4);
-	
+	tcase_add_test(ft_strchr, ft_strchr__5);
+	tcase_add_test(ft_strchr, ft_strchr__6);
+	tcase_add_test(ft_strchr, ft_strchr__7);
+
 	tcase_add_test(is_empty, is_empty__1);
 	tcase_add_test(is_empty, is_empty__2);
 	tcase_add_test(is_empty, is_empty__3);
@@ -118,7 +143,10 @@ Suite	*utilities(void)
 
 	return (s);
 }
-///////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+
+/// get_next_line
 
 START_TEST(gnl__1)
 {
@@ -136,19 +164,116 @@ START_TEST(gnl__1)
 }
 END_TEST
 
+START_TEST(gnl__2)
+{
+	int	fd;
+
+	fd = -1;
+	ck_assert_ptr_eq(get_next_line(fd), NULL);
+}
+END_TEST
+
+/// is_start_inst
+
+START_TEST(is_start_inst__1)
+{
+	const char	*command = "#start bahbah";
+
+	ck_assert_int_eq(is_start_inst(command), 1);
+}
+END_TEST
+
+START_TEST(is_start_inst__2)
+{
+	const char	*command = "#sta rt bahbah";
+
+	ck_assert_int_eq(is_start_inst(command), 0);
+}
+END_TEST
+
+START_TEST(is_start_inst__3)
+{
+	const char	*command = "#start";
+
+	ck_assert_int_eq(is_start_inst(command), 0);
+}
+END_TEST
+
+/// is_end_inst
+
+START_TEST(is_end_inst__1)
+{
+	const char	*command = "#end bahbah";
+
+	ck_assert_int_eq(is_end_inst(command), 1);
+}
+END_TEST
+
+START_TEST(is_end_inst__2)
+{
+	const char	*command = " #end bahbah";
+
+	ck_assert_int_eq(is_end_inst(command), 0);
+}
+END_TEST
+
+START_TEST(is_end_inst__3)
+{
+	const char	*command = "#end";
+
+	ck_assert_int_eq(is_end_inst(command), 0);
+}
+END_TEST
+
+/// is_link_inst
+
+START_TEST(is_link_inst__1)
+{
+	const char	*command = "burger-sandwich";
+
+	ck_assert_int_eq(is_link_inst(command), 1);
+}
+END_TEST
+
+START_TEST(is_link_inst__2)
+{
+	const char	*command = "ends";
+
+	ck_assert_int_eq(is_link_inst(command), 0);
+}
+END_TEST
+
 Suite	*parser(void)
 {
 	Suite	*s;
 	TCase	*gnl;
+	TCase	*find_inst;
 
 	s = suite_create("PARSER");
 	gnl = tcase_create("GNL");
+	find_inst = tcase_create("FIND_INSTRUCTIONS");
 
 	tcase_add_test(gnl, gnl__1);
+	tcase_add_test(gnl, gnl__2);
+
+	tcase_add_test(find_inst, is_start_inst__1);
+	tcase_add_test(find_inst, is_start_inst__2);
+	tcase_add_test(find_inst, is_start_inst__3);
+	
+	tcase_add_test(find_inst, is_end_inst__1);
+	tcase_add_test(find_inst, is_end_inst__2);
+	tcase_add_test(find_inst, is_end_inst__3);
+
+	tcase_add_test(find_inst, is_link_inst__1);
+	tcase_add_test(find_inst, is_link_inst__2);
 
 	suite_add_tcase(s, gnl);
+	suite_add_tcase(s, find_inst);
+
 	return (s);
 }
+
+////////////////////////////////////////////////////////////////////////////////
 
 int	get_failed_from_suite(Suite *suite)
 {
@@ -159,7 +284,7 @@ int	get_failed_from_suite(Suite *suite)
 	not_failed = 0;
 	s = suite;
 	runner = srunner_create(s);
-	
+
 	srunner_run_all(runner, CK_NORMAL);
 	not_failed = srunner_ntests_failed(runner);
 	srunner_free(runner);
