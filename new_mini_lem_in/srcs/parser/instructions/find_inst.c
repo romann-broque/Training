@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:42:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/16 22:21:53 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/19 11:12:24 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,11 @@
 
 static bool	are_same_begin(const char *str, char *pattern)
 {
-	const size_t	len_str = ft_strlen(str);
-	const size_t	len_pat = ft_strlen(pattern);
-	size_t			i;
+	const char	*str_after_pat = ft_strstr(str, pattern);
 
-	if (len_str >= len_pat)
-	{
-		i = 0;
-		while (i < len_pat)
-		{
-			if (str[i] != pattern[i])
-				return (false);
-			++i;
-		}
-		return (true);
-	}
-	return (false);
+	if (str_after_pat == NULL)
+		return (false);
+	return (ft_strcmp(ft_strstr(str, pattern), str));
 }
 
 bool	is_start_inst(const char *line)

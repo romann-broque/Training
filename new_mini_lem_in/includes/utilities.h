@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:07:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/18 17:40:12 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/19 10:37:52 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strcat(const char *str1, const char *str2);
 char	*ft_stradd(char **str1, const char *str2);
 char	*ft_strchr(char *str, const char c);
+char	*ft_strstr(const char *str, const char *pattern);
 
 ///get_info.c
 
 size_t	ft_strlen(const char *str);
 bool	is_empty(const char *str, const size_t size);
+bool	ft_strcmp(const char *str1, const char *str2);
 
 ///remove.c
 

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/18 17:40:19 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/18 18:55:14 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int ac, char **av)
 	{
 		path_file = av[1];
 		read_file(path_file, ft_putendl);
-//		get_inst(path_file);
+		ft_putstr("\n");
+		read_file(path_file, get_inst);
 	}
 	return (EXIT_SUCCESS);
 }

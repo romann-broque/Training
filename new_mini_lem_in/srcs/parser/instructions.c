@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:20:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/16 22:43:20 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/19 10:47:24 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,29 @@
 
 static int	start(const char *command)
 {
+	char	*name;
+
+	name = ft_strdup(command + ft_strlen(START_PATTERN));
 	if (command != NULL)
-		ft_putstr("START !\n");
+	{
+		ft_putstr("START ! ");
+		ft_putstr(name);
+		ft_putstr("\n");
+	}
 	return (EXIT_SUCCESS);
 }
 
 static int	end(const char *command)
 {
+	char	*name;
+
+	name = ft_strdup(command + ft_strlen(END_PATTERN));
 	if (command != NULL)
-		ft_putstr("END !\n");
+	{
+		ft_putstr("END ! ");
+		ft_putstr(name);
+		ft_putstr("\n");
+	}
 	return (EXIT_SUCCESS);
 }
 
