@@ -6,19 +6,20 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:42:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/19 11:12:24 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/20 15:37:49 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-static bool	are_same_begin(const char *str, char *pattern)
+static bool	are_same_begin(const char *str, const char *pattern)
 {
-	const char	*str_after_pat = ft_strstr(str, pattern);
+	const size_t	size_str = ft_strlen(str);
+	const size_t	size_pat = ft_strlen(pattern);
 
-	if (str_after_pat == NULL)
+	if (size_str < size_pat)
 		return (false);
-	return (ft_strcmp(ft_strstr(str, pattern), str));
+	return (ft_memcmp((const char *)str, (const char *)pattern, size_pat * sizeof(char)) == 0);
 }
 
 bool	is_start_inst(const char *line)

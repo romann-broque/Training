@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/19 11:14:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/20 15:45:19 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,19 @@
 
 ///find_inst.c
 
-bool	is_start_inst(const char *str);
-bool	is_end_inst(const char *str);
-bool	is_link_inst(const char *str);
+bool	is_start_inst(const char *);
+bool	is_end_inst(const char *);
+bool	is_link_inst(const char *);
+
+///exe_inst.c
+
+
+int		start(const char *command);
+int		end(const char *command);
+int		ft_link(const char *command);
 
 ///instructions.c
 
-void	get_inst(const char *line);
+void	get_inst(const char *);
 
 #endif

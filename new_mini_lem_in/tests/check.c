@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/19 11:34:20 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/20 15:42:29 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,32 +89,6 @@ START_TEST(ft_strchr__7)
 }
 END_TEST
 
-/// ft_strstr
-
-START_TEST(ft_strstr__1)
-{
-	ck_assert_str_eq(ft_strstr("Hello", "Hello"), "Hello");
-}
-END_TEST
-
-START_TEST(ft_strstr__2)
-{
-	ck_assert_str_eq(ft_strstr("My name is Morpheus", "name is"), "name is Morpheus");
-}
-END_TEST
-
-START_TEST(ft_strstr__3)
-{
-	ck_assert_ptr_eq(ft_strstr("Hey Jo", "Hey Jojo"), NULL);
-}
-END_TEST
-
-START_TEST(ft_strstr__4)
-{
-	ck_assert_str_eq(ft_strstr("#start ABC", "#start"), "#start ABC");
-}
-END_TEST
-
 /// is_empty
 
 START_TEST(is_empty__1)
@@ -141,21 +115,53 @@ START_TEST(is_empty__3)
 }
 END_TEST
 
+/// ft_memcmp
+
+START_TEST(ft_memcmp__1)
+{
+	const size_t	size = 3;
+	const int		str1[3] = {300, 2, 4};
+	const int		str2[3] = {300, 2, 4};
+
+	ck_assert_int_eq(ft_memcmp((const int *)str1, (const int *)str2, sizeof(int) * size), 0);
+}
+END_TEST
+
+START_TEST(ft_memcmp__2)
+{
+	const size_t	size = 3;
+	const char		str1[8] = "bonjour";
+	const char		str2[4] = "bon";
+
+	ck_assert_int_eq(ft_memcmp((const char *)str1, (const char *)str2, sizeof(char) * size), 0);
+}
+END_TEST
+
+START_TEST(ft_memcmp__3)
+{
+	const size_t	size = 5;
+	const char		str1[5] = "helli";
+	const char		str2[6] = "hello";
+
+	ck_assert_int_eq(ft_memcmp((const char *)str1, (const char *)str2, sizeof(char) * size), -6);
+}
+END_TEST
+
 Suite	*utilities(void)
 {
 	Suite	*s;
 	TCase	*ft_strlen;
 	TCase	*ft_strcmp;
 	TCase	*ft_strchr;
-	TCase	*ft_strstr;
 	TCase	*is_empty;
+	TCase	*ft_memcmp;
 
 	s = suite_create("UTILITIES");
 	ft_strlen = tcase_create("FT_STRLEN");
 	ft_strcmp = tcase_create("FT_STRCMP");
 	ft_strchr = tcase_create("FT_STRCHR");
-	ft_strstr = tcase_create("FT_STRSTR");
 	is_empty = tcase_create("IS_EMPTY");
+	ft_memcmp = tcase_create("FT_MEMCMP");
 
 	tcase_add_test(ft_strlen, ft_strlen__1);
 	tcase_add_test(ft_strlen, ft_strlen__2);
@@ -171,20 +177,19 @@ Suite	*utilities(void)
 	tcase_add_test(ft_strchr, ft_strchr__6);
 	tcase_add_test(ft_strchr, ft_strchr__7);
 	
-	tcase_add_test(ft_strstr, ft_strstr__1);
-	tcase_add_test(ft_strstr, ft_strstr__2);
-	tcase_add_test(ft_strstr, ft_strstr__3);
-	tcase_add_test(ft_strstr, ft_strstr__4);
-
 	tcase_add_test(is_empty, is_empty__1);
 	tcase_add_test(is_empty, is_empty__2);
 	tcase_add_test(is_empty, is_empty__3);
 
+	tcase_add_test(ft_memcmp, ft_memcmp__1);
+	tcase_add_test(ft_memcmp, ft_memcmp__2);
+	tcase_add_test(ft_memcmp, ft_memcmp__3);
+	
 	suite_add_tcase(s, ft_strlen);
 	suite_add_tcase(s, ft_strchr);
-	suite_add_tcase(s, ft_strstr);
 	suite_add_tcase(s, ft_strcmp);
 	suite_add_tcase(s, is_empty);
+	suite_add_tcase(s, ft_memcmp);
 
 	return (s);
 }
