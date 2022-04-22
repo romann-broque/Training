@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 15:44:37 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/22 15:56:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,32 @@
 
 int	start(const char *command)
 {
-	char	*name;
+	const char	*name = ft_strdup(command + ft_strlen(START_PATTERN));
 
-	name = ft_strdup(command + ft_strlen(START_PATTERN));
-	if (command != NULL)
-	{
-		ft_putstr("START ! ");
-		ft_putstr(name);
-		ft_putstr("\n");
-	}
-	free(name);
+	ft_putstr("START ! ");
+	ft_putstr(name);
+	ft_putstr("\n");
 	return (EXIT_SUCCESS);
 }
 
 int	end(const char *command)
 {
-	char	*name;
+	const char	*name = ft_strdup(command + ft_strlen(END_PATTERN));
 
-	name = ft_strdup(command + ft_strlen(END_PATTERN));
-	if (command != NULL)
-	{
-		ft_putstr("END ! ");
-		ft_putstr(name);
-		ft_putstr("\n");
-	}
-	free(name);
+	ft_putstr("END ! ");
+	ft_putstr(name);
+	ft_putstr("\n");
 	return (EXIT_SUCCESS);
 }
 
 int	ft_link(const char *command)
 {
-	if (command != NULL)
-		ft_putstr("LINK !\n");
+	const char	*arg1 = ft_strtok(command, DELIM);
+	const char	*arg2 = ft_strchr(ft_strdup(command), *DELIM);
+
+	ft_putstr("LINK !\n");
+	ft_putstr(arg1);
+	ft_putstr(";");
+	ft_putendl(arg2);
 	return (EXIT_SUCCESS);
 }

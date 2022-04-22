@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 15:42:29 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/22 16:55:43 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ START_TEST(ft_strlen__2)
 }
 END_TEST
 
-/// ft_strcmp
+/// ft_is_equal
 
-START_TEST(ft_strcmp__1)
+START_TEST(ft_is_equal__1)
 {
-	ck_assert_int_eq(ft_strcmp("Hello my name is Morpheus", "Hello my name is Morpheus"), 1);
+	ck_assert_int_eq(ft_is_equal("Hello my name is Morpheus", "Hello my name is Morpheus"), 1);
 }
 END_TEST
 
-START_TEST(ft_strcmp__2)
+START_TEST(ft_is_equal__2)
 {
-	ck_assert_int_eq(ft_strcmp("Hello", "Hello my name"), 0);
+	ck_assert_int_eq(ft_is_equal("Hello", "Hello my name"), 0);
 }
 END_TEST
 
@@ -115,35 +115,58 @@ START_TEST(is_empty__3)
 }
 END_TEST
 
-/// ft_memcmp
+/// ft_strndup
 
-START_TEST(ft_memcmp__1)
+START_TEST(ft_strndup__1)
 {
-	const size_t	size = 3;
-	const int		str1[3] = {300, 2, 4};
-	const int		str2[3] = {300, 2, 4};
+	const char	*str = "hello !";
 
-	ck_assert_int_eq(ft_memcmp((const int *)str1, (const int *)str2, sizeof(int) * size), 0);
+	ck_assert_str_eq(ft_strndup(str, 3), "hel");
 }
 END_TEST
 
-START_TEST(ft_memcmp__2)
+START_TEST(ft_strndup__2)
 {
-	const size_t	size = 3;
-	const char		str1[8] = "bonjour";
-	const char		str2[4] = "bon";
+	const char	*str = "hello !";
 
-	ck_assert_int_eq(ft_memcmp((const char *)str1, (const char *)str2, sizeof(char) * size), 0);
+	ck_assert_str_eq(ft_strndup(str, 10), str);
 }
 END_TEST
 
-START_TEST(ft_memcmp__3)
+START_TEST(ft_strndup__3)
 {
-	const size_t	size = 5;
-	const char		str1[5] = "helli";
-	const char		str2[6] = "hello";
+	const char	*str = "My name is Morpheus";
 
-	ck_assert_int_eq(ft_memcmp((const char *)str1, (const char *)str2, sizeof(char) * size), -6);
+	ck_assert_str_eq(ft_strndup(str, 0), "");
+}
+END_TEST
+
+/// ft_strtok
+
+START_TEST(ft_strtok__1)
+{
+	const char	*str = "My name is Morpheus";
+	const char	*delim = "is";
+
+	ck_assert_str_eq(ft_strtok(str, delim), "My name ");
+}
+END_TEST
+
+START_TEST(ft_strtok__2)
+{
+	const char	*str = "My name is Morpheus";
+	const char	*delim = "pheus";
+
+	ck_assert_str_eq(ft_strtok(str, delim), "My name is Mor");
+}
+END_TEST
+
+START_TEST(ft_strtok__3)
+{
+	const char	*str = "My name is Morpheus";
+	const char	*delim = "";
+
+	ck_assert_str_eq(ft_strtok(str, delim), "");
 }
 END_TEST
 
@@ -151,23 +174,25 @@ Suite	*utilities(void)
 {
 	Suite	*s;
 	TCase	*ft_strlen;
-	TCase	*ft_strcmp;
+	TCase	*ft_is_equal;
 	TCase	*ft_strchr;
 	TCase	*is_empty;
-	TCase	*ft_memcmp;
+	TCase	*ft_strndup;
+	TCase	*ft_strtok;
 
 	s = suite_create("UTILITIES");
 	ft_strlen = tcase_create("FT_STRLEN");
-	ft_strcmp = tcase_create("FT_STRCMP");
+	ft_is_equal = tcase_create("FT_IS_EQUAL");
 	ft_strchr = tcase_create("FT_STRCHR");
 	is_empty = tcase_create("IS_EMPTY");
-	ft_memcmp = tcase_create("FT_MEMCMP");
+	ft_strndup = tcase_create("FT_STRNDUP");
+	ft_strtok = tcase_create("FT_STRTOK");
 
 	tcase_add_test(ft_strlen, ft_strlen__1);
 	tcase_add_test(ft_strlen, ft_strlen__2);
 
-	tcase_add_test(ft_strcmp, ft_strcmp__1);
-	tcase_add_test(ft_strcmp, ft_strcmp__2);
+	tcase_add_test(ft_is_equal, ft_is_equal__1);
+	tcase_add_test(ft_is_equal, ft_is_equal__2);
 	
 	tcase_add_test(ft_strchr, ft_strchr__1);
 	tcase_add_test(ft_strchr, ft_strchr__2);
@@ -180,16 +205,21 @@ Suite	*utilities(void)
 	tcase_add_test(is_empty, is_empty__1);
 	tcase_add_test(is_empty, is_empty__2);
 	tcase_add_test(is_empty, is_empty__3);
-
-	tcase_add_test(ft_memcmp, ft_memcmp__1);
-	tcase_add_test(ft_memcmp, ft_memcmp__2);
-	tcase_add_test(ft_memcmp, ft_memcmp__3);
 	
+	tcase_add_test(ft_strndup, ft_strndup__1);
+	tcase_add_test(ft_strndup, ft_strndup__2);
+	tcase_add_test(ft_strndup, ft_strndup__3);
+	
+	tcase_add_test(ft_strtok, ft_strtok__1);
+	tcase_add_test(ft_strtok, ft_strtok__2);
+	tcase_add_test(ft_strtok, ft_strtok__3);
+
 	suite_add_tcase(s, ft_strlen);
 	suite_add_tcase(s, ft_strchr);
-	suite_add_tcase(s, ft_strcmp);
+	suite_add_tcase(s, ft_is_equal);
 	suite_add_tcase(s, is_empty);
-	suite_add_tcase(s, ft_memcmp);
+	suite_add_tcase(s, ft_strndup);
+	suite_add_tcase(s, ft_strtok);
 
 	return (s);
 }
@@ -293,6 +323,22 @@ START_TEST(is_link_inst__2)
 }
 END_TEST
 
+START_TEST(is_link_inst__3)
+{
+	const char	*command = "-ho";
+
+	ck_assert_int_eq(is_link_inst(command), 1);
+}
+END_TEST
+
+START_TEST(is_link_inst__4)
+{
+	const char	*command = "";
+
+	ck_assert_int_eq(is_link_inst(command), 0);
+}
+END_TEST
+
 Suite	*parser(void)
 {
 	Suite	*s;
@@ -316,6 +362,8 @@ Suite	*parser(void)
 
 	tcase_add_test(find_inst, is_link_inst__1);
 	tcase_add_test(find_inst, is_link_inst__2);
+	tcase_add_test(find_inst, is_link_inst__3);
+	tcase_add_test(find_inst, is_link_inst__4);
 
 	suite_add_tcase(s, gnl);
 	suite_add_tcase(s, find_inst);
@@ -383,6 +431,44 @@ START_TEST(add__2)
 }
 END_TEST
 
+START_TEST(add__3)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Chicken";
+	t_list		*node1;
+	t_list		*node2;
+	t_list		*node3;
+
+	node1 = create_list(name1, NULL);
+	node2 = create_list(name2, NULL);
+	node3 = create_list(name3, NULL);
+	add(&node1, node2);
+	add(&node1, node3);
+	ck_assert_str_eq(node1->data, name1);
+	ck_assert_ptr_eq(node1->next, node2);
+	ck_assert_ptr_eq(node2->next, node3);
+}
+END_TEST
+
+/// destroy
+
+START_TEST(destroy__1)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	t_list		*node1;
+	t_list		*node2;
+
+	node1 = create_list(name1, NULL);
+	node2 = create_list(name2, NULL);
+	add(&node1, node2);
+//	destroy((t_list *)node2, full_free);
+//	ck_assert_str_eq(node1->data, name1);
+//	ck_assert_ptr_eq(node1->next, NULL);
+}
+END_TEST
+
 Suite	*linked_list(void)
 {
 	Suite	*s;
@@ -396,6 +482,9 @@ Suite	*linked_list(void)
 
 	tcase_add_test(structure, add__1);
 	tcase_add_test(structure, add__2);
+	tcase_add_test(structure, add__3);
+
+	tcase_add_test(structure, destroy__1);
 
 	suite_add_tcase(s, structure);
 

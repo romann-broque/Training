@@ -6,38 +6,27 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:42:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 15:37:49 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/22 10:48:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-static bool	are_same_begin(const char *str, const char *pattern)
-{
-	const size_t	size_str = ft_strlen(str);
-	const size_t	size_pat = ft_strlen(pattern);
-
-	if (size_str < size_pat)
-		return (false);
-	return (ft_memcmp((const char *)str, (const char *)pattern, size_pat * sizeof(char)) == 0);
-}
-
 bool	is_start_inst(const char *line)
 {
-	return (are_same_begin(line, START_PATTERN));
+	const size_t	size = ft_strlen(START_PATTERN);
+
+	return (ft_is_equaln(line, START_PATTERN, size));
 }
 
 bool	is_end_inst(const char *line)
 {
-	return (are_same_begin(line, END_PATTERN));
+	const size_t	size = ft_strlen(END_PATTERN);
+
+	return (ft_is_equaln(line, END_PATTERN, size));
 }
 
 bool	is_link_inst(const char *line)
 {
-	size_t	i;
-
-	i = 0;
-	while (line[i] != '\0' && line[i] != *DELIM)
-		++i;
-	return (line[i] == *DELIM);
+	return (ft_strchr(ft_strdup(line), *DELIM) != NULL);
 }

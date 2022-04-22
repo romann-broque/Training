@@ -6,35 +6,48 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:27:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 14:21:46 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/22 16:03:28 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-char	*ft_strdup(const char *str)
+char	*ft_strndup(const char *str, size_t size)
 {
-	char			*cp_str;
-	const size_t	len = ft_strlen(str);
+	char	*new;
 
-	cp_str = (char *)malloc((len + 1) * sizeof(char *));
-	if (cp_str != NULL)
-		ft_strcpy(cp_str, str);
-	return (cp_str);
+	new = (char *)malloc((size + 1) * sizeof(char));
+	if (new != NULL)
+		ft_strncpy(new, str, size);
+	return (new);
 }
 
-char	*ft_strcpy(char *dest, const char *src)
+char	*ft_strdup(const char *str)
+{
+	const size_t	size = ft_strlen(str);
+
+	return (ft_strndup(str, size));
+}
+
+char	*ft_strncpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	while (src[i] != '\0')
+	while (i < size && src[i] != '\0')
 	{
 		dest[i] = src[i];
 		++i;
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+char	*ft_strcpy(char *dest, const char *src)
+{
+	const size_t	size = ft_strlen(src);
+
+	return (ft_strncpy(dest, src, size));
 }
 
 char	*ft_strcat(const char *str1, const char *str2)
@@ -95,4 +108,19 @@ char	*ft_strchr(char *str, const char c)
 		++i;
 	}
 	return (NULL);
+}
+
+char	*ft_strtok(const char *str, const char *delim)
+{
+	const size_t	size = ft_strlen(delim);
+	size_t			i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_is_equaln(str + i, delim, size) == true)
+			break;
+		++i;
+	}
+	return (ft_strndup(str, i));
 }
