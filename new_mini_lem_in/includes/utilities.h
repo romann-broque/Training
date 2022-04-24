@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:07:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/22 14:45:10 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/24 16:00:28 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool	ft_is_equaln(const char *str1, const char *str2, const size_t size);
 
 void	ft_bzero(void *array, const size_t size);
 void	cut_str(char *str, const char c);
-void	full_free(void *ptr);
+void	full_free(void **ptr);
 
 ///display.c
 

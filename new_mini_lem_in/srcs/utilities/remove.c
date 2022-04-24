@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 12:01:32 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 17:28:51 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/24 17:25:22 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	cut_str(char *str, const char c)
 	}
 }
 
-void	full_free(void *ptr)
+void	full_free(void **ptr)
 {
-	free(ptr);
-//	ptr = NULL;
+	free(*ptr);
+	*ptr = NULL;
 }

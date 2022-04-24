@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 00:22:34 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 17:28:45 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/24 17:24:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,42 @@ t_list	*create_list(const char *name, void *link)
 	return (new);
 }
 
-void	add(t_list **parent, t_list *child)
+void	add(t_list **parent, t_list **child)
 {
 	if (*parent == NULL)
-		*parent = child;
+		*parent = *child;
 	else
 		add(&(*parent)->next, child);
 }
 
-void	destroy(void *node, void destroy_fct(void *))
+void	destroy(void *node, void destroy_fct(void **))
 {
-	destroy_fct(&node);
+	destroy_fct(node);
 }
 
+void	cut(t_list **head, void (*destroy_fct)(void **))
+{
+	if (*head != NULL)
+	{
+		if ((*head)->next != NULL)
+			cut(&(*head)->next, destroy_fct);
+		else
+			destroy(head, destroy_fct);
+	}
+}
+
+/*
 void	destroy_list(t_list *list, void destroy_fct(void *))
 {
 	if (list != NULL)
 		destroy_list(list->next, destroy_fct);
-	destroy(list, destroy_fct);
+	destroy(&(t_list *)list, destroy_fct);
 }
 
 void	destroy_node(t_list *node)
 {
-	destroy(node->data, free);
-	destroy(node->next, free);
-	destroy(node, free);
+	destroy(&((*node)->data), full_free);
+	destroy(&((*node)->next), full_free);
+	destroy(&(*node), full_free);
 }
+*/

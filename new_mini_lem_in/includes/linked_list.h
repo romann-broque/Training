@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:05:48 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 17:27:50 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/24 16:00:49 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ typedef struct	s_list
 }					t_list;
 
 t_list	*create_list(const char *name, void *link);
-void	add(t_list **parent, t_list *child);
-void	destroy(void *node, void destroy_fct(void *));
-void	destroy_list(t_list *list, void destroy_fct(void *));
+void	add(t_list **parent, t_list **child);
+void	destroy(void *node, void destroy_fct(void **));
+void	cut(t_list **node, void (*destroy_fct)(void **));
+void	destroy_list(t_list *list, void destroy_fct(void **));
 void	destroy_node(t_list *node);
 
 #endif
