@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 00:22:34 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/24 17:24:16 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/26 10:03:42 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,48 +19,51 @@ t_list	*create_list(const char *name, void *link)
 	new = (t_list *)malloc(sizeof(t_list));
 	if (new != NULL)
 	{
-		new->data = ft_strdup(name);
+		if (name == NULL)
+			new->data = NULL;
+		else
+			new->data = ft_strdup(name);
 		new->next = link;
 	}
 	return (new);
 }
 
-void	add(t_list **parent, t_list **child)
+void	add(t_list **parent, t_list *child)
 {
 	if (*parent == NULL)
-		*parent = *child;
+		*parent = child;
 	else
 		add(&(*parent)->next, child);
 }
 
-void	destroy(void *node, void destroy_fct(void **))
+void	destroy(void *node, void destroy_fct())
 {
 	destroy_fct(node);
 }
 
-void	cut(t_list **head, void (*destroy_fct)(void **))
+void	cut(t_list **head, void (*destroy_fct)())
 {
 	if (*head != NULL)
 	{
 		if ((*head)->next != NULL)
 			cut(&(*head)->next, destroy_fct);
 		else
-			destroy(head, destroy_fct);
+			destroy_node(head, destroy_fct);
 	}
 }
 
-/*
-void	destroy_list(t_list *list, void destroy_fct(void *))
+void	destroy_node(t_list **node, void (*destroy_fct)())
 {
-	if (list != NULL)
-		destroy_list(list->next, destroy_fct);
-	destroy(&(t_list *)list, destroy_fct);
+	if (destroy_fct != NULL)
+	{
+		destroy(&(*node)->data, destroy_fct);
+		destroy(&(*node)->next, full_free);
+	}
+	destroy(node, full_free);
 }
 
-void	destroy_node(t_list *node)
+void	destroy_list(t_list **head, void destroy_fct())
 {
-	destroy(&((*node)->data), full_free);
-	destroy(&((*node)->next), full_free);
-	destroy(&(*node), full_free);
+	while (*head != NULL)
+		cut(head, destroy_fct);
 }
-*/

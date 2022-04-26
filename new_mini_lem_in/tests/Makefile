@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 18:21:37 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/20 15:45:46 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/26 10:09:49 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS += find_inst.c
 SRCS += exe_inst.c
 
 SRCS += struct_list.c
+SRCS += display_list.c
 
 SRCS += check.c
 

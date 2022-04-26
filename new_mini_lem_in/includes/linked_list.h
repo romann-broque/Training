@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:05:48 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/24 16:00:49 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/26 10:04:44 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 # include "utilities.h"
 
+# define DELIM "-"
+
 typedef struct	s_list
 {
 	void			*data;
@@ -23,10 +25,11 @@ typedef struct	s_list
 }					t_list;
 
 t_list	*create_list(const char *name, void *link);
-void	add(t_list **parent, t_list **child);
-void	destroy(void *node, void destroy_fct(void **));
-void	cut(t_list **node, void (*destroy_fct)(void **));
-void	destroy_list(t_list *list, void destroy_fct(void **));
-void	destroy_node(t_list *node);
+void	add(t_list **parent, t_list *child);
+void	destroy(void *node, void destroy_fct());
+void	cut(t_list **node, void (*destroy_fct)());
+void	destroy_node(t_list **node, void (*destroy_fct)());
+void	destroy_list(t_list **list, void (*destroy_fct)());
+void	display_list(t_list **list);
 
 #endif

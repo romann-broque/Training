@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.h                                              :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 17:02:53 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/26 11:08:45 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/25 11:54:41 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/26 11:08:49 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
+#include "gnl.h"
 
-# define GNL_H
+void	*read_file(const char *path_file, void *(*function)(const char *))
+{
+	int		fd;
+	char	*line;
 
-# include "utilities.h"
-
-# define BUFFER_SIZE 4
-
-char	*get_next_line(const int fd);
-void	*read_file(const char *path_file, void *(*function)(const char *));
-
-#endif
+	fd = open(path_file, O_RDONLY);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		function(line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (function(line));
+}

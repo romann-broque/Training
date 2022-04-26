@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/20 15:45:19 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/26 11:08:04 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define END_PATTERN "#end "
 # define DELIM "-"
 
-
 ///find_inst.c
 
 bool	is_start_inst(const char *);
@@ -33,13 +32,13 @@ bool	is_link_inst(const char *);
 
 ///exe_inst.c
 
-
-int		start(const char *command);
-int		end(const char *command);
-int		ft_link(const char *command);
+int		start(t_list **, const char *command);
+int		end(t_list **, const char *command);
+int		ft_link(t_list **, const char *command);
 
 ///instructions.c
 
-void	get_inst(const char *);
+void	*get_inst(const char *);
+void	*display(const char *line);
 
 #endif

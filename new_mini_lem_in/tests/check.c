@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/25 00:05:26 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/25 14:12:25 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,8 +394,18 @@ START_TEST(create_list__2)
 
 	ptr = ft_strdup(name);
 	list = create_list(name, ptr);
-	ck_assert_str_eq(list->data, "");
+	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, ptr);
+}
+END_TEST
+
+START_TEST(create_list__3)
+{
+	t_list		*list;
+
+	list = create_list(NULL, NULL);
+	ck_assert_ptr_eq(list->data, NULL);
+	ck_assert_ptr_eq(list->next, NULL);
 }
 END_TEST
 
@@ -410,7 +420,7 @@ START_TEST(add__1)
 
 	list = create_list(name, NULL);
 	new = create_list(new_name, NULL);
-	add(&list, &new);
+	add(&list, new);
 	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, new);
 }
@@ -424,7 +434,7 @@ START_TEST(add__2)
 
 	list = NULL;
 	new = create_list(name, NULL);
-	add(&list, &new);
+	add(&list, new);
 	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, new->next);
 	ck_assert_ptr_eq(list, new);
@@ -443,8 +453,8 @@ START_TEST(add__3)
 	node1 = create_list(name1, NULL);
 	node2 = create_list(name2, NULL);
 	node3 = create_list(name3, NULL);
-	add(&node1, &node2);
-	add(&node1, &node3);
+	add(&node1, node2);
+	add(&node1, node3);
 	ck_assert_str_eq(node1->data, name1);
 	ck_assert_ptr_eq(node1->next, node2);
 	ck_assert_ptr_eq(node2->next, node3);
@@ -464,6 +474,30 @@ START_TEST(destroy__1)
 }
 END_TEST
 
+START_TEST(destroy__2)
+{
+	char	*stuff;
+
+	stuff = ft_strdup("Hello");
+	destroy(&stuff, full_free);
+	ck_assert_ptr_eq(stuff, NULL);
+}
+END_TEST
+
+/// destroy_node
+
+START_TEST(destroy_node__1)
+{
+	t_list	*node;
+
+	node = create_list("Hello", NULL);
+	destroy_node(&node, full_free);
+	ck_assert_ptr_eq(node, NULL);
+//	ck_assert_ptr_eq(data, NULL);
+//	ck_assert_ptr_eq(ptr, NULL);
+}
+END_TEST
+
 /// cut
 
 START_TEST(cut__1)
@@ -478,8 +512,8 @@ START_TEST(cut__1)
 	node1 = create_list(name1, NULL);
 	node2 = create_list(name2, NULL);
 	node3 = create_list(name3, NULL);
-	add(&node1, &node2);
-	add(&node1, &node3);
+	add(&node1, node2);
+	add(&node1, node3);
 	cut(&node1, full_free);
 	ck_assert_str_eq(node1->data, name1);
 	ck_assert_ptr_eq(node1->next, node2);
@@ -499,6 +533,27 @@ START_TEST(cut__2)
 }
 END_TEST
 
+/// destroy_list
+
+START_TEST(destroy_list__1)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Cherry";
+	t_list		*node1;
+	t_list		*node2;
+	t_list		*node3;
+
+	node1 = create_list(name1, NULL);
+	node2 = create_list(name2, NULL);
+	node3 = create_list(name3, NULL);
+	add(&node1, node2);
+	add(&node1, node3);
+	destroy_list(&node1, full_free);
+	ck_assert_ptr_eq(node1, NULL);
+}
+END_TEST
+
 Suite	*linked_list(void)
 {
 	Suite	*s;
@@ -509,15 +564,21 @@ Suite	*linked_list(void)
 
 	tcase_add_test(structure, create_list__1);
 	tcase_add_test(structure, create_list__2);
+	tcase_add_test(structure, create_list__3);
 
 	tcase_add_test(structure, add__1);
 	tcase_add_test(structure, add__2);
 	tcase_add_test(structure, add__3);
 
 	tcase_add_test(structure, destroy__1);
+	tcase_add_test(structure, destroy__2);
 	
 	tcase_add_test(structure, cut__1);
 	tcase_add_test(structure, cut__2);
+	
+	tcase_add_test(structure, destroy_list__1);
+	
+	tcase_add_test(structure, destroy_node__1);
 
 	suite_add_tcase(s, structure);
 

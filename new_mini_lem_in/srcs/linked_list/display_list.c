@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_file.c                                     :+:      :+:    :+:   */
+/*   display_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 18:42:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/18 17:36:24 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/26 10:03:00 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/26 10:03:36 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "linked_list.h"
 
-void	read_file(const char *path_file, void function(const char *))
+void	display_list(t_list **list)
 {
-	int		fd;
-	char	*line;
-
-	fd = open(path_file, O_RDONLY);
-	line = get_next_line(fd);
-	while (line != NULL)
+	if (*list != NULL)
 	{
-		function(line);
-		free(line);
-		line = get_next_line(fd);
+		ft_putstr(DELIM);
+		ft_putstr((*list)->data);
+		display_list(&(*list)->next);
 	}
-	close(fd);
+	else
+		ft_putstr(DELIM);
 }

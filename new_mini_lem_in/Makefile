@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/18 17:21:31 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/26 10:10:46 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,11 @@ SRCS += instructions.c
 ### linked_list
 
 SRCS += struct_list.c
+SRCS += display_list.c
 
 ### gnl
 
-SRCS += display_file.c
+SRCS += read_file.c
 SRCS += gnl.c
 
 ### instructions
@@ -94,6 +95,7 @@ $(OBJS): $(PATH_OBJS)/%.o: %.c $(HEADER) $(PATH_OBJS)
 
 test: $(NAME)
 	$(MAKE) -C $(CHECK_FOLDER)
+	@echo 
 	@echo \\\\\\\\\\\\\\\\\\\\ TESTS //////////
 	@echo 
 	./$(CHECK_FOLDER)/run_tests.sh ./$(CHECK_FOLDER)/exe

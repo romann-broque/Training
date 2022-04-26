@@ -1,6 +1,4 @@
 #start A
 #start B
-ouaaah-hello
-ouaaah-byebye
 #end E
 #end HA
