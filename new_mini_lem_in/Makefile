@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/27 11:34:16 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/27 15:02:35 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ NAME = mini_lem_in
 
 PATH_SRCS += srcs
 PATH_SRCS += srcs/parser
-PATH_SRCS += srcs/parser/gnl
 PATH_SRCS += srcs/parser/instructions
 PATH_SRCS += srcs/linked_list
+PATH_SRCS += srcs/reader
+PATH_SRCS += srcs/reader/gnl
 PATH_SRCS += srcs/struct
 PATH_SRCS += srcs/struct/graph
 PATH_SRCS += srcs/utilities

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:33:35 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 15:11:11 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	char	*path_file;
-	t_graph	*graph;
+	t_graph	graph;
 
 	if (ac > 1)
 	{
@@ -23,9 +23,10 @@ int	main(int ac, char **av)
 		read_file(path_file, display);
 		ft_putstr("\n");
 
-		graph = read_file(path_file, get_inst);
-		display_graph(&graph);
-		destroy_graph(&graph);
+		set_graph(&graph);
+		read_file(path_file, get_inst);
+//		display_graph(&graph);
+//		destroy_graph(&graph);
 	}
 	return (EXIT_SUCCESS);
 }

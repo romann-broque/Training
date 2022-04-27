@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:42:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 15:09:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
 # define DELIM "-"
+#define GET NULL
 
 typedef struct s_graph
 {
@@ -34,6 +35,9 @@ typedef struct s_graph
 ///create_graph.c
 
 t_graph	*init_graph(void);
+t_graph *graph_keeper(t_graph *graph);
+t_graph *get_graph(void);
+void	 set_graph(t_graph *graph);
 
 ///display_graph.c
 
@@ -42,6 +46,7 @@ void	display_graph(t_graph **graph);
 ///destroy_graph.c
 
 void	destroy_graph(t_graph **);
+
 ///find_inst.c
 
 bool	is_start_inst(const char *);
