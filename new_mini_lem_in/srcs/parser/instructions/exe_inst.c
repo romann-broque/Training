@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:24:06 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 14:29:13 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	start(t_graph **graph, const char *command)
 {
 	if (*graph == NULL)
 		*graph = init_graph();
+	if ((*graph)->start != NULL)
+		free((*graph)->start);
 	(*graph)->start = ft_strdup(command);
 	return (EXIT_SUCCESS);
 }
@@ -24,6 +26,8 @@ int	end(t_graph **graph, const char *command)
 {
 	if (*graph == NULL)
 		*graph = init_graph();
+	if ((*graph)->end != NULL)
+		free((*graph)->end);
 	(*graph)->end = ft_strdup(command);
 	return (EXIT_SUCCESS);
 }
