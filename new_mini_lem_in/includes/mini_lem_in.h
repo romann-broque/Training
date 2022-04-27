@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 15:09:21 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 16:57:53 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ typedef struct s_graph
 
 ///create_graph.c
 
-t_graph	*init_graph(void);
 t_graph *graph_keeper(t_graph *graph);
 t_graph *get_graph(void);
-void	 set_graph(t_graph *graph);
+void	init_graph(t_graph *);
+void	set_graph(t_graph *graph);
 
 ///display_graph.c
 
-void	display_graph(t_graph **graph);
+void	display_graph(t_graph *graph);
 
 ///destroy_graph.c
 
-void	destroy_graph(t_graph **);
+void	destroy_graph(t_graph *);
 
 ///find_inst.c
 
@@ -55,13 +55,13 @@ bool	is_link_inst(const char *);
 
 ///exe_inst.c
 
-int		start(t_graph **, const char *command);
-int		end(t_graph **, const char *command);
-int		ft_link(t_graph **, const char *command);
+int		start(t_graph *, const char *command);
+int		end(t_graph *, const char *command);
+int		ft_link(t_graph *, const char *command);
 
 ///instructions.c
 
-void	*get_inst(const char *);
-void	*display(const char *line);
+void	get_inst(const char *);
+void	display(const char *line);
 
 #endif

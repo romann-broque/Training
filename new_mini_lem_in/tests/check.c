@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:29:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 16:54:15 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -556,12 +556,12 @@ END_TEST
 
 START_TEST(init_graph__1)
 {
-	t_graph	*graph;
+	t_graph	graph;
 
-	graph = init_graph();
-	ck_assert_ptr_eq(graph->rooms, NULL);
-	ck_assert_ptr_eq(graph->start, NULL);
-	ck_assert_ptr_eq(graph->end, NULL);
+	init_graph(&graph);
+	ck_assert_ptr_eq(graph.rooms, NULL);
+	ck_assert_ptr_eq(graph.start, NULL);
+	ck_assert_ptr_eq(graph.end, NULL);
 }
 END_TEST
 

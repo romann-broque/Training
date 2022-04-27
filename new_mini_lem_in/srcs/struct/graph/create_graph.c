@@ -6,24 +6,20 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:28:10 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 15:06:18 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 16:52:53 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-t_graph	*init_graph(void)
+void	init_graph(t_graph *graph)
 {
-	t_graph	*new;
-
-	new = (t_graph *)malloc(sizeof(t_graph));
-	if (new != NULL)
+	if (graph != NULL)
 	{
-		new->rooms = NULL;
-		new->start = NULL;
-		new->end = NULL;
+		graph->rooms = NULL;
+		graph->start = NULL;
+		graph->end = NULL;
 	}
-	return (new);
 }
 
 t_graph *graph_keeper(t_graph *graph)
@@ -40,7 +36,7 @@ t_graph *get_graph(void)
 	return graph_keeper(GET);
 }
 
-void set_graph(t_graph *graph)
+void 	set_graph(t_graph *graph)
 {
 	graph_keeper(graph);
 }

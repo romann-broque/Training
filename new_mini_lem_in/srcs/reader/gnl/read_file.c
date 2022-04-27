@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 11:54:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 15:12:28 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 16:35:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl.h"
 
-void	read_file(const char *path_file, void *(*function)(const char *))
+void	read_file(const char *path_file, void (*function)(const char *))
 {
 	int		fd;
 	char	*line;
