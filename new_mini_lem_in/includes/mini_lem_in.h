@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/26 11:08:04 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 11:42:39 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@
 # define END_PATTERN "#end "
 # define DELIM "-"
 
+typedef struct s_graph
+{
+	t_list	*rooms;
+	char	*start;
+	char	*end;
+}			t_graph;
+
+///create_graph.c
+
+t_graph	*init_graph(void);
+
+///display_graph.c
+
+void	display_graph(t_graph **graph);
+
+///destroy_graph.c
+
+void	destroy_graph(t_graph **);
 ///find_inst.c
 
 bool	is_start_inst(const char *);
@@ -32,9 +50,9 @@ bool	is_link_inst(const char *);
 
 ///exe_inst.c
 
-int		start(t_list **, const char *command);
-int		end(t_list **, const char *command);
-int		ft_link(t_list **, const char *command);
+int		start(t_graph **, const char *command);
+int		end(t_graph **, const char *command);
+int		ft_link(t_graph **, const char *command);
 
 ///instructions.c
 

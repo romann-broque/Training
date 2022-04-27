@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   display_graph.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:33:35 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/27 10:38:30 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/27 10:45:40 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	main(int ac, char **av)
+void	display_graph(t_graph **graph)
 {
-	char	*path_file;
-	t_graph	*graph;
-
-	if (ac > 1)
+	if (*graph != NULL)
 	{
-		path_file = av[1];
-		read_file(path_file, display);
-		ft_putstr("\n");
-
-		graph = read_file(path_file, get_inst);
-		display_graph(&graph);
-		destroy_graph(&graph);
+		if ((*graph)->start != NULL)
+		{
+			ft_putstr("START : ");
+			ft_putendl((*graph)->start);
+		}
+		if ((*graph)->end != NULL)
+		{
+			ft_putstr("END : ");
+			ft_putendl((*graph)->end);
+		}
+		if ((*graph)->rooms != NULL)
+		{
+			ft_putstr("ROOMS : ");
+			display_list(&(*graph)->rooms);
+		}
 	}
-	return (EXIT_SUCCESS);
 }

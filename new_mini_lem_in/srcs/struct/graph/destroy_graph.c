@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   destroy_graph.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:33:35 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/27 11:32:00 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/27 11:47:43 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	main(int ac, char **av)
+void	destroy_graph(t_graph **graph)
 {
-	char	*path_file;
-	t_graph	*graph;
-
-	if (ac > 1)
-	{
-		path_file = av[1];
-		read_file(path_file, display);
-		ft_putstr("\n");
-
-		graph = read_file(path_file, get_inst);
-		display_graph(&graph);
-		destroy_graph(&graph);
-	}
-	return (EXIT_SUCCESS);
+	destroy(&(*graph)->start, full_free);
+	destroy(&(*graph)->end, full_free);
+	destroy_list(&(*graph)->rooms, full_free);
 }

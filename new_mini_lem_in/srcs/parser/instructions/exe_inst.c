@@ -6,35 +6,35 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/25 15:04:57 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/27 11:24:06 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	start(t_list **list, const char *command)
+int	start(t_graph **graph, const char *command)
 {
-	t_list	*new;
-
-	new = create_list(command + ft_strlen(START_PATTERN), NULL);
-	add(list, new);
+	if (*graph == NULL)
+		*graph = init_graph();
+	(*graph)->start = ft_strdup(command);
 	return (EXIT_SUCCESS);
 }
 
-int	end(t_list **list, const char *command)
+int	end(t_graph **graph, const char *command)
 {
-	t_list	*new;
-
-	new = create_list(command + ft_strlen(END_PATTERN), NULL);
-	add(list, new);
+	if (*graph == NULL)
+		*graph = init_graph();
+	(*graph)->end = ft_strdup(command);
 	return (EXIT_SUCCESS);
 }
 
-int	ft_link(t_list **list, const char *command)
+int	ft_link(t_graph **graph, const char *command)
 {
 	char	*arg1;
 	char	*arg2;
 
+	if (*graph == NULL)
+		*graph = init_graph();
 	arg1 = ft_strtok(command, DELIM);
 	arg2 = ft_strdup(arg1 + ft_strlen(DELIM));
 
@@ -42,7 +42,7 @@ int	ft_link(t_list **list, const char *command)
 	ft_putstr(arg1);
 	ft_putstr(";");
 	ft_putendl(arg2);
-	display_list(list);
+	display_list(&(*graph)->rooms);
 	free(arg1);
 	free(arg2);
 	return (EXIT_SUCCESS);

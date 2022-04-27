@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:33:35 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/26 11:16:46 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/27 10:11:31 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	main(int ac, char **av)
+t_list	*create_list(const char *name, void *link)
 {
-	char	*path_file;
-	t_graph	*graph;
+	t_list	*new;
 
-	if (ac > 1)
+	new = (t_list *)malloc(sizeof(t_list));
+	if (new != NULL)
 	{
-		path_file = av[1];
-		read_file(path_file, display);
-		ft_putstr("\n");
-
-		graph = read_file(path_file, get_inst);
-		display_graph(&graph);
-		destroy_graph(&graph);
+		if (name == NULL)
+			new->data = NULL;
+		else
+			new->data = ft_strdup(name);
+		new->next = link;
 	}
-	return (EXIT_SUCCESS);
+	return (new);
+}
+
+void	add(t_list **parent, t_list *child)
+{
+	if (*parent == NULL)
+		*parent = child;
+	else
+		add(&(*parent)->next, child);
 }

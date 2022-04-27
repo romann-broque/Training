@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/26 10:10:46 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/27 11:34:16 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ PATH_SRCS += srcs/parser
 PATH_SRCS += srcs/parser/gnl
 PATH_SRCS += srcs/parser/instructions
 PATH_SRCS += srcs/linked_list
+PATH_SRCS += srcs/struct
+PATH_SRCS += srcs/struct/graph
 PATH_SRCS += srcs/utilities
 
 SRCS += main.c
@@ -26,7 +28,8 @@ SRCS += instructions.c
 
 ### linked_list
 
-SRCS += struct_list.c
+SRCS += create.c
+SRCS += destroy.c
 SRCS += display_list.c
 
 ### gnl
@@ -38,6 +41,12 @@ SRCS += gnl.c
 
 SRCS += exe_inst.c
 SRCS += find_inst.c
+
+### graph
+
+SRCS += create_graph.c
+SRCS += display_graph.c
+SRCS += destroy_graph.c
 
 ### utilities
 

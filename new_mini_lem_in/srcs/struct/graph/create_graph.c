@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create_graph.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:33:35 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/26 11:28:10 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/27 10:35:17 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	main(int ac, char **av)
+t_graph	*init_graph(void)
 {
-	char	*path_file;
-	t_graph	*graph;
+	t_graph	*new;
 
-	if (ac > 1)
+	new = (t_graph *)malloc(sizeof(t_graph));
+	if (new != NULL)
 	{
-		path_file = av[1];
-		read_file(path_file, display);
-		ft_putstr("\n");
-
-		graph = read_file(path_file, get_inst);
-		display_graph(&graph);
-		destroy_graph(&graph);
+		new->rooms = NULL;
+		new->start = NULL;
+		new->end = NULL;
 	}
-	return (EXIT_SUCCESS);
+	return (new);
 }
