@@ -1,4 +1,3 @@
-#start A
 #start B
 Noodles-Rice
 Noodles-Quinoa
@@ -9,4 +8,3 @@ Rice-Butter
 Screw-Hammer
 Tomatoes-Cheese
 #end E
-#end HA

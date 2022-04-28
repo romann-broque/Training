@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 18:44:02 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 23:59:06 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_graph
 	t_room	*end;
 }			t_graph;
 
-typedef	int result;
 ///////////////// GRAPH
 
 ///create_graph.c
@@ -64,6 +63,7 @@ void	destroy_graph(t_graph *);
 
 t_room	*create_room(const char *input_name, t_list *list);
 void	create_n_add_room(t_list **list, t_room **room, const char *name);
+void	find_or_add(t_list **list, t_room **room, const char *name);
 
 /// get_info_room.c
 
@@ -93,7 +93,7 @@ result	ft_link(t_graph *, const char *command);
 
 ///instructions.c
 
-void	get_inst(const char *);
-void	display(const char *line);
+result	get_inst(const char *);
+result	display(const char *line);
 
 #endif

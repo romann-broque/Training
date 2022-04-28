@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 21:43:45 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 00:01:04 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ result	start(t_graph *graph, const char *command)
 	if (graph->start != NULL)
 		return (EXIT_FAILURE);
 	arg = ft_strdup(command + ft_strlen(START_PATTERN));
-	new = create_room(arg, NULL);
+	new = find_room(graph->rooms, arg);
+	if (new == NULL)
+		create_n_add_room(&graph->rooms, &new, arg);
 	graph->start = new;
 	free(arg);
 	return (EXIT_SUCCESS);
@@ -34,9 +36,11 @@ result	end(t_graph *graph, const char *command)
 	if (graph->end != NULL)
 		return (EXIT_FAILURE);
 	arg = ft_strdup(command + ft_strlen(END_PATTERN));
-	new = create_room(arg, NULL);
-	free(arg);
+	new = find_room(graph->rooms, arg);
+	if (new == NULL)
+		create_n_add_room(&graph->rooms, &new, arg);
 	graph->end = new;
+	free(arg);
 	return (EXIT_SUCCESS);
 }
 
@@ -49,12 +53,8 @@ result	ft_link(t_graph *graph, const char *command)
 
 	arg1  = ft_strtok(command, DELIM);
 	arg2 = ft_strdup(command + ft_strlen(arg1) + ft_strlen(DELIM));
-	room1 = find_room(graph->rooms, arg1);
-	if (room1 == NULL)
-		create_n_add_room(&graph->rooms, &room1, arg1);
-	room2 = find_room(graph->rooms, arg2);
-	if (room2 == NULL)
-		create_n_add_room(&graph->rooms, &room2, arg2);
+	find_or_add(&graph->rooms, &room1, arg1);
+	find_or_add(&graph->rooms, &room2, arg2);
 	add_element(&room1->neighboor, room2);
 	free(arg1);
 	free(arg2);

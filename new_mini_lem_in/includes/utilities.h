@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:07:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/25 10:31:20 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 23:07:43 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdbool.h>
+
+typedef	int result;
 
 //string.c
 
