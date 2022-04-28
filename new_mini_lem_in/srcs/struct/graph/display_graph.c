@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:38:30 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 11:14:41 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 18:13:29 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,30 @@
 
 void	display_graph(t_graph *graph)
 {
+	t_list	*room;
+
 	if (graph != NULL)
 	{
 		if (graph->start != NULL)
 		{
 			ft_putstr("START : ");
-			ft_putendl(graph->start);
+			ft_putendl(((t_room *)(graph->start))->name);
 		}
 		if (graph->end != NULL)
 		{
 			ft_putstr("END : ");
-			ft_putendl(graph->end);
+			ft_putendl(((t_room *)(graph->end))->name);
 		}
 		if (graph->rooms != NULL)
 		{
-			ft_putstr("ROOMS : ");
-			display_list(&graph->rooms, display_room);
+			ft_putstr("\n");
+			ft_putendl("ROOMS : \n");
+			room = graph->rooms;
+			while (room != NULL)
+			{
+				full_display_room(room->data);
+				room = room->next;
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 15:16:15 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 18:44:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,7 @@
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
 # define DELIM "-"
-#define GET NULL
-
-typedef struct s_graph
-{
-	t_list	*rooms;
-	char	*start;
-	char	*end;
-}			t_graph;
+# define GET NULL
 
 typedef struct s_room
 {
@@ -39,6 +32,14 @@ typedef struct s_room
 	t_list	*neighboor;
 }			t_room;
 
+typedef struct s_graph
+{
+	t_list	*rooms;
+	t_room	*start;
+	t_room	*end;
+}			t_graph;
+
+typedef	int result;
 ///////////////// GRAPH
 
 ///create_graph.c
@@ -51,6 +52,7 @@ void	set_graph(t_graph *graph);
 ///display_graph.c
 
 void	display_graph(t_graph *graph);
+void	full_display_room(t_room *room);
 
 ///destroy_graph.c
 
@@ -61,6 +63,7 @@ void	destroy_graph(t_graph *);
 /// create_room.c
 
 t_room	*create_room(const char *input_name, t_list *list);
+void	create_n_add_room(t_list **list, t_room **room, const char *name);
 
 /// get_info_room.c
 
@@ -84,9 +87,9 @@ bool	is_link_inst(const char *);
 
 ///exe_inst.c
 
-int		start(t_graph *, const char *command);
-int		end(t_graph *, const char *command);
-int		ft_link(t_graph *, const char *command);
+result	start(t_graph *, const char *command);
+result	end(t_graph *, const char *command);
+result	ft_link(t_graph *, const char *command);
 
 ///instructions.c
 

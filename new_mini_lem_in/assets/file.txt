@@ -1,7 +1,12 @@
 #start A
 #start B
 Noodles-Rice
-erg-Hammer
+Noodles-Quinoa
+Noodles-Butter
+Noodles-C
+Rice-Quinoa
+Rice-Butter
+Screw-Hammer
 Tomatoes-Cheese
 #end E
 #end HA

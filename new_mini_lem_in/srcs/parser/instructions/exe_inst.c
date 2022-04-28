@@ -6,29 +6,41 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 16:58:59 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 21:43:45 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-int	start(t_graph *graph, const char *command)
+result	start(t_graph *graph, const char *command)
 {
+	t_room	*new;
+	char	*arg;
+
 	if (graph->start != NULL)
-		free(graph->start);
-	graph->start = ft_strdup(command + ft_strlen(START_PATTERN));
+		return (EXIT_FAILURE);
+	arg = ft_strdup(command + ft_strlen(START_PATTERN));
+	new = create_room(arg, NULL);
+	graph->start = new;
+	free(arg);
 	return (EXIT_SUCCESS);
 }
 
-int	end(t_graph *graph, const char *command)
+result	end(t_graph *graph, const char *command)
 {
+	t_room	*new;
+	char	*arg;
+
 	if (graph->end != NULL)
-		free(graph->end);
-	graph->end = ft_strdup(command + ft_strlen(END_PATTERN));
+		return (EXIT_FAILURE);
+	arg = ft_strdup(command + ft_strlen(END_PATTERN));
+	new = create_room(arg, NULL);
+	free(arg);
+	graph->end = new;
 	return (EXIT_SUCCESS);
 }
 
-int	ft_link(t_graph *graph, const char *command)
+result	ft_link(t_graph *graph, const char *command)
 {
 	char	*arg1;
 	char	*arg2;
@@ -39,16 +51,10 @@ int	ft_link(t_graph *graph, const char *command)
 	arg2 = ft_strdup(command + ft_strlen(arg1) + ft_strlen(DELIM));
 	room1 = find_room(graph->rooms, arg1);
 	if (room1 == NULL)
-	{
-		room1 = create_room(arg1, NULL);
-		add_element(&graph->rooms, room1);
-	}
+		create_n_add_room(&graph->rooms, &room1, arg1);
 	room2 = find_room(graph->rooms, arg2);
 	if (room2 == NULL)
-	{
-		room2 = create_room(arg2, NULL);
-		add_element(&graph->rooms, room2);
-	}
+		create_n_add_room(&graph->rooms, &room2, arg2);
 	add_element(&room1->neighboor, room2);
 	free(arg1);
 	free(arg2);
