@@ -1,4 +1,6 @@
 #start A
 #start B
+Noodles-Rice
+Tomatoes-Cheese
 #end E
 #end HA

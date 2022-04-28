@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_list.c                                     :+:      :+:    :+:   */
+/*   create_room.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 10:03:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 11:16:45 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/27 17:14:39 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/27 17:17:38 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list.h"
+#include "mini_lem_in.h"
 
-void	display_list(t_list **list, void (*display_fct)())
+t_room	*create_room(const char *input_name, t_list *list)
 {
-	if (*list != NULL)
+	t_room	*new;
+
+	new = (t_room *)malloc(sizeof(t_room));
+	if (new != NULL)
 	{
-		ft_putstr(DELIM);
-		display_fct((*list)->data);
-		display_list(&(*list)->next, display_fct);
+		new->name = ft_strdup(input_name);
+		new->neighboor = list;
 	}
-	else
-		ft_putstr(DELIM);
-} 
+	return (new);
+}

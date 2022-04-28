@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 16:59:24 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 14:51:46 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@ int	end(t_graph *graph, const char *command)
 
 int	ft_link(t_graph *graph, const char *command)
 {
-	char	*arg1;
-	char	*arg2;
+	const char	*arg1 = ft_strtok(command, DELIM);
+	const char	*arg2 = ft_strdup(command + ft_strlen(arg1) + ft_strlen(DELIM));
+	t_room		*room1;
+	t_room		*room2;
 
-	arg1 = ft_strtok(command, DELIM);
-	arg2 = ft_strdup(arg1 + ft_strlen(DELIM));
-
-	ft_putstr("LINK !\n");
-	ft_putstr(arg1);
-	ft_putstr(";");
-	ft_putendl(arg2);
-	display_list(&graph->rooms);
-	free(arg1);
-	free(arg2);
+	room1 = find_room(graph->rooms, arg1);
+	if (room1 == NULL)
+	{
+		room1 = create_room(arg1, NULL);
+		add_element(&graph->rooms, room1);
+	}
+	room2 = find_room(graph->rooms, arg2);
+	if (room2 == NULL)
+	{
+		room2 = create_room(arg2, NULL);
+		add_element(&graph->rooms, room2);
+	}
+	add_element(&room1->neighboor, room2);
 	return (EXIT_SUCCESS);
 }

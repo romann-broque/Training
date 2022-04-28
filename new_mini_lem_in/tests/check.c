@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 16:54:15 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 14:46:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -380,7 +380,7 @@ START_TEST(create_list__1)
 	t_list	*list;
 	const char	*name = "Strawberry";
 
-	list = create_list(name, NULL);
+	list = create_list((char *)name, NULL);
 	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, NULL);
 }
@@ -393,7 +393,7 @@ START_TEST(create_list__2)
 	char		*ptr;
 
 	ptr = ft_strdup(name);
-	list = create_list(name, ptr);
+	list = create_list((char *)name, ptr);
 	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, ptr);
 }
@@ -418,8 +418,8 @@ START_TEST(add__1)
 	t_list		*list;
 	t_list		*new;
 
-	list = create_list(name, NULL);
-	new = create_list(new_name, NULL);
+	list = create_list((char *)name, NULL);
+	new = create_list((char *)new_name, NULL);
 	add(&list, new);
 	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, new);
@@ -433,7 +433,7 @@ START_TEST(add__2)
 	t_list		*new;
 
 	list = NULL;
-	new = create_list(name, NULL);
+	new = create_list((char *)name, NULL);
 	add(&list, new);
 	ck_assert_str_eq(list->data, name);
 	ck_assert_ptr_eq(list->next, new->next);
@@ -450,14 +450,34 @@ START_TEST(add__3)
 	t_list		*node2;
 	t_list		*node3;
 
-	node1 = create_list(name1, NULL);
-	node2 = create_list(name2, NULL);
-	node3 = create_list(name3, NULL);
+	node1 = create_list((char *)name1, NULL);
+	node2 = create_list((char *)name2, NULL);
+	node3 = create_list((char *)name3, NULL);
 	add(&node1, node2);
 	add(&node1, node3);
 	ck_assert_str_eq(node1->data, name1);
 	ck_assert_ptr_eq(node1->next, node2);
 	ck_assert_ptr_eq(node2->next, node3);
+}
+END_TEST
+
+/// add_element
+
+START_TEST(add_element_1)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Chicken";
+	t_list		*rooms = NULL;
+	t_room		*room1 = create_room(name1, NULL);
+	t_room		*room2 = create_room(name2, NULL);
+	t_room		*room3 = create_room(name3, NULL);
+
+	add_element(&rooms, room1);
+	add_element(&rooms, room2);
+	add_element(&rooms, room3);
+	ck_assert_ptr_eq(rooms->data, room1);
+	ck_assert_ptr_eq((((t_list *)rooms->next))->data, room2);
 }
 END_TEST
 
@@ -468,7 +488,7 @@ START_TEST(destroy__1)
 	const char	*name1 = "Airplane";
 	t_list		*node1;
 
-	node1 = create_list(name1, NULL);
+	node1 = create_list((char *)name1, NULL);
 	destroy(&node1, full_free);
 	ck_assert_ptr_eq(node1, NULL);
 }
@@ -491,7 +511,7 @@ START_TEST(destroy_node__1)
 	t_list	*node;
 
 	node = create_list("Hello", NULL);
-	destroy_node(&node, full_free);
+	destroy_node(&node, NULL);
 	ck_assert_ptr_eq(node, NULL);
 }
 END_TEST
@@ -507,12 +527,12 @@ START_TEST(cut__1)
 	t_list		*node2;
 	t_list		*node3;
 
-	node1 = create_list(name1, NULL);
-	node2 = create_list(name2, NULL);
-	node3 = create_list(name3, NULL);
+	node1 = create_list((char *)name1, NULL);
+	node2 = create_list((char *)name2, NULL);
+	node3 = create_list((char *)name3, NULL);
 	add(&node1, node2);
 	add(&node1, node3);
-	cut(&node1, full_free);
+	cut(&node1, NULL);
 	ck_assert_str_eq(node1->data, name1);
 	ck_assert_ptr_eq(node1->next, node2);
 	ck_assert_str_eq(node2->data, name2);
@@ -525,8 +545,8 @@ START_TEST(cut__2)
 	const char	*name1 = "Airplane";
 	t_list		*node1;
 
-	node1 = create_list(name1, NULL);
-	cut(&node1, full_free);
+	node1 = create_list((char *)name1, NULL);
+	cut(&node1, NULL);
 	ck_assert_ptr_eq(node1, NULL);
 }
 END_TEST
@@ -542,15 +562,53 @@ START_TEST(destroy_list__1)
 	t_list		*node2;
 	t_list		*node3;
 
-	node1 = create_list(name1, NULL);
-	node2 = create_list(name2, NULL);
-	node3 = create_list(name3, NULL);
+	node1 = create_list((char *)name1, NULL);
+	node2 = create_list((char *)name2, NULL);
+	node3 = create_list((char *)name3, NULL);
 	add(&node1, node2);
 	add(&node1, node3);
-	destroy_list(&node1, full_free);
+	destroy_list(&node1, NULL);
 	ck_assert_ptr_eq(node1, NULL);
 }
 END_TEST
+
+Suite	*linked_list(void)
+{
+	Suite	*s;
+	TCase	*create_structure;
+	TCase	*destroy_structure;
+
+	s = suite_create("LINKED_LIST");
+	create_structure = tcase_create("CREATE_STRUCTURE");
+	destroy_structure = tcase_create("DESTROY_STRUCTURE");
+
+	tcase_add_test(create_structure, create_list__1);
+	tcase_add_test(create_structure, create_list__2);
+	tcase_add_test(create_structure, create_list__3);
+
+	tcase_add_test(create_structure, add__1);
+	tcase_add_test(create_structure, add__2);
+	tcase_add_test(create_structure, add__3);
+	
+	tcase_add_test(create_structure, add_element_1);
+
+	tcase_add_test(destroy_structure, destroy__1);
+	tcase_add_test(destroy_structure, destroy__2);
+	
+	tcase_add_test(destroy_structure, cut__1);
+	tcase_add_test(destroy_structure, cut__2);
+	
+	tcase_add_test(destroy_structure, destroy_list__1);
+	
+	tcase_add_test(destroy_structure, destroy_node__1);
+
+	suite_add_tcase(s, create_structure);
+	suite_add_tcase(s, destroy_structure);
+
+	return (s);
+}
+
+////////////////////////////////////////////////////////////////////////////////
 
 /// init_graph
 
@@ -565,35 +623,107 @@ START_TEST(init_graph__1)
 }
 END_TEST
 
-Suite	*linked_list(void)
+/// create_room
+
+START_TEST(create_room__1)
+{
+	const char	*name = "Hello";
+	t_room		*new;
+
+	new = create_room(name, NULL);
+	ck_assert_str_eq(new->name, name);
+	ck_assert_ptr_eq(new->neighboor, NULL);
+}
+END_TEST
+
+START_TEST(create_room__2)
+{
+	char	*name0 = "Hello";
+	char	*name1 = "Mister";
+	char	*name2 = "Anderson";
+	t_list		*node1;
+	t_list		*node2;
+	t_room		*room0;
+	t_room		*room1;
+	t_room		*room2;
+
+	room1 = create_room(name1, NULL);
+	room2 = create_room(name2, NULL);
+	node1 = create_list((char *)room1, NULL);
+	node2 = create_list((char *)room2, NULL);
+	add(&node1, node2);
+
+	room0 = create_room(name0, node1);
+	ck_assert_str_eq(room0->name, (char *)name0);
+	ck_assert_ptr_eq(room0->neighboor, node1);
+	ck_assert_ptr_eq((t_list *)(room0->neighboor)->next, node2);
+	ck_assert_ptr_eq((t_list *)(room0->neighboor)->data, room1);
+	ck_assert_str_eq(room1->name, name1);
+	ck_assert_ptr_eq(room1->neighboor, NULL);
+	ck_assert_str_eq(room1->name, name1);
+}
+END_TEST
+
+/// find_room
+
+START_TEST(find_room__1)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Chicken";
+	t_list		*rooms = NULL;
+	t_room		*room1 = create_room(name1, NULL);
+	t_room		*room2 = create_room(name2, NULL);
+	t_room		*room3 = create_room(name3, NULL);
+	t_room		*new;
+
+	add_element(&rooms, room1);
+	add_element(&rooms, room2);
+	add_element(&rooms, room3);
+	new = find_room(rooms, name2);
+	ck_assert_ptr_eq(new, room2);
+}
+END_TEST
+
+START_TEST(find_room__2)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Chicken";
+	t_list		*rooms = NULL;
+	t_room		*room1 = create_room(name1, NULL);
+	t_room		*room2 = create_room(name2, NULL);
+	t_room		*room3 = create_room(name3, NULL);
+	t_room		*new;
+
+	add_element(&rooms, room1);
+	add_element(&rooms, room2);
+	add_element(&rooms, room3);
+	new = find_room(rooms, "hello");
+	ck_assert_ptr_eq(new, NULL);
+}
+END_TEST
+
+Suite	*structure(void)
 {
 	Suite	*s;
-	TCase	*structure;
+	TCase	*graph;
+	TCase	*room;
 
-	s = suite_create("LINKED_LIST");
-	structure = tcase_create("STRUCTURE");
+	s = suite_create("STRUCTURE");
+	graph = tcase_create("GRAPH");
+	room = tcase_create("ROOM");
 
-	tcase_add_test(structure, create_list__1);
-	tcase_add_test(structure, create_list__2);
-	tcase_add_test(structure, create_list__3);
+	tcase_add_test(graph, init_graph__1);
 
-	tcase_add_test(structure, add__1);
-	tcase_add_test(structure, add__2);
-	tcase_add_test(structure, add__3);
-
-	tcase_add_test(structure, destroy__1);
-	tcase_add_test(structure, destroy__2);
+	tcase_add_test(room, create_room__1);
+	tcase_add_test(room, create_room__2);
 	
-	tcase_add_test(structure, cut__1);
-	tcase_add_test(structure, cut__2);
-	
-	tcase_add_test(structure, destroy_list__1);
-	
-	tcase_add_test(structure, destroy_node__1);
+	tcase_add_test(room, find_room__1);
+	tcase_add_test(room, find_room__2);
 
-	tcase_add_test(structure, init_graph__1);
-
-	suite_add_tcase(s, structure);
+	suite_add_tcase(s, graph);
+	suite_add_tcase(s, room);
 
 	return (s);
 }
@@ -618,7 +748,7 @@ int	get_failed_from_suite(Suite *suite)
 
 int	main(void)
 {
-	Suite	*(*suite[NBOF_SUITE])(void) = {utilities, parser, linked_list};
+	Suite	*(*suite[NBOF_SUITE])(void) = {utilities, parser, linked_list, structure};
 	int		nbof_failed;
 	size_t	i;
 

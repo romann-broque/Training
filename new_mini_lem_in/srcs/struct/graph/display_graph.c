@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:38:30 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 16:56:55 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 11:14:41 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	display_graph(t_graph *graph)
 		if (graph->rooms != NULL)
 		{
 			ft_putstr("ROOMS : ");
-			display_list(&graph->rooms);
+			display_list(&graph->rooms, display_room);
 		}
 	}
 }

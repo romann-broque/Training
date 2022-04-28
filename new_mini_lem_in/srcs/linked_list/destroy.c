@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:15:21 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 11:43:50 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 14:43:06 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	destroy_node(t_list **node, void (*destroy_fct)())
 {
 	if (destroy_fct != NULL)
 	{
-		destroy(&(*node)->data, destroy_fct);
-		destroy(&(*node)->next, full_free);
+		destroy((*node)->data, full_free);
+		destroy((*node)->next, full_free);
 	}
 	destroy(node, full_free);
 }

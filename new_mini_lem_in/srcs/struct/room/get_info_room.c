@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_list.c                                     :+:      :+:    :+:   */
+/*   get_info_room.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/26 10:03:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 11:16:45 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/28 09:32:37 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/28 12:46:47 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linked_list.h"
+#include "mini_lem_in.h"
 
-void	display_list(t_list **list, void (*display_fct)())
+t_room	*find_room(t_list *list, const char *name)
 {
-	if (*list != NULL)
+	if (list != NULL && list->data != NULL)
 	{
-		ft_putstr(DELIM);
-		display_fct((*list)->data);
-		display_list(&(*list)->next, display_fct);
+		if (ft_is_equal(((t_room *)(list->data))->name, name))
+			return (list->data);
+		return (find_room(list->next, name));
 	}
-	else
-		ft_putstr(DELIM);
-} 
+	return (NULL);
+}

@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/27 15:02:35 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/28 12:54:16 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ PATH_SRCS += srcs/reader
 PATH_SRCS += srcs/reader/gnl
 PATH_SRCS += srcs/struct
 PATH_SRCS += srcs/struct/graph
+PATH_SRCS += srcs/struct/room
 PATH_SRCS += srcs/utilities
 
 SRCS += main.c
@@ -48,6 +49,13 @@ SRCS += find_inst.c
 SRCS += create_graph.c
 SRCS += display_graph.c
 SRCS += destroy_graph.c
+
+### room
+
+SRCS += create_room.c
+SRCS += get_info_room.c
+SRCS += destroy_room.c
+SRCS += display_room.c
 
 ### utilities
 
