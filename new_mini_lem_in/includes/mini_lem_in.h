@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 12:53:32 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 15:16:15 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_room	*find_room(t_list *list, const char *name);
 
 /// destroy_room.c
 
-void	destroy_room(t_room *room);
+void	destroy_room(t_room **room);
 
 /// display_room.c
 

@@ -1,6 +1,7 @@
 #start A
 #start B
 Noodles-Rice
+erg-Hammer
 Tomatoes-Cheese
 #end E
 #end HA

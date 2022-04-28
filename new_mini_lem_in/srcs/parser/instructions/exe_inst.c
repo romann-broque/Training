@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 14:51:46 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/28 16:58:59 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ int	end(t_graph *graph, const char *command)
 
 int	ft_link(t_graph *graph, const char *command)
 {
-	const char	*arg1 = ft_strtok(command, DELIM);
-	const char	*arg2 = ft_strdup(command + ft_strlen(arg1) + ft_strlen(DELIM));
-	t_room		*room1;
-	t_room		*room2;
+	char	*arg1;
+	char	*arg2;
+	t_room	*room1;
+	t_room	*room2;
 
+	arg1  = ft_strtok(command, DELIM);
+	arg2 = ft_strdup(command + ft_strlen(arg1) + ft_strlen(DELIM));
 	room1 = find_room(graph->rooms, arg1);
 	if (room1 == NULL)
 	{
@@ -48,5 +50,7 @@ int	ft_link(t_graph *graph, const char *command)
 		add_element(&graph->rooms, room2);
 	}
 	add_element(&room1->neighboor, room2);
+	free(arg1);
+	free(arg2);
 	return (EXIT_SUCCESS);
 }
