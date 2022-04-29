@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 10:31:36 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 11:17:50 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ void	display_room(t_room *room);
 
 ///find_inst.c
 
-bool	is_start_inst(const char *);
-bool	is_end_inst(const char *);
-bool	is_link_inst(const char *);
+bool	is_valid_arg(char *arg, const char *pattern);
+char	*is_start_inst(const char *);
+char	*is_end_inst(const char *);
+char	*is_link_inst(const char *);
 
 ///exe_inst.c
 

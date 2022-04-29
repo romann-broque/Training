@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 10:50:28 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 11:30:32 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ START_TEST(is_start_inst__1)
 {
 	const char	*command = "#start bahbah";
 
-	ck_assert_int_eq(is_start_inst(command), 1);
+	ck_assert_str_eq(is_start_inst(command), "bahbah");
 }
 END_TEST
 
@@ -274,7 +274,7 @@ START_TEST(is_start_inst__2)
 {
 	const char	*command = "#sta rt bahbah";
 
-	ck_assert_int_eq(is_start_inst(command), 0);
+	ck_assert_ptr_eq(is_start_inst(command), NULL);
 }
 END_TEST
 
@@ -282,7 +282,7 @@ START_TEST(is_start_inst__3)
 {
 	const char	*command = "#start";
 
-	ck_assert_int_eq(is_start_inst(command), 0);
+	ck_assert_ptr_eq(is_start_inst(command), NULL);
 }
 END_TEST
 
@@ -292,7 +292,7 @@ START_TEST(is_end_inst__1)
 {
 	const char	*command = "#end bahbah";
 
-	ck_assert_int_eq(is_end_inst(command), 1);
+	ck_assert_str_eq(is_end_inst(command), "bahbah");
 }
 END_TEST
 
@@ -300,7 +300,7 @@ START_TEST(is_end_inst__2)
 {
 	const char	*command = " #end bahbah";
 
-	ck_assert_int_eq(is_end_inst(command), 0);
+	ck_assert_ptr_eq(is_end_inst(command), NULL);
 }
 END_TEST
 
@@ -308,7 +308,7 @@ START_TEST(is_end_inst__3)
 {
 	const char	*command = "#end";
 
-	ck_assert_int_eq(is_end_inst(command), 0);
+	ck_assert_ptr_eq(is_end_inst(command), NULL);
 }
 END_TEST
 
@@ -318,7 +318,7 @@ START_TEST(is_link_inst__1)
 {
 	const char	*command = "burger-sandwich";
 
-	ck_assert_int_eq(is_link_inst(command), 1);
+	ck_assert_str_eq(is_link_inst(command), command);
 }
 END_TEST
 
@@ -326,7 +326,7 @@ START_TEST(is_link_inst__2)
 {
 	const char	*command = "ends";
 
-	ck_assert_int_eq(is_link_inst(command), 0);
+	ck_assert_ptr_eq(is_link_inst(command), NULL);
 }
 END_TEST
 
@@ -334,7 +334,7 @@ START_TEST(is_link_inst__3)
 {
 	const char	*command = "-ho";
 
-	ck_assert_int_eq(is_link_inst(command), 1);
+	ck_assert_str_eq(is_link_inst(command), command);
 }
 END_TEST
 
@@ -342,7 +342,7 @@ START_TEST(is_link_inst__4)
 {
 	const char	*command = "";
 
-	ck_assert_int_eq(is_link_inst(command), 0);
+	ck_assert_ptr_eq(is_link_inst(command), NULL);
 }
 END_TEST
 
@@ -743,7 +743,7 @@ Suite	*structure(void)
 
 START_TEST(start__1)
 {
-	const char	*command = "#start Hello";
+	const char	*command = "Hello";
 	t_graph		graph;
 	result		rt_value;
 
@@ -756,40 +756,14 @@ END_TEST
 
 START_TEST(start__2)
 {
-	const char	*command = "#start ";
+	const char	*command = "ouah";
 	t_graph		graph;
 	result		rt_value;
 
 	init_graph(&graph);
 	rt_value = start(&graph, command);
-	ck_assert_ptr_eq(graph.start, NULL);
-	ck_assert_int_eq(rt_value, EXIT_FAILURE);
-}
-END_TEST
-
-START_TEST(start__3)
-{
-	const char	*command = "#start #ouah";
-	t_graph		graph;
-	result		rt_value;
-
-	init_graph(&graph);
-	rt_value = start(&graph, command);
-	ck_assert_ptr_eq(graph.start, NULL);
-	ck_assert_int_eq(rt_value, EXIT_FAILURE);
-}
-END_TEST
-
-START_TEST(start__3)
-{
-	const char	*command = "#start ";
-	t_graph		graph;
-	result		rt_value;
-
-	init_graph(&graph);
-	rt_value = start(&graph, command);
-	ck_assert_ptr_eq(graph.start, NULL);
-	ck_assert_int_eq(rt_value, EXIT_FAILURE);
+	ck_assert_str_eq(((t_room *)(graph.start))->name, "ouah");
+	ck_assert_int_eq(rt_value, EXIT_SUCCESS);
 }
 END_TEST
 
@@ -807,7 +781,6 @@ Suite	*instructions(void)
 
 	tcase_add_test(start, start__1);
 	tcase_add_test(start, start__2);
-	tcase_add_test(start, start__3);
 	
 //	tcase_add_test(graph, end__1);
 
