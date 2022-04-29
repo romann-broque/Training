@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 11:17:50 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 11:53:30 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,25 @@ typedef struct s_graph
 
 ///////////////// GRAPH
 
-///create_graph.c
+/// create_graph.c
 
 t_graph *graph_keeper(t_graph *graph);
 t_graph *get_graph(void);
 void	init_graph(t_graph *);
 void	set_graph(t_graph *graph);
 
-///display_graph.c
+/// display_graph.c
 
 void	display_graph(t_graph *graph);
 void	full_display_room(t_room *room);
 
-///destroy_graph.c
+/// destroy_graph.c
 
 void	destroy_graph(t_graph *);
+
+/// get_info_graph.c
+
+bool	is_graph_complete(t_graph *graph);
 
 ///////////////// ROOM
 
@@ -79,20 +83,20 @@ void	display_room(t_room *room);
 
 ///////////////// INSTRUCTIONS
 
-///find_inst.c
+/// find_inst.c
 
 bool	is_valid_arg(char *arg, const char *pattern);
 char	*is_start_inst(const char *);
 char	*is_end_inst(const char *);
 char	*is_link_inst(const char *);
 
-///exe_inst.c
+/// exe_inst.c
 
 result	start(t_graph *, const char *command);
 result	end(t_graph *, const char *command);
 result	ft_link(t_graph *, const char *command);
 
-///instructions.c
+/// instructions.c
 
 result	get_inst(const char *);
 result	display(const char *line);

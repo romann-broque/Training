@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/28 17:35:51 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/04/29 11:53:49 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS += find_inst.c
 SRCS += create_graph.c
 SRCS += display_graph.c
 SRCS += destroy_graph.c
+SRCS += get_info_graph.c
 
 ### room
 

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 23:46:47 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 11:53:34 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 		path_file = av[1];
 		init_graph(&graph);
 		set_graph(&graph);
-		if (read_file(path_file, get_inst) == EXIT_SUCCESS)
+		if (read_file(path_file, get_inst) == EXIT_SUCCESS && is_graph_complete(&graph))
 		{
 			display_graph(&graph);
 			rt_value = EXIT_SUCCESS;
