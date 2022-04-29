@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:14:39 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 00:01:53 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 13:48:47 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_room	*create_room(const char *input_name, t_list *list)
 	if (new != NULL)
 	{
 		new->name = ft_strdup(input_name);
+		new->lock = false;
 		new->neighboor = list;
 	}
 	return (new);

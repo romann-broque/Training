@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 11:53:34 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 13:44:55 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int	main(int ac, char **av)
 		}
 		destroy_graph(&graph);
 	}
+	ft_bzero(&graph, sizeof(graph));
 	return (rt_value);
 }

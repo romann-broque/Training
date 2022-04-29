@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 11:53:30 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 13:48:24 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ typedef struct s_room
 	bool	lock;
 	t_list	*neighboor;
 }			t_room;
+
+typedef struct s_path
+{
+	t_list	*rooms;
+	size_t	size;
+};
 
 typedef struct s_graph
 {
