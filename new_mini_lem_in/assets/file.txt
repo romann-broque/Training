@@ -1,10 +1,8 @@
-#start B
-Noodles-Rice
-Noodles-Quinoa
-Noodles-Butter
-Noodles-C
-Rice-Quinoa
-Rice-Butter
-Screw-Hammer
-Tomatoes-Cheese
+A-B
+#start A
+B-C
+B-D
+A-D
 #end E
+D-C
+C-E

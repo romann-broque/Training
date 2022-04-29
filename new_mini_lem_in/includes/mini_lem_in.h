@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 23:59:06 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 10:31:36 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "linked_list.h"
 # include "utilities.h"
 
-# define NBOF_SUITE 4
+# define NBOF_SUITE 5
 # define NBOF_COM 3
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "

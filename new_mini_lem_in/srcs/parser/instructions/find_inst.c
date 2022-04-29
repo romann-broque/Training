@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:42:33 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 15:06:17 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 10:49:17 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,3 @@ bool	is_link_inst(const char *line)
 	free(cpy);
 	return (arg != NULL);
 }
-
-/*
-
-t_graph graph;
-
-set_graph(&graph);
--------------------------
-
-t_graph *graph = get_graph();
-
-*/

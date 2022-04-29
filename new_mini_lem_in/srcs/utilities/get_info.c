@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 15:57:37 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/22 10:50:26 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 10:04:32 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ int	ft_strncmp(const char *str1, const char *str2, const size_t size)
 
 int	ft_strcmp(const char *str1, const char *str2)
 {
-	const size_t	size = ft_strlen(str2);
+	const size_t	size1 = ft_strlen(str1);
+	const size_t	size2 = ft_strlen(str2);
 
-	return (ft_strncmp(str1, str2, size));
+	if (size1 == size2)
+		return (ft_strncmp(str1, str2, size1));
+	return (size1 - size2);
 }
 
 bool	ft_is_equal(const char *str1, const char *str2)

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 14:46:57 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/29 10:50:28 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ END_TEST
 START_TEST(ft_is_equal__2)
 {
 	ck_assert_int_eq(ft_is_equal("Hello", "Hello my name"), 0);
+}
+END_TEST
+
+START_TEST(ft_is_equal__3)
+{
+	ck_assert_int_eq(ft_is_equal("Hello my name", "Hello"), 0);
 }
 END_TEST
 
@@ -193,6 +199,7 @@ Suite	*utilities(void)
 
 	tcase_add_test(ft_is_equal, ft_is_equal__1);
 	tcase_add_test(ft_is_equal, ft_is_equal__2);
+	tcase_add_test(ft_is_equal, ft_is_equal__3);
 	
 	tcase_add_test(ft_strchr, ft_strchr__1);
 	tcase_add_test(ft_strchr, ft_strchr__2);
@@ -730,6 +737,90 @@ Suite	*structure(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/// exe_inst.c
+
+// start
+
+START_TEST(start__1)
+{
+	const char	*command = "#start Hello";
+	t_graph		graph;
+	result		rt_value;
+
+	init_graph(&graph);
+	rt_value = start(&graph, command);
+	ck_assert_str_eq(((t_room *)(graph.start))->name, "Hello");
+	ck_assert_int_eq(rt_value, EXIT_SUCCESS);
+}
+END_TEST
+
+START_TEST(start__2)
+{
+	const char	*command = "#start ";
+	t_graph		graph;
+	result		rt_value;
+
+	init_graph(&graph);
+	rt_value = start(&graph, command);
+	ck_assert_ptr_eq(graph.start, NULL);
+	ck_assert_int_eq(rt_value, EXIT_FAILURE);
+}
+END_TEST
+
+START_TEST(start__3)
+{
+	const char	*command = "#start #ouah";
+	t_graph		graph;
+	result		rt_value;
+
+	init_graph(&graph);
+	rt_value = start(&graph, command);
+	ck_assert_ptr_eq(graph.start, NULL);
+	ck_assert_int_eq(rt_value, EXIT_FAILURE);
+}
+END_TEST
+
+START_TEST(start__3)
+{
+	const char	*command = "#start ";
+	t_graph		graph;
+	result		rt_value;
+
+	init_graph(&graph);
+	rt_value = start(&graph, command);
+	ck_assert_ptr_eq(graph.start, NULL);
+	ck_assert_int_eq(rt_value, EXIT_FAILURE);
+}
+END_TEST
+
+Suite	*instructions(void)
+{
+	Suite	*s;
+	TCase	*start;
+//	TCase	*end;
+//	TCase	*link;
+
+	s = suite_create("INSTRUCTIONS");
+	start = tcase_create("START");
+//	end = tcase_create("END");
+//	link = tcase_create("LINK");
+
+	tcase_add_test(start, start__1);
+	tcase_add_test(start, start__2);
+	tcase_add_test(start, start__3);
+	
+//	tcase_add_test(graph, end__1);
+
+	suite_add_tcase(s, start);
+//	suite_add_tcase(s, end);
+//	suite_add_tcase(s, link);
+
+	return (s);
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
 int	get_failed_from_suite(Suite *suite)
 {
 	int		not_failed;
@@ -748,7 +839,8 @@ int	get_failed_from_suite(Suite *suite)
 
 int	main(void)
 {
-	Suite	*(*suite[NBOF_SUITE])(void) = {utilities, parser, linked_list, structure};
+	Suite	*(*suite[NBOF_SUITE])(void) = {utilities, parser, linked_list,
+											structure, instructions};
 	int		nbof_failed;
 	size_t	i;
 
