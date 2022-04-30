@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/30 17:10:27 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/30 18:44:56 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -862,6 +862,45 @@ Suite	*instructions(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 
+/// keep_shortest_paths
+
+START_TEST(keep_shortest_paths__1)
+{
+	t_list	*path_list;
+	t_room	*room1 = create_room(NULL, NULL);
+	t_room	*room2 = create_room(NULL, NULL);
+	t_room	*room3 = create_room(NULL, NULL);
+	t_path	*path1 = create_path(NULL);
+	t_path	*path2 = create_path(NULL);
+
+	
+	add_element(&path1->rooms, room1);
+	add_element(&path1->rooms, room2);
+	add_element(&path2->rooms, room1);
+	add_element(&path2->rooms, room2);
+	add_element(&path2->rooms, room3);
+//	add_element(&path_list, path1);
+//	keep_shortest_paths(path_list, path2);
+	ck_assert_ptr_eq(path_list->data, path1);
+}
+END_TEST
+
+Suite	*find_shortest_paths(void)
+{
+	Suite	*s;
+	TCase	*path_finder;
+
+	s = suite_create("FIND_SHORTEST_PATHS");
+	path_finder = tcase_create("PATH_FINDER");
+
+	tcase_add_test(path_finder, keep_shortest_paths__1);
+	
+	suite_add_tcase(s, path_finder);
+
+	return (s);
+}
+////////////////////////////////////////////////////////////////////////////////
+
 int	get_failed_from_suite(Suite *suite)
 {
 	int		not_failed;
@@ -881,7 +920,8 @@ int	get_failed_from_suite(Suite *suite)
 int	main(void)
 {
 	Suite	*(*suite[NBOF_SUITE])(void) = {utilities, parser, linked_list,
-											structure, instructions};
+											structure, instructions, 
+											find_shortest_paths};
 	int		nbof_failed;
 	size_t	i;
 

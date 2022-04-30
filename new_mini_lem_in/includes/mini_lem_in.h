@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/30 17:35:40 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/30 18:42:04 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "linked_list.h"
 # include "utilities.h"
 
-# define NBOF_SUITE 5
+# define NBOF_SUITE 6
 # define NBOF_COM 3
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
@@ -95,6 +95,7 @@ void	display_room(t_room *room);
 t_path	*create_path(t_list *rooms);
 void	cut_path(t_list **path);
 void	extract_path(t_graph *graph, t_list **path);
+void	keep_shortest_paths(t_list *path_list, t_path *new_path);
 
 /// path_finder.c
 
