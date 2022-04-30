@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 11:30:32 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/30 17:10:27 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -579,15 +579,44 @@ START_TEST(destroy_list__1)
 }
 END_TEST
 
+/// get_size_list
+
+START_TEST(get_size_list__1)
+{
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Cherry";
+	t_list		*node1;
+	t_list		*node2;
+	t_list		*node3;
+
+	node1 = create_list((char *)name1, NULL);
+	node2 = create_list((char *)name2, NULL);
+	node3 = create_list((char *)name3, NULL);
+	add(&node1, node2);
+	add(&node1, node3);
+	ck_assert_int_eq(get_size_list(node1), 3);
+}
+END_TEST
+
+START_TEST(get_size_list__2)
+{
+	ck_assert_int_eq(get_size_list(NULL), 0);
+}
+END_TEST
+
 Suite	*linked_list(void)
 {
 	Suite	*s;
 	TCase	*create_structure;
 	TCase	*destroy_structure;
+	TCase	*get_info;
 
 	s = suite_create("LINKED_LIST");
 	create_structure = tcase_create("CREATE_STRUCTURE");
 	destroy_structure = tcase_create("DESTROY_STRUCTURE");
+	destroy_structure = tcase_create("DESTROY_STRUCTURE");
+	get_info = tcase_create("GET_INFO");
 
 	tcase_add_test(create_structure, create_list__1);
 	tcase_add_test(create_structure, create_list__2);
@@ -609,8 +638,12 @@ Suite	*linked_list(void)
 	
 	tcase_add_test(destroy_structure, destroy_node__1);
 
+	tcase_add_test(get_info, get_size_list__1);
+	tcase_add_test(get_info, get_size_list__2);
+
 	suite_add_tcase(s, create_structure);
 	suite_add_tcase(s, destroy_structure);
+	suite_add_tcase(s, get_info);
 
 	return (s);
 }
@@ -711,15 +744,46 @@ START_TEST(find_room__2)
 }
 END_TEST
 
+START_TEST(create_path__1)
+{
+	t_path	*path;
+
+	path = create_path(NULL);
+	ck_assert_ptr_eq(path->rooms, NULL);
+	ck_assert_int_eq(path->size, 0);
+}
+END_TEST
+
+START_TEST(create_path__2)
+{	
+	const char	*name1 = "Airplane";
+	const char	*name2 = "Bottle";
+	const char	*name3 = "Chicken";
+	t_room		*room1 = create_room(name1, NULL);
+	t_room		*room2 = create_room(name2, NULL);
+	t_room		*room3 = create_room(name3, NULL);
+	t_path		*path;
+
+	path = create_path(NULL);
+	add_element(&path->rooms, room1);
+	add_element(&path->rooms, room2);
+	add_element(&path->rooms, room3);
+	path->size = get_size_list(path->rooms);
+	ck_assert_int_eq(path->size, 3);
+}
+END_TEST
+
 Suite	*structure(void)
 {
 	Suite	*s;
 	TCase	*graph;
 	TCase	*room;
+	TCase	*path;
 
 	s = suite_create("STRUCTURE");
 	graph = tcase_create("GRAPH");
 	room = tcase_create("ROOM");
+	path = tcase_create("PATH");
 
 	tcase_add_test(graph, init_graph__1);
 
@@ -729,8 +793,12 @@ Suite	*structure(void)
 	tcase_add_test(room, find_room__1);
 	tcase_add_test(room, find_room__2);
 
+	tcase_add_test(path, create_path__1);
+	tcase_add_test(path, create_path__2);
+
 	suite_add_tcase(s, graph);
 	suite_add_tcase(s, room);
+	suite_add_tcase(s, path);
 
 	return (s);
 }

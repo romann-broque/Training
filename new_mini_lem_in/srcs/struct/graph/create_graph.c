@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:28:10 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/27 16:52:53 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/30 17:35:59 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_graph(t_graph *graph)
 	if (graph != NULL)
 	{
 		graph->rooms = NULL;
+		graph->shortest_paths = NULL;
 		graph->start = NULL;
 		graph->end = NULL;
 	}

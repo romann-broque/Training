@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 13:48:24 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/30 17:35:40 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef struct s_path
 {
 	t_list	*rooms;
 	size_t	size;
-};
+}			t_path;
 
 typedef struct s_graph
 {
 	t_list	*rooms;
+	t_list	*shortest_paths;
 	t_room	*start;
 	t_room	*end;
 }			t_graph;
@@ -86,6 +87,19 @@ void	destroy_room(t_room **room);
 /// display_room.c
 
 void	display_room(t_room *room);
+
+///////////////// PATH
+
+/// struct_path.c
+
+t_path	*create_path(t_list *rooms);
+void	cut_path(t_list **path);
+void	extract_path(t_graph *graph, t_list **path);
+
+/// path_finder.c
+
+void	path_finder(t_graph *graph, t_room *room, t_list **path);
+void	get_shortest_paths(t_graph *graph);
 
 ///////////////// INSTRUCTIONS
 

@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 13:44:55 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/04/30 17:52:53 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 		set_graph(&graph);
 		if (read_file(path_file, get_inst) == EXIT_SUCCESS && is_graph_complete(&graph))
 		{
+			get_shortest_paths(&graph);
 			display_graph(&graph);
 			rt_value = EXIT_SUCCESS;
 		}
