@@ -1,0 +1,8 @@
+A-B
+A-D
+B-C
+B-D
+D-C
+C-E
+#start A
+#end E
