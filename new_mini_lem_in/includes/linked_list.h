@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:05:48 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/30 16:51:08 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/01 18:55:09 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	destroy_list(t_list **list, void (*destroy_fct)());
 /// get_info_list.c
 
 size_t	get_size_list(t_list *list);
+bool	are_lists_equal(t_list *list1, t_list *list2);
 
 /// display_list.c
 

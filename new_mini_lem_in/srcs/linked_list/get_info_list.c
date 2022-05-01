@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 16:52:14 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/30 16:58:19 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/01 19:03:32 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,13 @@ size_t	get_size_list(t_list *list)
 		++size;
 	}
 	return (size);
+}
+
+bool	are_lists_equal(t_list *list1, t_list *list2)
+{
+	if (list1 == NULL || list2 == NULL)
+		return (list1 == NULL && list2 == NULL);
+	if (list1->data == list2->data)
+		return (are_lists_equal(list1->next, list2->next));
+	return (false);
 }

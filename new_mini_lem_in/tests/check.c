@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/30 18:44:56 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/01 19:24:02 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -605,6 +605,68 @@ START_TEST(get_size_list__2)
 }
 END_TEST
 
+/// are_lists_equal
+
+START_TEST(are_lists_equal__1)
+{
+	t_list	*list1;
+	t_list	*list2;
+
+	list1 = NULL;
+	list2 = list1;
+	ck_assert_int_eq(are_lists_equal(list1, list2), 1);
+}
+END_TEST
+
+START_TEST(are_lists_equal__2)
+{
+	t_list	*list1 = NULL;
+	t_list	*list2 = NULL;
+	char	*str1 = "HELLO1";
+	char	*str2 = "HELLO2";
+
+	add_element(&list1, str1);
+	add_element(&list1, str2);
+	add_element(&list2, str1);
+	add_element(&list2, str2);
+	ck_assert_int_eq(are_lists_equal(list1, list2), 1);
+}
+END_TEST
+
+START_TEST(are_lists_equal__3)
+{
+	t_list	*list1 = NULL;
+	t_list	*list2 = NULL;
+	char	*str1 = "HELLO1";
+	char	*str2 = "HELLO2";
+	char	*str3 = "HELLO3";
+
+	add_element(&list1, str1);
+	add_element(&list1, str2);
+	add_element(&list2, str1);
+	add_element(&list2, str2);
+	add_element(&list2, str3);
+	ck_assert_int_eq(are_lists_equal(list1, list2), 0);
+}
+END_TEST
+
+START_TEST(are_lists_equal__4)
+{
+	t_list	*list1 = NULL;
+	t_list	*list2 = NULL;
+	char	*str1 = "HELLO1";
+	char	*str2 = "HELLO2";
+	char	*str3 = "HELLO3";
+
+	add_element(&list1, str2);
+	add_element(&list1, str1);
+	add_element(&list2, str1);
+	add_element(&list2, str2);
+	add_element(&list2, str3);
+	ck_assert_int_eq(are_lists_equal(list1, list2), 0);
+}
+END_TEST
+
 Suite	*linked_list(void)
 {
 	Suite	*s;
@@ -640,6 +702,11 @@ Suite	*linked_list(void)
 
 	tcase_add_test(get_info, get_size_list__1);
 	tcase_add_test(get_info, get_size_list__2);
+
+	tcase_add_test(get_info, are_lists_equal__1);
+	tcase_add_test(get_info, are_lists_equal__2);
+	tcase_add_test(get_info, are_lists_equal__3);
+	tcase_add_test(get_info, are_lists_equal__4);
 
 	suite_add_tcase(s, create_structure);
 	suite_add_tcase(s, destroy_structure);
@@ -866,24 +933,53 @@ Suite	*instructions(void)
 
 START_TEST(keep_shortest_paths__1)
 {
-	t_list	*path_list;
-	t_room	*room1 = create_room(NULL, NULL);
-	t_room	*room2 = create_room(NULL, NULL);
-	t_room	*room3 = create_room(NULL, NULL);
-	t_path	*path1 = create_path(NULL);
-	t_path	*path2 = create_path(NULL);
-
+	const char	*name1 = "Hello1";
+	const char	*name2 = "Hello2";
+	const char	*name3 = "Hello3";
+	t_room		*room1 = create_room(name1, NULL);
+	t_room		*room2 = create_room(name2, NULL);
+	t_room		*room3 = create_room(name3, NULL);
+	t_path		*path1 = create_path(NULL);
+	t_path		*path2 = create_path(NULL);
+	t_list		*path_list = NULL;
 	
 	add_element(&path1->rooms, room1);
 	add_element(&path1->rooms, room2);
 	add_element(&path2->rooms, room1);
 	add_element(&path2->rooms, room2);
 	add_element(&path2->rooms, room3);
-//	add_element(&path_list, path1);
-//	keep_shortest_paths(path_list, path2);
+	add_element(&path_list, path1);
+	keep_shortest_paths(path_list, path2);
 	ck_assert_ptr_eq(path_list->data, path1);
+	ck_assert_ptr_eq(((t_list *)(path_list->data))->next, NULL);
 }
 END_TEST
+
+/*
+START_TEST(keep_shortest_paths__2)
+{
+	t_graph		graph;
+	const char	*name1 = "Hello1";
+	const char	*name2 = "Hello2";
+	t_room		*room1 = create_room(name1, NULL);
+	t_room		*room2 = create_room(name2, NULL);
+	t_path		*path1 = create_path(NULL);
+	t_path		*path2 = create_path(NULL);
+	
+	init_graph(&graph);
+	add_element(&path1->rooms, room1);
+	add_element(&path1->rooms, room2);
+	add_element(&path2->rooms, room1);
+	add_element(&path2->rooms, room2);
+	path1->size = get_size_list(path1->rooms);
+	path2->size = get_size_list(path2->rooms);
+	extract_path(&graph, &path1->rooms);
+	extract_path(&graph, &path2->rooms);
+	ck_assert_ptr_eq((graph.shortest_paths)->data, path1->rooms);
+	ck_assert_ptr_eq(graph.shortest_paths->next->data, path2->rooms);
+}
+END_TEST
+*/
 
 Suite	*find_shortest_paths(void)
 {
@@ -894,11 +990,13 @@ Suite	*find_shortest_paths(void)
 	path_finder = tcase_create("PATH_FINDER");
 
 	tcase_add_test(path_finder, keep_shortest_paths__1);
+//	tcase_add_test(path_finder, keep_shortest_paths__2);
 	
 	suite_add_tcase(s, path_finder);
 
 	return (s);
 }
+
 ////////////////////////////////////////////////////////////////////////////////
 
 int	get_failed_from_suite(Suite *suite)
