@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:38:30 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/30 17:58:19 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/01 23:38:16 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	display_path_list(t_list *path_list)
 {
-	t_path	*path;
+	t_list	*path;
 
 	if (path_list != NULL)
 	{
 		path = path_list->data;
-		display_list(&path->rooms, display_room);
+		display_list(&path, display_room);
 		display_path_list(path_list->next);
 	}
 }

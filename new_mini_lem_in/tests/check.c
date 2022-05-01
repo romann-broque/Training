@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/01 19:24:02 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/01 23:33:39 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -811,35 +811,6 @@ START_TEST(find_room__2)
 }
 END_TEST
 
-START_TEST(create_path__1)
-{
-	t_path	*path;
-
-	path = create_path(NULL);
-	ck_assert_ptr_eq(path->rooms, NULL);
-	ck_assert_int_eq(path->size, 0);
-}
-END_TEST
-
-START_TEST(create_path__2)
-{	
-	const char	*name1 = "Airplane";
-	const char	*name2 = "Bottle";
-	const char	*name3 = "Chicken";
-	t_room		*room1 = create_room(name1, NULL);
-	t_room		*room2 = create_room(name2, NULL);
-	t_room		*room3 = create_room(name3, NULL);
-	t_path		*path;
-
-	path = create_path(NULL);
-	add_element(&path->rooms, room1);
-	add_element(&path->rooms, room2);
-	add_element(&path->rooms, room3);
-	path->size = get_size_list(path->rooms);
-	ck_assert_int_eq(path->size, 3);
-}
-END_TEST
-
 Suite	*structure(void)
 {
 	Suite	*s;
@@ -859,9 +830,6 @@ Suite	*structure(void)
 	
 	tcase_add_test(room, find_room__1);
 	tcase_add_test(room, find_room__2);
-
-	tcase_add_test(path, create_path__1);
-	tcase_add_test(path, create_path__2);
 
 	suite_add_tcase(s, graph);
 	suite_add_tcase(s, room);
@@ -931,7 +899,7 @@ Suite	*instructions(void)
 
 /// keep_shortest_paths
 
-START_TEST(keep_shortest_paths__1)
+START_TEST(extract_path__1)
 {
 	const char	*name1 = "Hello1";
 	const char	*name2 = "Hello2";
@@ -939,19 +907,19 @@ START_TEST(keep_shortest_paths__1)
 	t_room		*room1 = create_room(name1, NULL);
 	t_room		*room2 = create_room(name2, NULL);
 	t_room		*room3 = create_room(name3, NULL);
-	t_path		*path1 = create_path(NULL);
-	t_path		*path2 = create_path(NULL);
-	t_list		*path_list = NULL;
-	
-	add_element(&path1->rooms, room1);
-	add_element(&path1->rooms, room2);
-	add_element(&path2->rooms, room1);
-	add_element(&path2->rooms, room2);
-	add_element(&path2->rooms, room3);
-	add_element(&path_list, path1);
-	keep_shortest_paths(path_list, path2);
-	ck_assert_ptr_eq(path_list->data, path1);
-	ck_assert_ptr_eq(((t_list *)(path_list->data))->next, NULL);
+	t_list		*path1 = NULL;
+	t_list		*path2 = NULL;
+	t_graph		graph;
+
+	init_graph(&graph);
+	add_element(&path1, room1);
+	add_element(&path1, room2);
+	add_element(&path2, room1);
+	add_element(&path2, room2);
+	add_element(&path2, room3);
+	extract_path(&graph, &path1);
+	extract_path(&graph, &path2);
+	ck_assert_int_eq(get_size_list(graph.shortest_paths), 1);
 }
 END_TEST
 
@@ -989,8 +957,7 @@ Suite	*find_shortest_paths(void)
 	s = suite_create("FIND_SHORTEST_PATHS");
 	path_finder = tcase_create("PATH_FINDER");
 
-	tcase_add_test(path_finder, keep_shortest_paths__1);
-//	tcase_add_test(path_finder, keep_shortest_paths__2);
+	tcase_add_test(path_finder, extract_path__1);
 	
 	suite_add_tcase(s, path_finder);
 
