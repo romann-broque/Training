@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:55:55 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 15:48:17 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 18:29:48 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	result	rt_value;
 
 	rt_value = EXIT_FAILURE;
+	ft_bzero(&graph, sizeof(graph));
 	if (ac > 1)
 	{
 		path_file = av[1];

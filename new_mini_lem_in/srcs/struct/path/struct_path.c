@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 16:44:01 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 17:38:22 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 18:35:09 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ static void	keep_shortest_paths(t_list **path_list, t_list *new_path)
 		if (new_size <= curr_size)
 		{
 			if (new_size < curr_size)
-				destroy_list(path_list, NULL);
+				destroy_list(path_list, destroy_list_rec);
 			add_element(path_list, new_path);
 		}
+		else
+			destroy_list(&new_path, NULL);
 	}
 }
 
