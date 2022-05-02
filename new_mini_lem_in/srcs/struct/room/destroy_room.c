@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 12:49:27 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 23:47:52 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 14:10:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void	destroy_room(t_room **room)
 		destroy(&(*room)->name, full_free);
 		destroy_list(&(*room)->neighboor, NULL);
 		destroy(room, full_free);
+		ft_bzero(room, sizeof(room));
 	}
 }

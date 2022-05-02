@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:14:39 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 13:48:47 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 14:10:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_room	*create_room(const char *input_name, t_list *list)
 	return (new);
 }
 
-void	create_n_add_room(t_list **list, t_room **room, const char *name)
+static void	create_n_add_room(t_list **list, t_room **room, const char *name)
 {
 	*room = create_room(name, NULL);
 	add_element(list, *room);

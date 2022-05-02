@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 11:24:32 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 14:25:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ typedef struct s_room
 	bool	lock;
 	t_list	*neighboor;
 }			t_room;
-
-typedef struct s_path
-{
-	t_list	*rooms;
-	size_t	size;
-}			t_path;
 
 typedef struct s_graph
 {
@@ -73,7 +67,6 @@ bool	is_graph_complete(t_graph *graph);
 /// create_room.c
 
 t_room	*create_room(const char *input_name, t_list *list);
-void	create_n_add_room(t_list **list, t_room **room, const char *name);
 void	find_or_add(t_list **list, t_room **room, const char *name);
 
 /// get_info_room.c
