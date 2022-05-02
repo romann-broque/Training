@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 16:44:01 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 00:26:00 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 10:21:45 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_list	*get_deep_cp_path(t_list *path)
 	return (cp);
 }
 
-void	keep_shortest_paths(t_list *path_list, t_list *new_path)
+static void	keep_shortest_paths(t_list *path_list, t_list *new_path)
 {
 	const size_t	new_size = get_size_list(new_path);
 	size_t			curr_size;
@@ -33,28 +33,8 @@ void	keep_shortest_paths(t_list *path_list, t_list *new_path)
 	if (new_size <= curr_size)
 	{
 		if (new_size < curr_size)
-		{
 			destroy_list(&path_list, destroy_list_rec);
-			path_list = create_list(new_path, NULL);
-		}
-		else
-			add_element(&path_list, new_path);
-	}
-}
-
-void	cut_path(t_list **path)
-{
-	t_list	*curr;
-
-	if (*path != NULL)
-	{
-		if ((*path)->next != NULL)
-		{
-			curr = *path;
-			while (curr->next->next != NULL)
-				curr = curr->next;
-			destroy_list(&curr->next, NULL);
-		}
+		add_element(&path_list, new_path);
 	}
 }
 

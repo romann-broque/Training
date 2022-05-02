@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/30 17:11:19 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 00:26:40 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 10:20:48 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	path_finder(t_graph *graph, t_room *room, t_list **path)
 			{
 				add_element(path, curr_room);
 				path_finder(graph, curr_room, path);
-				cut_path(path);
+				cut(path, NULL);
 			}
 			neighboors = neighboors->next;
 		}

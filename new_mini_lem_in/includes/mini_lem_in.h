@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/01 19:29:13 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 10:22:09 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ void	display_room(t_room *room);
 
 /// struct_path.c
 
-t_path	*create_path(t_list *rooms);
-void	cut_path(t_list **path);
 void	extract_path(t_graph *graph, t_list **path);
-void	keep_shortest_paths(t_list *path_list, t_list *new_path);
 
 /// path_finder.c
 
