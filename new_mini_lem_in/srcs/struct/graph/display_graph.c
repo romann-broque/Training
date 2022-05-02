@@ -6,25 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:38:30 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 10:55:09 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 19:56:44 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-void	display_path_list(t_list *path_list)
-{
-	t_list	*path;
-
-	if (path_list != NULL)
-	{
-		path = path_list->data;
-		display_list(&path, display_room);
-		display_path_list(path_list->next);
-	}
-}
-
-static void start_display(t_graph *graph)
+static void	start_display(t_graph *graph)
 {
 	if (graph->start != NULL)
 	{
@@ -70,7 +58,6 @@ static void	path_list_display(t_graph *graph)
 		ft_putstr(" and ");
 		ft_putendl(graph->end->name);
 	}
-
 }
 
 void	display_graph(t_graph *graph)

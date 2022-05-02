@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:03:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 18:32:30 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 19:38:52 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ void	display_list(t_list **list, void (*display_fct)())
 	}
 	else
 		ft_putstr("\n");
-} 
+}

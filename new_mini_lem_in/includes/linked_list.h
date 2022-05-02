@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:05:48 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 10:10:37 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 19:24:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define DELIM "-"
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*data;
 	struct s_list	*next;

@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/04/30 17:16:53 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/05/02 23:51:40 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS += get_info_graph.c
 
 SRCS += struct_path.c
 SRCS += path_finder.c
+SRCS += display_path_list.c
 
 ### room
 
@@ -70,7 +71,9 @@ SRCS += display_room.c
 SRCS += display.c
 SRCS += remove.c
 SRCS += get_info.c
-SRCS += string.c
+SRCS += edit.c
+SRCS += compare.c
+SRCS += copy.c
 
 vpath %.c $(PATH_SRCS)
 

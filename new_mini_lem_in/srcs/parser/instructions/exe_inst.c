@@ -6,16 +6,16 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:55:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/29 11:37:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 19:51:35 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_lem_in.h"
 
-result	start(t_graph *graph, const char *command)
+t_result	start(t_graph *graph, const char *command)
 {
-	t_room	*new;
-	result	rt_value;
+	t_room		*new;
+	t_result	rt_value;
 
 	rt_value = EXIT_FAILURE;
 	if (graph->start == NULL)
@@ -27,10 +27,10 @@ result	start(t_graph *graph, const char *command)
 	return (rt_value);
 }
 
-result	end(t_graph *graph, const char *command)
+t_result	end(t_graph *graph, const char *command)
 {
-	t_room	*new;
-	result	rt_value;
+	t_room		*new;
+	t_result	rt_value;
 
 	rt_value = EXIT_FAILURE;
 	if (graph->end == NULL)
@@ -42,13 +42,13 @@ result	end(t_graph *graph, const char *command)
 	return (rt_value);
 }
 
-result	ft_link(t_graph *graph, const char *command)
+t_result	ft_link(t_graph *graph, const char *command)
 {
-	char	*arg1;
-	char	*arg2;
-	t_room	*room1;
-	t_room	*room2;
-	result	rt_value;
+	char		*arg1;
+	char		*arg2;
+	t_room		*room1;
+	t_room		*room2;
+	t_result	rt_value;
 
 	arg1 = ft_strtok(command, DELIM);
 	arg2 = ft_strdup(command + ft_strlen(arg1) + ft_strlen(DELIM));

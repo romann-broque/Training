@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 18:21:37 by romannbroque      #+#    #+#              #
-#    Updated: 2022/05/02 17:35:56 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/05/02 23:51:32 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ PATH_SRCS += ../srcs/utilities
 SRCS += display.c
 SRCS += remove.c
 SRCS += get_info.c
-SRCS += string.c
+SRCS += compare.c
+SRCS += copy.c
+SRCS += edit.c
 
 SRCS += gnl.c
 
@@ -51,6 +53,7 @@ SRCS += get_info_room.c
 
 SRCS += struct_path.c
 SRCS += path_finder.c
+SRCS += display_path_list.c
 
 SRCS += check.c
 

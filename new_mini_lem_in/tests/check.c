@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 11:25:49 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 19:33:57 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -848,7 +848,7 @@ START_TEST(start__1)
 {
 	const char	*command = "Hello";
 	t_graph		graph;
-	result		rt_value;
+	t_result		rt_value;
 
 	init_graph(&graph);
 	rt_value = start(&graph, command);
@@ -861,7 +861,7 @@ START_TEST(start__2)
 {
 	const char	*command = "ouah";
 	t_graph		graph;
-	result		rt_value;
+	t_result		rt_value;
 
 	init_graph(&graph);
 	rt_value = start(&graph, command);

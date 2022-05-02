@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   display_path_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 11:54:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 19:52:03 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/05/02 19:55:22 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/05/02 19:55:37 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gnl.h"
+#include "mini_lem_in.h"
 
-t_result	read_file(const char *path_file, t_result (*function)(const char *))
+void	display_path_list(t_list *path_list)
 {
-	int			fd;
-	char		*line;
-	t_result	rt_value;
+	t_list	*path;
 
-	fd = open(path_file, O_RDONLY);
-	line = get_next_line(fd);
-	rt_value = EXIT_SUCCESS;
-	while (line != NULL)
+	if (path_list != NULL)
 	{
-		rt_value = function(line);
-		free(line);
-		if (rt_value == EXIT_FAILURE)
-			break ;
-		line = get_next_line(fd);
+		path = path_list->data;
+		display_list(&path, display_room);
+		display_path_list(path_list->next);
 	}
-	close(fd);
-	return (rt_value);
 }

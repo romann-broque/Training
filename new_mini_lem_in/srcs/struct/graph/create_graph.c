@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 11:28:10 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 10:35:22 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 19:59:14 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ void	init_graph(t_graph *graph)
 	}
 }
 
-t_graph *graph_keeper(t_graph *graph)
+t_graph	*graph_keeper(t_graph *graph)
 {
-	static t_graph *glob_graph = NULL;
+	static t_graph	*glob_graph = NULL;
 
 	if (graph != GET)
 		glob_graph = graph;
 	return (glob_graph);
 }
 
-t_graph *get_graph(void)
+t_graph	*get_graph(void)
 {
 	return (graph_keeper(GET));
 }
 
-void 	set_graph(t_graph *graph)
+void	set_graph(t_graph *graph)
 {
 	graph_keeper(graph);
 }
