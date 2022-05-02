@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 14:25:57 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 17:12:44 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	extract_path(t_graph *graph, t_list **path);
 
 /// path_finder.c
 
-void	path_finder(t_graph *graph, t_room *room, t_list **path);
+void	path_finder(t_graph *graph, t_room *room, t_list *path);
 void	get_shortest_paths(t_graph *graph);
 
 ///////////////// INSTRUCTIONS

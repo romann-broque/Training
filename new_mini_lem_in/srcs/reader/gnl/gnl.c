@@ -6,13 +6,11 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:59:53 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/15 17:43:09 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 14:58:01 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl.h"
-#include <string.h>
-#include <stdio.h>
 #define LINE_OK 1
 #define CONTINUE 0
 

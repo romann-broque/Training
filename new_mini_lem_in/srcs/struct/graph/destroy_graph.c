@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 11:32:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 10:59:13 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 17:00:06 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	destroy_graph(t_graph *graph)
 {
-	destroy_list(&graph->rooms, destroy_room);
 	destroy_list(&graph->shortest_paths, destroy_list_rec);
+	destroy_list(&graph->rooms, destroy_room);
 }

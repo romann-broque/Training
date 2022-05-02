@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 18:21:37 by romannbroque      #+#    #+#              #
-#    Updated: 2022/05/02 11:31:15 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/05/02 17:35:56 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,10 @@ SRCS += display_list.c
 SRCS += get_info_list.c
 
 SRCS += create_graph.c
+SRCS += display_graph.c
 
 SRCS += create_room.c
+SRCS += display_room.c
 SRCS += get_info_room.c
 
 SRCS += struct_path.c
