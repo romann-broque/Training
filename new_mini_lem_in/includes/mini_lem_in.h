@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 10:22:09 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 11:24:32 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	set_graph(t_graph *graph);
 
 /// display_graph.c
 
+void	display_path_list(t_list *path_list);
 void	display_graph(t_graph *graph);
-void	full_display_room(t_room *room);
 
 /// destroy_graph.c
 
@@ -87,6 +87,7 @@ void	destroy_room(t_room **room);
 /// display_room.c
 
 void	display_room(t_room *room);
+void	full_display_room(t_room *room);
 
 ///////////////// PATH
 

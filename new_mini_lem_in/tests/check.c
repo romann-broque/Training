@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:25:51 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/01 23:33:39 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/02 11:25:49 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -897,7 +897,7 @@ Suite	*instructions(void)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-/// keep_shortest_paths
+/// extract_path
 
 START_TEST(extract_path__1)
 {

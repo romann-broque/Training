@@ -1,0 +1,15 @@
+#start B
+#end G
+A-C
+A-F
+B-A
+B-C
+B-D
+B-F
+C-B
+C-D
+C-E
+D-E
+E-C
+F-E
+E-G
