@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:05:48 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 19:24:21 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:48:40 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ bool	are_lists_equal(t_list *list1, t_list *list2);
 
 /// display_list.c
 
-void	display_list(t_list **list, void (*display_fct)());
+void	display_list(t_list **list, void (*display_fct)(), const char *delim);
 
 #endif

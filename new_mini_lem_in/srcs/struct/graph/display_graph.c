@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 10:38:30 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 19:56:44 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:58:28 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,21 @@ static void	rooms_display(t_graph *graph)
 
 static void	path_list_display(t_graph *graph)
 {
-	ft_putendl("\nSHORTEST_PATH(S): \n");
 	if (graph->shortest_paths != NULL)
+	{
+		ft_putstr("\nSHORTEST_PATH");
+		if (get_size_list(graph->shortest_paths) > 1)
+			ft_putstr("S");
+		ft_putstr(":\n\n");
 		display_path_list(graph->shortest_paths);
+	}
 	else
 	{
-		ft_putstr("There isn't existing path between ");
+		ft_putstr("\nThere is no path between ");
 		ft_putstr(graph->start->name);
 		ft_putstr(" and ");
-		ft_putendl(graph->end->name);
+		ft_putstr(graph->end->name);
+		ft_putstr(".\n");
 	}
 }
 

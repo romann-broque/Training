@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:07:56 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 23:53:23 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:44:29 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef int	t_result;
 
 char	*ft_strcat(const char *str1, const char *str2);
 char	*ft_stradd(char **str1, const char *str2);
-char	*ft_strchr(char *str, const char c);
+char	*ft_strchr(const char *str, const char c);
 char	*ft_strtok(const char *str, const char *delim);
 
 //copy.c
@@ -37,14 +37,19 @@ char	*ft_strdup(const char *str);
 char	*ft_strncpy(char *dest, const char *src, size_t size);
 char	*ft_strcpy(char *dest, const char *src);
 
-///get_info.c
+//compare.c
 
-size_t	ft_strlen(const char *str);
-bool	is_empty(const char *str, const size_t size);
 int		ft_strncmp(const char *str1, const char *str2, const size_t size);
 int		ft_strcmp(const char *str1, const char *str2);
 bool	ft_is_equal(const char *str1, const char *str2);
 bool	ft_is_equaln(const char *str1, const char *str2, const size_t size);
+
+
+///get_info.c
+
+size_t	ft_strlen(const char *str);
+bool	is_empty(const char *str, const size_t size);
+bool	is_alnum(const char *str);
 
 ///remove.c
 

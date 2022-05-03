@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 17:37:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/04/28 17:58:35 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:54:21 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void	full_display_room(t_room *room)
 {
 	display_room(room);
 	ft_putstr(" : ");
-	display_list(&room->neighboor, display_room);
+	display_list(&room->neighboor, display_room, DELIM_NEIGHBOOR);
 }

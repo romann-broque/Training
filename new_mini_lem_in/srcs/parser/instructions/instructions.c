@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:20:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/03 11:46:06 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:25:58 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 t_result	get_inst(const char *line)
 {
 	t_graph		*graph = get_graph();
-	char		*(*is_inst[])(const char *) = {is_start_inst,
+	const char		*(*is_inst[])(const char *) = {is_start_inst,
 										  is_end_inst,
 										  is_link_inst};
 	t_result	(*inst[])(t_graph *, const char *) = {start, end, ft_link};
 	int			i;
-	char		*arg;
+	const char		*arg;
 	t_result	rt_value;
 
 	i = 0;
@@ -33,7 +33,6 @@ t_result	get_inst(const char *line)
 			if (arg != NULL)
 			{
 				rt_value = inst[i](graph, arg);
-				free(arg);
 				break ;
 			}
 			++i;

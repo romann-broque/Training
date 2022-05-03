@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/03 12:07:42 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:54:05 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
 # define DELIM "-"
+# define DELIM_PATH "->"
+# define DELIM_NEIGHBOOR ", "
 # define GET NULL
 
 enum e_error
@@ -111,10 +113,10 @@ void		display_path_list(t_list *path_list);
 
 /// find_inst.c
 
-bool		is_perfect_arg(char *arg);
-char		*is_start_inst(const char *line);
-char		*is_end_inst(const char *line);
-char		*is_link_inst(const char *line);
+bool			is_perfect_arg(const char *arg);
+const char		*is_start_inst(const char *line);
+const char		*is_end_inst(const char *line);
+const char		*is_link_inst(const char *line);
 
 /// exe_inst.c
 

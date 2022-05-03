@@ -6,22 +6,24 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:03:00 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 19:38:52 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 14:52:54 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linked_list.h"
 
-void	display_list(t_list **list, void (*display_fct)())
+void	display_list(t_list **list, void (*display_fct)(), const char *delim)
 {
 	if (*list != NULL)
 	{
-		ft_putstr(DELIM);
 		display_fct((*list)->data);
 		if ((*list)->next != NULL)
-			display_list(&(*list)->next, display_fct);
+		{
+			ft_putstr(delim);
+			display_list(&(*list)->next, display_fct, delim);
+		}
 		else
-			ft_putendl(DELIM);
+			ft_putstr("\n");
 	}
 	else
 		ft_putstr("\n");
