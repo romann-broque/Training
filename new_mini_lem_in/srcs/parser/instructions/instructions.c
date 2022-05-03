@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:20:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 19:48:44 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 11:46:06 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_result	get_inst(const char *line)
 	t_result	rt_value;
 
 	i = 0;
-	rt_value = EXIT_FAILURE;
+	rt_value = E_UNKNOWN_COMMAND;
 	if (line != NULL)
 	{
 		while (i < NBOF_COM)
@@ -39,6 +39,7 @@ t_result	get_inst(const char *line)
 			++i;
 		}
 	}
+	error_manager(rt_value);
 	return (rt_value);
 }
 

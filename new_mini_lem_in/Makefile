@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:41:24 by romannbroque      #+#    #+#              #
-#    Updated: 2022/05/02 23:51:40 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/05/03 11:42:15 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ PATH_SRCS += srcs/struct/room
 PATH_SRCS += srcs/utilities
 
 SRCS += main.c
-SRCS += instructions.c
 
 ### linked_list
 
@@ -43,8 +42,10 @@ SRCS += gnl.c
 
 ### instructions
 
+SRCS += instructions.c
 SRCS += exe_inst.c
 SRCS += find_inst.c
+SRCS += error_manager.c
 
 ### graph
 

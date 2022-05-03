@@ -6,7 +6,7 @@
 #    By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 18:21:37 by romannbroque      #+#    #+#              #
-#    Updated: 2022/05/02 23:51:32 by romannbroque     ###   ########.fr        #
+#    Updated: 2022/05/03 11:42:42 by romannbroque     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS += edit.c
 SRCS += gnl.c
 
 SRCS += instructions.c
+SRCS += error_manager.c
 SRCS += find_inst.c
 SRCS += exe_inst.c
 

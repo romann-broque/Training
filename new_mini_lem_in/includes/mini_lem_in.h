@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/02 19:56:12 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 12:07:42 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,21 @@
 
 # define NBOF_SUITE 6
 # define NBOF_COM 3
+# define NBOF_ERROR 5
 # define START_PATTERN "#start "
 # define END_PATTERN "#end "
 # define DELIM "-"
 # define GET NULL
+
+enum e_error
+{
+	E_NO_ERROR,
+	E_UNKNOWN_COMMAND,
+	E_INCOMPLETE_GRAPH,
+	E_START_ERROR,
+	E_END_ERROR,
+	E_INVALID_NAME_ERROR,
+};
 
 typedef struct s_room
 {
@@ -100,7 +111,7 @@ void		display_path_list(t_list *path_list);
 
 /// find_inst.c
 
-bool		is_valid_arg(char *arg, const char *pattern);
+bool		is_perfect_arg(char *arg);
 char		*is_start_inst(const char *line);
 char		*is_end_inst(const char *line);
 char		*is_link_inst(const char *line);
@@ -115,5 +126,9 @@ t_result	ft_link(t_graph *graph, const char *command);
 
 t_result	get_inst(const char *line);
 t_result	display(const char *line);
+
+/// error_manager.c
+
+void		error_manager(t_result error);
 
 #endif
