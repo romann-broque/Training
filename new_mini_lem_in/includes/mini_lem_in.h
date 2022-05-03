@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 16:53:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/03 14:54:05 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/03 15:06:12 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ void		display_path_list(t_list *path_list);
 
 /// find_inst.c
 
-bool			is_perfect_arg(const char *arg);
-const char		*is_start_inst(const char *line);
-const char		*is_end_inst(const char *line);
-const char		*is_link_inst(const char *line);
+bool		is_perfect_arg(const char *arg);
+const char	*is_start_inst(const char *line);
+const char	*is_end_inst(const char *line);
+const char	*is_link_inst(const char *line);
 
 /// exe_inst.c
 
