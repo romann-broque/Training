@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 16:13:54 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 17:27:53 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/06 18:54:43 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	*while_start(void **array, const char **command)
 	if (**((uint8_t **)(array)) == 0)
 	{
 		count = 0;
-		while (**command != ']' || count != 0)
+		while (**command != WHILE_END || count != 0)
 		{
 			++(*command);
-			if (**command == '[')
+			if (**command == WHILE_START)
 				++count;
-			else if (**command == ']')
+			else if (**command == WHILE_END)
 				--count;
 		}
 	}
@@ -39,11 +39,11 @@ void	*while_end(void **array, const char **command)
 	{
 		count = 0;
 		--(*command);
-		while (**command != '[' || count != 0)
+		while (**command != WHILE_START || count != 0)
 		{
-			if (**command == ']')
+			if (**command == WHILE_END)
 				++count;
-			else if (**command == '[')
+			else if (**command == WHILE_START)
 				--count;
 			--(*command);
 		}

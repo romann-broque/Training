@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:28:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 17:02:31 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/06 18:53:28 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ size_t	get_rank(const char *str, const char c)
 void	*interpreter(void *array, const char **command)
 {
 	void	*(*operator_fct[NBOF_OPERATORS])(void **) = {increment_ptr,
-		decrement_ptr,
-		increment_byte,
-		decrement_byte,
-		print};
+		decrement_ptr, increment_byte, decrement_byte, print};
 	void	*(*while_fct[NBOF_WHILE])(void **, const char **) = {while_start,
 		while_end};
 	size_t	op;
@@ -70,6 +67,7 @@ void	brain_fuck(const char *command)
 int	main(int ac, char **av)
 {
 	(void)ac;
-	brain_fuck(av[1]);
+	if (av[1] != NULL)
+		brain_fuck(av[1]);
 	return (EXIT_SUCCESS);
 }
