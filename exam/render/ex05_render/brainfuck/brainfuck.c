@@ -6,13 +6,12 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:28:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 00:13:46 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/06 16:40:30 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "brainfuck.h"
 
-/*
 size_t	get_rank(const char *str, const char c)
 {
 	size_t	rank;
@@ -23,28 +22,35 @@ size_t	get_rank(const char *str, const char c)
 	return (rank);
 }
 
-void	*interpreter(void *array, const char *command)
+void	*interpreter(void *array, const char **command)
 {
-	void	*(*operator[NUMBOF_OPERATORS])(void *) = {
-														increment_ptr,
-														decrement_ptr,
-														increment_byte,
-														decrement_byte,
-														print};
-													
-	void	*(*while_fct[NBOF_WHILE])(void *, const char *) = {while_start,
-																while_end};
+	void	*(*operator_fct[NBOF_OPERATORS])(void **) = {increment_ptr,
+		decrement_ptr,
+		increment_byte,
+		decrement_byte,
+		print};
+	void	*(*while_fct[NBOF_WHILE])(void **, const char **) = {while_start,
+		while_end};
 	size_t	op;
 
-	if (*command != '\0')
+	if (**command != '\0')
 	{
-		op = get_rank(OPERATOR, *command);
-		++command;
-		return (operator[op](interpreter(array, command)));
+		op = get_rank(OPERATORS, **command);
+		++(*command);
+		if (op < NBOF_OPERATORS + NBOF_WHILE)
+		{
+			if (op < NBOF_WHILE)
+				while_fct[op](&array, command);
+			else
+			{
+				op -= NBOF_WHILE;
+				operator_fct[op](&array);
+			}
+		}
+		interpreter(array, command);
 	}
 	return (array);
 }
-*/
 
 void	brain_fuck(const char *command)
 {
@@ -55,8 +61,9 @@ void	brain_fuck(const char *command)
 	if (array != NULL)
 	{
 		ft_bzero(array, 2048);
-	//	interpreter(array, command);
+		interpreter(array, &command);
 	}
+	ft_bzero(array, 2048);
 	free(array);
 }
 
