@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 23:23:40 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 16:07:34 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/06 16:56:45 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # define OPERATORS "[]><+-."
 # define NBOF_OPERATORS 5
 # define NBOF_WHILE 2
+# define WHILE_START '['
+# define WHILE_END ']'
+
 
 /// utilities.c
 

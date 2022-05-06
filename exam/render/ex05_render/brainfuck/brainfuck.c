@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:28:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 16:40:30 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/06 17:02:31 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	*interpreter(void *array, const char **command)
 	if (**command != '\0')
 	{
 		op = get_rank(OPERATORS, **command);
-		++(*command);
 		if (op < NBOF_OPERATORS + NBOF_WHILE)
 		{
 			if (op < NBOF_WHILE)
@@ -47,6 +46,7 @@ void	*interpreter(void *array, const char **command)
 				operator_fct[op](&array);
 			}
 		}
+		++(*command);
 		interpreter(array, command);
 	}
 	return (array);

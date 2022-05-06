@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 16:13:54 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 16:42:50 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/06 17:27:53 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void	*while_start(void **array, const char **command)
 {
-	size_t	count;
+	int	count;
 
 	if (**((uint8_t **)(array)) == 0)
 	{
 		count = 0;
-		++(*command);
 		while (**command != ']' || count != 0)
 		{
-//			if (**command == '[')
-//				++count;
-//			else if (**command == ']')
-//				--count;
 			++(*command);
+			if (**command == '[')
+				++count;
+			else if (**command == ']')
+				--count;
 		}
 	}
 	return (array);
@@ -34,7 +33,7 @@ void	*while_start(void **array, const char **command)
 
 void	*while_end(void **array, const char **command)
 {
-	size_t	count;
+	int	count;
 
 	if (**((uint8_t **)(array)) != 0)
 	{
@@ -42,10 +41,10 @@ void	*while_end(void **array, const char **command)
 		--(*command);
 		while (**command != '[' || count != 0)
 		{
-//			if (**command == ']')
-//				++count;
-//			else if (**command == '[')
-//				--count;
+			if (**command == ']')
+				++count;
+			else if (**command == '[')
+				--count;
 			--(*command);
 		}
 	}
