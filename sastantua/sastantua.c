@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 11:46:13 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/09 01:33:17 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/09 01:49:12 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		get_max_height(const int size)
 	return (max_height);
 }
 
-int		get_max_width(int size, const int height, int *max_width, int shift)
+void	get_max_width(int size, const int height, int *max_width, int shift)
 {
 	int	curr_width;
 	int	nb_empty;
@@ -78,7 +78,7 @@ int		get_max_width(int size, const int height, int *max_width, int shift)
 	{
 		if (height <= get_max_height(size - 1))
 		{
-			if (size != 0 && size % 2 == 1)
+			if (size % 2 == 1)
 				--shift;
 			--size;
 			*max_width += 2 * shift;
@@ -90,7 +90,6 @@ int		get_max_width(int size, const int height, int *max_width, int shift)
 		curr_width = *max_width - curr_width - 1;
 		display_floor(curr_width, nb_empty);
 	}
-	return (*max_width);
 }
 
 void	sastantua(const int size)
@@ -100,7 +99,7 @@ void	sastantua(const int size)
 	int 		shift;
 
 	width = INIT_WIDTH;
-	shift = INIT_SHIFT * size - 1;
+	shift = INIT_SHIFT * (size / 2 + 1) + (size % 2);
 	get_max_width(size, max_height, &width, shift);
 }
 
