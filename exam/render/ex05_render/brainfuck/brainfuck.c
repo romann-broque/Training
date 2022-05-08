@@ -6,13 +6,13 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 15:28:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 18:53:28 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/08 22:32:06 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "brainfuck.h"
 
-size_t	get_rank(const char *str, const char c)
+static size_t	get_rank(const char *str, const char c)
 {
 	size_t	rank;
 
@@ -22,13 +22,13 @@ size_t	get_rank(const char *str, const char c)
 	return (rank);
 }
 
-void	*interpreter(void *array, const char **command)
+static void	interpreter(t_byte *array, const char **command)
 {
-	void	*(*operator_fct[NBOF_OPERATORS])(void **) = {increment_ptr,
-		decrement_ptr, increment_byte, decrement_byte, print};
-	void	*(*while_fct[NBOF_WHILE])(void **, const char **) = {while_start,
-		while_end};
-	size_t	op;
+	static void	(*operator_fct[NBOF_OPERATORS])(t_byte **) = {
+		increment_ptr, decrement_ptr, increment_byte, decrement_byte, print};
+	static void	(*while_fct[NBOF_WHILE])(t_byte **, const char **) = {
+		while_start, while_end};
+	size_t		op;
 
 	if (**command != '\0')
 	{
@@ -46,14 +46,12 @@ void	*interpreter(void *array, const char **command)
 		++(*command);
 		interpreter(array, command);
 	}
-	return (array);
 }
 
 void	brain_fuck(const char *command)
 {
-	void	*array;
+	t_byte	*array;
 
-	(void)command;
 	array = (void *)malloc(2048);
 	if (array != NULL)
 	{

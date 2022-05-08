@@ -6,17 +6,17 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 16:13:54 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 18:54:43 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/08 16:38:08 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "brainfuck.h"
 
-void	*while_start(void **array, const char **command)
+void	while_start(t_byte **array, const char **command)
 {
 	int	count;
 
-	if (**((uint8_t **)(array)) == 0)
+	if (**array == 0)
 	{
 		count = 0;
 		while (**command != WHILE_END || count != 0)
@@ -28,14 +28,13 @@ void	*while_start(void **array, const char **command)
 				--count;
 		}
 	}
-	return (array);
 }
 
-void	*while_end(void **array, const char **command)
+void	while_end(t_byte **array, const char **command)
 {
 	int	count;
 
-	if (**((uint8_t **)(array)) != 0)
+	if (**array != 0)
 	{
 		count = 0;
 		--(*command);
@@ -48,5 +47,4 @@ void	*while_end(void **array, const char **command)
 			--(*command);
 		}
 	}
-	return (array);
 }

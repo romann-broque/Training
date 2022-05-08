@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 09:21:23 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/06 11:39:21 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/08 16:19:12 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 static char	get_closed_complement(const char c)
 {
-	char	*ptr;
+	const char	*ptr = ft_strchr(OPENED, c);
 
-	ptr = ft_strchr(OPENED, c);
 	if (ptr != NULL)
 		return (CLOSED[ft_strlen(CLOSED) - ft_strlen(ptr)]);
 	return (c);
 }
 
-static bool	check_rec(const char **str, const char close_context)
+static bool	check_rec(const char **const str, const char close_context)
 {
 	char	next_close_context;
 
@@ -43,25 +42,18 @@ static bool	check_rec(const char **str, const char close_context)
 
 static bool	are_brackets_closed(const char *str)
 {
-	if (str == NULL)
-		return (true);
-	return (check_rec(&str, INITIAL_CONTEXT));
+	return (str == NULL || check_rec(&str, INITIAL_CONTEXT));
 }
 
 int	main(int ac, char **av)
 {
-	size_t	i;
-	bool	is_okay;
+	const char	*result[] = {"ERROR", "OKAY"};
+	size_t		i;
 
 	i = 1;
-	(void)ac;
-	while (av[i] != NULL)
+	while (i < ac)
 	{
-		is_okay = are_brackets_closed(av[i]);
-		if (is_okay == true)
-			ft_putstr("OKAY");
-		else
-			ft_putstr("ERROR");
+		ft_putstr(result[are_brackets_closed(av[i])]);
 		++i;
 	}
 	ft_putstr("\n");

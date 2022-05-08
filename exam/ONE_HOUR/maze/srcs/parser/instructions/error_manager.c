@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   brackets.h                                         :+:      :+:    :+:   */
+/*   error_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 11:09:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/08 16:22:45 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/05/03 11:41:17 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/05/03 12:04:22 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRACKETS_H
-# define BRACKETS_H
+#include "mini_lem_in.h"
 
-# include <unistd.h>
-# include <stdbool.h>
-# include <stdlib.h>
+void	error_manager(t_result error)
+{
+	const char	*error_message[NBOF_ERROR] = {"UNKNOWN_COMMAND",
+		"INCOMPLETE_GRAPH",
+		"START_NOT_UNIQUE",
+		"END_NOT_UNIQUE",
+		"INVALID_NAME"};
 
-# define OPENED "([{"
-# define CLOSED ")]}"
-# define INITIAL_CONTEXT '\0'
-
-size_t	ft_strlen(const char *str);
-void	ft_putstr(const char *str);
-char	*ft_strchr(const char *str, const char c);
-
-#endif
+	if (error != E_NO_ERROR)
+	{
+		ft_putstr("ERROR: ");
+		ft_putendl(error_message[error - 1]);
+	}
+}

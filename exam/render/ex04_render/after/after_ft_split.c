@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 14:05:19 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/05 11:21:21 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/08 15:57:34 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_strncpy(char *dest, const char *src, const size_t size)
 		dest[i] = src[i];
 		++i;
 	}
+	dest[i] = '\0';
 }
 
 char	*skip_sequence(char **str, bool evaluation)
@@ -88,25 +89,21 @@ char	**ft_split(char *str)
 	char			*str_ptr;
 
 	strs = (char **)malloc((numbof_words + 1) * sizeof(char *));
-	if (strs != NULL)
+	if (strs == NULL)
+		return NULL;
+	i = 0;
+	str_ptr = str;
+	while (i < numbof_words)
 	{
-		i = 0;
-		str_ptr = str;
-		while (i < numbof_words)
+		size = ft_strlen(skip_sequence(&str_ptr, SKIP_WHITESPACES));
+		size -= ft_strlen(skip_sequence(&str_ptr, SKIP_WORD));
+		strs[i] = (char *)malloc((size + 1) * sizeof(char));
+		if (strs[i] != NULL)
 		{
-			skip_sequence(&str_ptr, SKIP_WHITESPACES);
-			size = ft_strlen(str_ptr);
-			skip_sequence(&str_ptr, SKIP_WORD);
-			size -= ft_strlen(str_ptr);
-			strs[i] = (char *)malloc((size + 1) * sizeof(char));
-			if (strs[i] != NULL)
-			{
-				ft_strncpy(strs[i], skip_sequence(&str, SKIP_WHITESPACES), size);
-				strs[i][size] = '\0';
-				str += size;
-			}
-			++i;
+			ft_strncpy(strs[i], skip_sequence(&str, SKIP_WHITESPACES), size);
+			str += size;
 		}
+		++i;
 	}
 	strs[numbof_words] = NULL;
 	return (strs);

@@ -1,38 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_fct.c                                           :+:      :+:    :+:   */
+/*   remove.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 16:14:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/08 16:37:06 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/12 12:01:32 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/04/28 16:43:55 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "brainfuck.h"
+#include "gnl.h"
 
-void	increment_ptr(t_byte **array)
+void	ft_bzero(void *array, const size_t size)
 {
-	++(*array);
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		((uint8_t *)array)[i] = 0;
+		++i;
+	}
 }
 
-void	decrement_ptr(t_byte **array)
+void	cut_str(char *str, const char c)
 {
-	--(*array);
+	size_t	i;
+
+	i = 0;
+	if (str == NULL)
+		return ;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+		{
+			ft_bzero(str + i, ft_strlen(str + i));
+			break ;
+		}
+		++i;
+	}
 }
 
-void	increment_byte(t_byte **array)
+void	full_free(void **ptr)
 {
-	++(**array);
-}
-
-void	decrement_byte(t_byte **array)
-{
-	--(**array);
-}
-
-void	print(t_byte **array)
-{
-	ft_putchar(**array);
+	free(*ptr);
+	*ptr = NULL;
 }

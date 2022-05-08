@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   brackets.h                                         :+:      :+:    :+:   */
+/*   maze.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 11:09:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/08 16:22:45 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/05/03 16:01:12 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/05/03 16:54:48 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRACKETS_H
-# define BRACKETS_H
+#ifndef MAZE_H
 
-# include <unistd.h>
-# include <stdbool.h>
-# include <stdlib.h>
+# define MAZE_H
 
-# define OPENED "([{"
-# define CLOSED ")]}"
-# define INITIAL_CONTEXT '\0'
+# include "gnl.h"
+# include "utilities.h"
 
-size_t	ft_strlen(const char *str);
-void	ft_putstr(const char *str);
-char	*ft_strchr(const char *str, const char c);
+typedef int t_result;
+
+size_t	count_lines(const char *path_file);
+size_t	max_len(const char *path_file);
+char	*init_map(const char *path_file);
 
 #endif

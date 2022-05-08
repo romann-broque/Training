@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   brackets.h                                         :+:      :+:    :+:   */
+/*   gnl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 11:09:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/08 16:22:45 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/11 17:02:53 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/05/02 19:37:51 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRACKETS_H
-# define BRACKETS_H
+#ifndef GNL_H
 
-# include <unistd.h>
-# include <stdbool.h>
-# include <stdlib.h>
+# define GNL_H
 
-# define OPENED "([{"
-# define CLOSED ")]}"
-# define INITIAL_CONTEXT '\0'
+# include "utilities.h"
 
-size_t	ft_strlen(const char *str);
-void	ft_putstr(const char *str);
-char	*ft_strchr(const char *str, const char c);
+# define BUFFER_SIZE 4
+
+char		*get_next_line(const int fd);
+t_result	read_file(const char *path_file,
+				t_result (*function)(const char *));
 
 #endif

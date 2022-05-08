@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilities.c                                        :+:      :+:    :+:   */
+/*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 11:10:41 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/08 16:21:41 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/04/12 15:57:37 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/05/03 14:46:26 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "brackets.h"
+#include "utilities.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -22,21 +22,32 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-void	ft_putstr(const char *str)
+bool	is_empty(const char *str, const size_t size)
 {
-	write(STDOUT_FILENO, str, ft_strlen(str) * sizeof(char));
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (str[i] != 0)
+			return (false);
+		++i;
+	}
+	return (true);
 }
 
-char	*ft_strchr(const char *str, const char c)
+bool	is_alnum(const char *str)
 {
 	size_t	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == c)
-			return ((char *)(str + i));
+		if ((str[i] < 'A' || str[i] > 'Z')
+			&& (str[i] < 'a' || str[i] > 'z')
+			&& (str[i] < '0' || str[i] > '9'))
+			return (false);
 		++i;
 	}
-	return (NULL);
+	return (true);
 }

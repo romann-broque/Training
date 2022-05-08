@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_fct.c                                           :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/06 16:14:43 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/08 16:37:06 by romannbroque     ###   ########.fr       */
+/*   Created: 2022/05/03 17:05:28 by romannbroque      #+#    #+#             */
+/*   Updated: 2022/05/03 18:56:17 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "brainfuck.h"
+#include "circle.h"
 
-void	increment_ptr(t_byte **array)
+size_t	ft_strlen(const char *str)
 {
-	++(*array);
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		++len;
+	return (len);
 }
 
-void	decrement_ptr(t_byte **array)
+void	ft_putchar(const char c)
 {
-	--(*array);
+	write(STDOUT_FILENO, &c, sizeof(char));
 }
 
-void	increment_byte(t_byte **array)
+void	ft_putstr(const char *str)
 {
-	++(**array);
+	write(STDOUT_FILENO, str, ft_strlen(str) * sizeof(char));
 }
 
-void	decrement_byte(t_byte **array)
+void	display_map(char **map, int size)
 {
-	--(**array);
-}
+	int	i;
 
-void	print(t_byte **array)
-{
-	ft_putchar(**array);
+	i = 0;
+	while (i < size)
+	{
+		ft_putstr(map[i]);
+		ft_putchar('\n');
+		++i;
+	}
 }

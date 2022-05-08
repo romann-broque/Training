@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:24:39 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/04 17:05:15 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/08 16:05:23 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,32 @@ static void	mini_sort(t_list *lst, int (*cmp)(int, int))
 	}
 }
 
+
 static t_list	*sort_list(t_list *lst, int (*cmp)(int, int))
 {
-	while (is_list_sort(lst, cmp) == 0)
+	while (is_list_sort(lst, cmp) == 0) // boolean
 		mini_sort(lst, cmp);
 	return (lst);
 }
+
+/*
+static void	sort_list(t_list *head, int (*cmp)(int, int))
+{
+	t_list	*lst = head;
+
+	while (lst != NULL)
+	{
+		if (cmp(lst->nb, lst->next->nb) == 0)
+		{
+			reverse(lst, lst->next);
+			lst = head;
+		}
+		else
+			lst = lst->next;
+	
+	}
+}
+*/
 
 static int	ascending(int a, int b)
 {

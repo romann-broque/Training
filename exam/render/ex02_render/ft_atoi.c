@@ -6,7 +6,7 @@
 /*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:33:34 by romannbroque      #+#    #+#             */
-/*   Updated: 2022/05/05 14:02:47 by romannbroque     ###   ########.fr       */
+/*   Updated: 2022/05/08 15:47:38 by romannbroque     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_atoi(const char *str)
 {
 	const size_t	nb_size = get_number_size(str);
 	size_t			i;
-	int				offset;
+	size_t			offset;
 	int				decade;
 	int				nb;
 
