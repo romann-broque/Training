@@ -1,16 +1,21 @@
 #!/bin/bash
 
-if [ $# >= 3 ]; then
-	mkdir $1
+if [ $# == 3 ]; then
+	if [ -z "$1" ]; then
+		echo "You must provide a directory name as first argument" 1>&2
+		exit 1
+	fi
+	mkdir -p "$1"
 	filename=$2
 	for ((i = 1; i <= $3; i++))
 	do
-	if [[ "$2" == *"."* ]]; then
-		ext=${filename##*.}
-		new_filename=${filename%.*}"_$i."${ext}
-		touch $1/$new_filename
-	else
-		touch $1/$filename'_'$i
-	fi
+		if [[ "$2" == *"."* ]]; then
+			ext=${filename##*.}
+			new_filename=${filename%.*}"_$i."${ext}
+			touch "$1"/"$new_filename"
+		else
+			touch "$1"/"$filename"'_'"$i"
+		fi
 	done
 fi
+exit 0
