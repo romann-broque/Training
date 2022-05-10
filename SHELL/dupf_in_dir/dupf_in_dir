@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# == 3 ]; then
+	mkdir $1
+	filename=$2
+	for ((i = 1; i <= $3; i++))
+	do
+	if [[ "$2" == *"."* ]]; then
+		ext=${filename##*.}
+		new_filename=${filename%.*}"_$i."${ext}
+		touch $1/$new_filename
+	else
+		touch $1/$filename'_'$i
+	fi
+	done
+fi
