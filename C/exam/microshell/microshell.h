@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   microshell.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 01:43:28 by romannbroque      #+#    #+#             */
-/*   Updated: 2023/11/18 01:10:44 by romannbroque     ###   ########.fr       */
+/*   Created: 2023/11/16 01:43:28 by romannbroqu       #+#    #+#             */
+/*   Updated: 2023/11/18 20:38:57 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include <string.h>
 
 #endif

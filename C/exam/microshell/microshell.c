@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   microshell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romannbroque <rbroque@student.42.fr>       +#+  +:+       +#+        */
+/*   By: rbroque <rbroque@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/16 01:42:18 by romannbroque      #+#    #+#             */
-/*   Updated: 2023/11/18 09:15:40 by romannbroque     ###   ########.fr       */
+/*   Created: 2023/11/16 01:42:18 by romannbroqu       #+#    #+#             */
+/*   Updated: 2023/11/18 21:00:04 by rbroque          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static int	execute_cmd(
 	if (pid != 0)
 	{
 		cmd[i] = NULL;
-		if (has_pipe && (dup2(fd[1], STDOUT_FILENO) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+		if (has_pipe
+			&& (dup2(fd[1], STDOUT_FILENO) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
 			error("dup or close error!\n");
 		else
 		{
@@ -67,50 +68,48 @@ static int	execute_cmd(
 		return (EXIT_FAILURE);
 	}
 	waitpid(pid, &status, 0);
-	if (has_pipe && (dup2(fd[0], STDIN_FILENO) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+	if (has_pipe && (dup2(fd[0], STDIN_FILENO) == -1
+			|| close(fd[0]) == -1 || close(fd[1]) == -1))
 		error("dup or close error!\n");
 	return (WIFEXITED(status) && WEXITSTATUS(status));
 }
 
+static int	execute_cd(char **av)
+{
+	if (av[0] != NULL && (av[1] == NULL || is_pipe(av[1]) || is_semicolon(av[1])))
+	{
+		if (chdir(av[0]) == 0)
+			return (EXIT_SUCCESS);
+		else
+			error("error chdir\n");
+	}
+	else
+		error("cd: too many arguments\n");
+	return (EXIT_FAILURE);
+}
+
 int	main(int ac, char **av, char **env)
 {
-/*
 	int	i;
 	int	status;
 
 	if (ac == 1)
 		return (EXIT_SUCCESS);
-	--ac;
-	++av;
+	status = EXIT_SUCCESS;
 	i = 0;
-	while (av[i] != NULL && av[i + 1]  != NULL)
+	while (av[i] != NULL && av[i + 1] != NULL)
 	{
-		av += i;
+		av += i + 1;
 		i = 0;
 		while (av[i] != NULL
 			&& is_pipe(av[i]) == false && is_semicolon(av[i]) == false)
 		{
 			++i;
 		}
-		if (i > 0)
+		if (*av != NULL && strcmp("cd", *av) == 0)
+			status = execute_cd(av + 1);
+		else if (i > 0)
 			status = execute_cmd(av, env, i);
 	}
 	return (status);
-*/
-	int    i = 0;
-    int    status = 0;
-
-    if (ac > 1) 
-    {
-        while (av[i] && av[++i]) 
-        {
-            av += i;
-            i = 0;
-            while (av[i] && is_pipe(av[i]) == false && is_semicolon(av[i]) == false)
-                i++;
-            if (i > 0)
-                status = execute_cmd(av, env, i);
-        }
-    }
-    return status;
 }
